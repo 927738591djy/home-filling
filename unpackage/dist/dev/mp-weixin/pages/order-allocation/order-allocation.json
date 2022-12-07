@@ -4,6 +4,7 @@
   "navigationBarTextStyle": "white",
   "usingComponents": {
     "u-tabs": "/node-modules/uview-ui/components/u-tabs/u-tabs",
+    "u-badge": "/node-modules/uview-ui/components/u-badge/u-badge",
     "navbar": "/compoents/navbar/navbar"
   }
 }
