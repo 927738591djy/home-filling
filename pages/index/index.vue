@@ -111,7 +111,7 @@
 		padding: 36rpx 0 28rpx 24rpx;
 		margin-top: 36rpx;
 	}
-	.u-section .u-section__title__text{
+	/deep/.u-section .u-section__title__text{
 		padding-left: 20rpx;
 	}
 </style>

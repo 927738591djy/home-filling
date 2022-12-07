@@ -1,0 +1,1 @@
+<view><view class="top"><navbar vue-id="d1c177f4-1" color="#000" statusBarHeight="{{statusBarHeight}}" cachetHeight="{{cachetHeight}}" title="指派列表" data-event-opts="{{[['^onBack',[['goBack']]]]}}" bind:onBack="__e" bind:__l="__l"></navbar></view></view>

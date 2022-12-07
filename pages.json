@@ -36,6 +36,28 @@
 					"bounce": "none"
 				}
 			}
+		}, {
+			"path": "pages/order-assign/order-assign",
+			"style": {
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false,
+				"navigationBarTextStyle": "white",
+				"app-plus": {
+					"bounce": "none"
+				}
+
+			}
+		}, {
+			"path": "pages/assign-list/assign-list",
+			"style": {
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false,
+				"navigationBarTextStyle": "white",
+				"app-plus": {
+					"bounce": "none"
+				}
+
+			}
 		}
 	],
 	"globalStyle": {

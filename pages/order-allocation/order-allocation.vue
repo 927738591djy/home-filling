@@ -1,7 +1,7 @@
 <template>
 	<view class="order-allocation">
 		<view class="top">
-			<navbar :statusBarHeight="statusBarHeight" :cachetHeight="cachetHeight" title="订单分配" @onBack="goBack">
+			<navbar :statusBarHeight="statusBarHeight" :cachetHeight="cachetHeight" title="订单分配" :blackArrow="true" @onBack="goBack">
 			</navbar>
 			<view class="light-circle"></view>
 			<view class="light-circle-right"></view>
@@ -39,7 +39,7 @@
 						<view class="order-label">客户信息：</view>
 						<view>张三 138 7289 2990</view>
 					</view>
-					<view class="button">立即指派</view>
+					<view @click="toOrderDetail" class="button">立即指派</view>
 				</view>
 
 			</view>
@@ -79,6 +79,11 @@
 		methods: {
 			change(index) {
 				this.current = index;
+			},
+			toOrderDetail(){
+				uni.navigateTo({
+					url:'../order-assign/order-assign'
+				})
 			}
 		},
 		onLoad() {

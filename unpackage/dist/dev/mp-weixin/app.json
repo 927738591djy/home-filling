@@ -2,7 +2,9 @@
   "pages": [
     "pages/order-allocation/order-allocation",
     "pages/trip/trip",
-    "pages/index/index"
+    "pages/index/index",
+    "pages/order-assign/order-assign",
+    "pages/assign-list/assign-list"
   ],
   "subPackages": [],
   "window": {

@@ -1,7 +1,8 @@
 <template>
 	<view :style="{top:statusBarHeight + 'px',height:(cachetHeight + 8)+'px',lineHeight:(cachetHeight + 8)+'px'}" class="navbar">
-		<image style="height: 50rpx;width: 50rpx;margin: 0 20rpx;" src="../../static/left-arrow.png"></image>
-		<view class="title">{{title}}</view>
+		<image v-if="blackArrow" style="height: 50rpx;width: 50rpx;margin: 0 20rpx;" src="../../static/left-arrow.png"></image>
+		<image v-if="!blackArrow" style="height: 50rpx;width: 50rpx;margin: 0 20rpx;" src="../../static/left-arrow-black.png"></image>
+		<view :style="{color:color}" class="title">{{title}}</view>
 	</view>
 </template>
 
@@ -23,6 +24,12 @@
 			title: {
 				required: true,
 				default: ''
+			},
+			color:{
+				default:'#fff'
+			},
+			blackArrow:{
+				default:false
 			}
 		},
 	}
