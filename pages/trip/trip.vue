@@ -1,11 +1,8 @@
 <template>
 	<view class="trip">
 		<view class="top">
-			<view :style="{height:(statusBarHeight+10)+'px'}" class="status_bar"></view>
-			<view class="title">
-				<image src="../../static/left-arrow.png" mode=""></image>
-				家充装
-			</view>
+			<navbar :statusBarHeight="statusBarHeight" :cachetHeight="cachetHeight" title="行程安排" @onBack="goBack">
+			</navbar>
 			<view class="light-circle"></view>
 			<view class="light-circle-right"></view>
 		</view>
@@ -47,19 +44,24 @@
 </template>
 
 <script>
+	import navbar from '../../compoents/navbar/navbar.vue'
 	export default {
+		components: {
+			navbar
+		},
 		data() {
 			return {
-				statusBarHeight: 0,
+				statusBarHeight:0,
 				show: true,
-				calendarHeight: 0
+				cachetHeight: 0
 			}
 		},
 		onLoad() {
-			// 状态栏高度，单位：px
+			// 状态栏高度，单位：rpx
 			this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight;
-			console.log(this.statusBarHeight);
-
+			console.log(this.statusBarHeight + '状态');
+			this.cachetHeight = uni.getMenuButtonBoundingClientRect().height
+			console.log(this.cachetHeight);
 		},
 		mounted() {
 			uni.createSelectorQuery().in(this).select('.middle').boundingClientRect(data => {
@@ -69,40 +71,19 @@
 	}
 </script>
 
-<style>
+<style scoped>
 	.trip {
 		background-color: #F5F5F5;
 		position: relative;
 		height: 100vh;
 	}
-
-	.status_bar {
-		width: 100%;
-	}
-
 	.top {
-		height: 25vh;
+		height: 20vh;
 		background: linear-gradient(to bottom, #FF2C2E, #FC615F);
 		position: relative;
 		overflow: hidden;
+		z-index: 1;
 	}
-
-	.title image {
-		width: 48rpx;
-		height: 48rpx;
-		margin-right: 18rpx;
-		margin-left: 20rpx;
-	}
-
-	.title {
-		position: absolute;
-		font-size: 36rpx;
-		color: #fff;
-		display: flex;
-		margin-bottom: 40rpx;
-		z-index: 2;
-	}
-
 	.light-circle {
 		background-color: #FD7B79;
 		width: 1000rpx;
@@ -122,13 +103,12 @@
 		position: absolute;
 		right: -800rpx;
 		top: -100px;
-		z-index: 1;
 	}
 
 	.middle {
-		position: absolute;
-		top: 15vh;
-		z-index: 10;
+		position: relative;
+		z-index: 100;
+		margin-top: -100rpx;
 		background-color: #fff;
 		border-radius: 50rpx;
 		padding-bottom: 30rpx;
@@ -143,12 +123,6 @@
 	/deep/.u-icon__icon {
 		color: #B1B1B1 !important;
 		font-weight: normal !important;
-	}
-
-	.bottom {
-		position: absolute;
-		top: 15vh;
-		width: 100%;
 	}
 
 	.bottom-title {
@@ -197,23 +171,25 @@
 		font-size: 28rpx;
 		margin-bottom: 28rpx;
 	}
-	
+
 	.tag-name {
 		color: #999;
 		margin-left: 24rpx;
-		width: 150rpx;		
+		width: 150rpx;
 	}
-	.tag-intro{
+
+	.tag-intro {
 		letter-spacing: 5rpx;
 	}
-	.type{
+
+	.type {
 		position: absolute;
 		background-color: #FF9600;
 		border-bottom-left-radius: 20rpx;
 		width: 100rpx;
 		height: 40rpx;
-		right:0;
-		top:0;
+		right: 0;
+		top: 0;
 		text-align: center;
 		line-height: 40rpx;
 		color: #fff;

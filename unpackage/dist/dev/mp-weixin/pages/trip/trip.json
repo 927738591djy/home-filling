@@ -3,6 +3,7 @@
   "enablePullDownRefresh": false,
   "navigationBarTextStyle": "white",
   "usingComponents": {
-    "u-calendar": "/node-modules/uview-ui/components/u-calendar/u-calendar"
+    "u-calendar": "/node-modules/uview-ui/components/u-calendar/u-calendar",
+    "navbar": "/compoents/navbar/navbar"
   }
 }

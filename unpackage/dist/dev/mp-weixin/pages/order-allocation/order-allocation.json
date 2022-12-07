@@ -1,5 +1,9 @@
 {
-  "navigationBarTitleText": "",
+  "navigationStyle": "custom",
   "enablePullDownRefresh": false,
-  "usingComponents": {}
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "u-tabs": "/node-modules/uview-ui/components/u-tabs/u-tabs",
+    "navbar": "/compoents/navbar/navbar"
+  }
 }

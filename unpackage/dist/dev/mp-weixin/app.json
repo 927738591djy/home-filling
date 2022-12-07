@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/order-allocation/order-allocation",
     "pages/trip/trip",
-    "pages/index/index",
-    "pages/order-allocation/order-allocation"
+    "pages/index/index"
   ],
   "subPackages": [],
   "window": {
