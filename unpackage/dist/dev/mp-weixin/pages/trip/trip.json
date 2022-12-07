@@ -1,0 +1,8 @@
+{
+  "navigationStyle": "custom",
+  "enablePullDownRefresh": false,
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "u-calendar": "/node-modules/uview-ui/components/u-calendar/u-calendar"
+  }
+}

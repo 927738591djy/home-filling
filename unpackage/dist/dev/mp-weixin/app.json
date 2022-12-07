@@ -1,0 +1,13 @@
+{
+  "pages": [
+    "pages/trip/trip",
+    "pages/index/index",
+    "pages/order-allocation/order-allocation"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#000"
+  },
+  "usingComponents": {}
+}

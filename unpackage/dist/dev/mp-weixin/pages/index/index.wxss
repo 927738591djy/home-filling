@@ -1,0 +1,31 @@
+
+.status_bar {
+	width: 100%;
+}
+.top {
+	height: 25vh;
+	background: linear-gradient(to bottom, #FF2C2E, #FC615F);
+}
+.title {
+	color: #fff;
+	font-size: 36rpx;
+	padding-left: 30rpx;
+}
+.home {
+	display: flex;
+	justify-content: center;
+	margin-top: 60rpx;
+}
+.home image {
+	width: 148rpx;
+	height: 148rpx;
+}
+.app-manage {
+	font-family: "PingFang SC";
+	padding: 36rpx 0 28rpx 24rpx;
+	margin-top: 36rpx;
+}
+.u-section .u-section__title__text{
+	padding-left: 20rpx;
+}
+
