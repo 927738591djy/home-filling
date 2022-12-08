@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/look-stock/look-stock",
     "pages/approval-process/approval-process",
     "pages/statement-detail/statement-detail",
     "pages/statement/statement",

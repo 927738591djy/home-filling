@@ -1,4 +1,4 @@
-\<template>
+<template>
 	<view class="order-allocation">
 		<view class="top">
 			<navbar :statusBarHeight="statusBarHeight" :cachetHeight="cachetHeight" title="审批流程" :blackArrow="true"
