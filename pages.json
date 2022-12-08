@@ -4,6 +4,18 @@
 	},
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+			"path": "pages/install-report/install-report",
+			"style": {
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false,
+				"navigationBarTextStyle": "white",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+
+		},
+		{
 			"path": "pages/install-detail/install-detail",
 			"style": {
 				"navigationStyle": "custom",
@@ -133,7 +145,6 @@
 			}
 
 		}
-
 	],
 	"globalStyle": {
 		"navigationBarBackgroundColor": "#F8F8F8",
