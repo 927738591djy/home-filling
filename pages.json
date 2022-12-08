@@ -4,6 +4,42 @@
 	},
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+			"path": "pages/install-detail/install-detail",
+			"style": {
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false,
+				"navigationBarTextStyle": "white",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+
+		},
+		{
+			"path": "pages/to-install/to-install",
+			"style": {
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false,
+				"navigationBarTextStyle": "white",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+
+		},
+		{
+			"path": "pages/appointment-install /appointment-install ",
+			"style": {
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false,
+				"navigationBarTextStyle": "white",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+
+		},
+		{
 			"path": "pages/survey-report/survey-report",
 			"style": {
 				"navigationStyle": "custom",
@@ -97,6 +133,7 @@
 			}
 
 		}
+
 	],
 	"globalStyle": {
 		"navigationBarBackgroundColor": "#F8F8F8",

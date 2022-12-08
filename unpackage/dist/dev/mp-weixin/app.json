@@ -1,5 +1,8 @@
 {
   "pages": [
+    "pages/install-detail/install-detail",
+    "pages/to-install/to-install",
+    "pages/appointment-install /appointment-install ",
     "pages/survey-report/survey-report",
     "pages/order-survey/order-survey",
     "pages/order-allocation/order-allocation",
