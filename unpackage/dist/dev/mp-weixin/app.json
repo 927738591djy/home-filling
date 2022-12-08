@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/order-detail/order-detail",
     "pages/out-stock/out-stock",
     "pages/look-stock/look-stock",
     "pages/approval-process/approval-process",

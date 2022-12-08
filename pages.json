@@ -3,18 +3,30 @@
 		"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
 	},
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-	{
-		"path": "pages/out-stock/out-stock",
-		"style": {
-			"navigationStyle": "custom",
-			"enablePullDownRefresh": false,
-			"navigationBarTextStyle": "white",
-			"app-plus": {
-				"bounce": "none"
+		{
+			"path": "pages/order-detail/order-detail",
+			"style": {
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false,
+				"navigationBarTextStyle": "white",
+				"app-plus": {
+					"bounce": "none"
+				}
 			}
-		}
-	
-	},
+
+		},
+		{
+			"path": "pages/out-stock/out-stock",
+			"style": {
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false,
+				"navigationBarTextStyle": "white",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+
+		},
 		{
 			"path": "pages/look-stock/look-stock",
 			"style": {
