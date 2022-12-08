@@ -1,1 +1,54 @@
-/* pages/survey-detail/survey-detail.wxss */
+
+.top {
+	background: #fff;
+	position: relative;
+	overflow: hidden;
+	height: 11vh;
+	color: #000;
+}
+.bottom {
+	margin-top: 32rpx;
+}
+.red-title {
+	height: 100rpx;
+	display: flex;
+	align-items: center;
+}
+.bottom-box {
+	background-color: #fff;
+	padding: 0 24rpx;
+	margin-bottom: 24rpx;
+}
+ .u-section .u-section__title__text {
+	padding-left: 20rpx;
+}
+.order-detail-line {
+	display: flex;
+	justify-content: space-between;
+	padding: 32rpx 0;
+	border-top: 2rpx solid #E1E1E1;
+}
+.order-detail-label {
+	color: #999;
+}
+.gray {
+	color: #999999;
+}
+.button {
+	position: fixed;
+	width: 80%;
+	background-color: #FD5554;
+	color: #fff;
+	font-size: 32rpx;
+	border-radius: 60rpx;
+	padding: 20rpx;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	        transform: translateX(-50%);
+	bottom: 36rpx;
+	text-align: center;
+}
+.survey-detail {
+	padding-bottom: 150rpx;
+}
+

@@ -41,7 +41,7 @@
 					</view>
 				</view>
 
-				<view class="box-right">
+				<view class="box-right" @click="toSurveyDetail">
 					<u-icon size="50" name="arrow-right"></u-icon>
 				</view>
 
@@ -75,11 +75,11 @@
 			change(index) {
 				this.current = index;
 			},
-			// toOrderDetail(){
-			// 	uni.navigateTo({
-			// 		url:'../order-assign/order-assign'
-			// 	})
-			// }
+			toSurveyDetail(){
+				uni.navigateTo({
+					url:'../survey-detail/survey-detail'
+				})
+			}
 		},
 		onLoad() {
 			// 状态栏高度，单位：rpx

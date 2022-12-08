@@ -2,5 +2,10 @@
   "navigationStyle": "custom",
   "enablePullDownRefresh": false,
   "navigationBarTextStyle": "white",
-  "usingComponents": {}
+  "usingComponents": {
+    "u-section": "/node-modules/uview-ui/components/u-section/u-section",
+    "u-icon": "/node-modules/uview-ui/components/u-icon/u-icon",
+    "u-picker": "/node-modules/uview-ui/components/u-picker/u-picker",
+    "navbar": "/compoents/navbar/navbar"
+  }
 }

@@ -216,13 +216,13 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     change: function change(index) {
       this.current = index;
-    }
-    // toOrderDetail(){
-    // 	uni.navigateTo({
-    // 		url:'../order-assign/order-assign'
-    // 	})
-    // }
-  },
+    },
+    toSurveyDetail: function toSurveyDetail() {
+      uni.navigateTo({
+        url: '../survey-detail/survey-detail' });
+
+    } },
+
   onLoad: function onLoad() {
     // 状态栏高度，单位：rpx
     this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight;
