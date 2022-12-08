@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/reform-detail/reform-detail",
     "pages/install-report/install-report",
     "pages/install-detail/install-detail",
     "pages/to-install/to-install",
