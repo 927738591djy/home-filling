@@ -1,0 +1,9 @@
+{
+  "navigationStyle": "custom",
+  "enablePullDownRefresh": false,
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "u-cell-group": "/node-modules/uview-ui/components/u-cell-group/u-cell-group",
+    "u-cell-item": "/node-modules/uview-ui/components/u-cell-item/u-cell-item"
+  }
+}

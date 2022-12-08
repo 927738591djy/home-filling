@@ -17,11 +17,9 @@
 		<view style="padding: 0 40rpx 0 0;width: 100%; background-color: #fff;">
 			<u-tabs font-size="27" :list="list" :is-scroll="false" :current="current" @change="change" active-color="#FC615F"></u-tabs>
 		</view>
-			
-			<u-badge type="green" class="badge">66</u-badge>
-		
+				
 		<view class="bottom-boxs">
-			<view class="bottom-box" v-for="i in 5" >
+			<view class="bottom-box" v-for="(i,index) in 5"  :key="index">
 				<view>
 					<image style="width: 36rpx;height: 36rpx;vertical-align: middle;"
 						src="../../static/img/order/order.png"></image>

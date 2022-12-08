@@ -130,4 +130,6 @@
 	.order-detail-label{
 		color: #999;
 	}
+	  
+
 </style>

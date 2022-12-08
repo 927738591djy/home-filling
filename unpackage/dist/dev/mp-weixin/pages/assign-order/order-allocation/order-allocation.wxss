@@ -1,0 +1,113 @@
+
+.top.data-v-7ac3e12e {
+	background: linear-gradient(to bottom, #FF2C2E, #FC615F);
+	position: relative;
+	overflow: hidden;
+	height: 11vh;
+}
+.light-circle.data-v-7ac3e12e {
+	background-color: #FD7B79;
+	width: 1000rpx;
+	height: 700rpx;
+	border-radius: 60%;
+	position: absolute;
+	left: -700rpx;
+	top: -100px;
+	z-index: 1;
+}
+.light-circle-right.data-v-7ac3e12e {
+	background-color: #FD7B79;
+	width: 1000rpx;
+	height: 700rpx;
+	border-radius: 60%;
+	position: absolute;
+	right: -800rpx;
+	top: -100px;
+	z-index: 1;
+}
+.search.data-v-7ac3e12e {
+	background-color: #fff;
+	padding: 16rpx 24rpx;
+}
+.search-input.data-v-7ac3e12e {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #F8F8F8;
+	height: 64rpx;
+	border-radius: 30rpx;
+}
+.search-input.data-v-7ac3e12e::-webkit-input-placeholder {
+	font-size: 28rpx;
+	color: #999;
+}
+.search-input.data-v-7ac3e12e::placeholder {
+	font-size: 28rpx;
+	color: #999;
+}
+.bottom-boxs.data-v-7ac3e12e {
+	padding: 32rpx 24rpx 0 24rpx;
+}
+.bottom-box.data-v-7ac3e12e {
+	background-color: #fff;
+	padding: 24rpx 32rpx;
+	border-radius: 5px;
+	display: flex;
+	margin-bottom: 24rpx;
+}
+.bottom-box-title.data-v-7ac3e12e {
+	width: 100%;
+	font-size: 32rpx;
+	border-bottom: 2rpx solid #E1E1E1;
+	color: #000;
+	padding-bottom: 20rpx;
+}
+.box-title.data-v-7ac3e12e {
+	display: flex;
+	align-items: center;
+}
+.order-detail.data-v-7ac3e12e {
+	display: flex;
+	align-items: center;
+	font-size: 28rpx;
+	padding: 15rpx 0;
+	color: #666666;
+}
+.red-circle.data-v-7ac3e12e {
+	width: 16rpx;
+	height: 16rpx;
+	background-color: #FF2C34;
+	border-radius: 50%;
+}
+.blue-circle.data-v-7ac3e12e {
+	width: 16rpx;
+	height: 16rpx;
+	background-color: #0083FF;
+	border-radius: 50%;
+}
+.order-label.data-v-7ac3e12e {
+	color: #999999;
+	margin: 0 20rpx;
+}
+.order-detail.data-v-7ac3e12e:nth-child(3) {
+	border-bottom: 2rpx dotted #E1E1E1;
+	padding-top: 0;
+}
+.box-right.data-v-7ac3e12e {
+	width: 100%;
+	margin-left: 16rpx;
+}
+.button.data-v-7ac3e12e{
+	width: 152rpx;
+	height: 56rpx;
+	background: #FF9600;
+	box-shadow: 0px 3px 6px 0px rgba(225,225,225,0.5);
+	border-radius: 14px;
+	font-size: 24rpx;
+	color: #E1E1E1;
+	text-align: center;
+	line-height: 56rpx;
+	float: right;
+	margin: 24rpx 0 0 0;
+}
+

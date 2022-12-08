@@ -1,10 +1,12 @@
 {
   "pages": [
+    "pages/order-survey/order-survey",
     "pages/order-allocation/order-allocation",
     "pages/trip/trip",
     "pages/index/index",
     "pages/order-assign/order-assign",
-    "pages/assign-list/assign-list"
+    "pages/assign-list/assign-list",
+    "pages/survey-detail/survey-detail"
   ],
   "subPackages": [],
   "window": {
