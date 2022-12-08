@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/survey-report/survey-report",
     "pages/order-survey/order-survey",
     "pages/order-allocation/order-allocation",
     "pages/trip/trip",
