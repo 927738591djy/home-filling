@@ -3,7 +3,6 @@
   "enablePullDownRefresh": false,
   "navigationBarTextStyle": "white",
   "usingComponents": {
-    "survey-report-u-upload-default": "/pages/survey-report/survey-report-u-upload-default",
     "u-icon": "/node-modules/uview-ui/components/u-icon/u-icon",
     "u-upload": "/node-modules/uview-ui/components/u-upload/u-upload",
     "navbar": "/compoents/navbar/navbar"

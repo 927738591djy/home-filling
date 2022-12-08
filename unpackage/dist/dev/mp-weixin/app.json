@@ -1,5 +1,8 @@
 {
   "pages": [
+    "pages/approval-process/approval-process",
+    "pages/statement-detail/statement-detail",
+    "pages/statement/statement",
     "pages/reform-detail/reform-detail",
     "pages/install-report/install-report",
     "pages/install-detail/install-detail",
