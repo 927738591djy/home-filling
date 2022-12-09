@@ -84,20 +84,20 @@
 		<view class="button" @click="backOrderAssign">
 			立即指派
 		</view>
+		<u-popup v-model="timePickerShow" mode="bottom" border-radius="30" :closeable="true">
+			<TimePicker></TimePicker>
+		</u-popup>
 
-
-
-		<view>
-			<u-picker v-model="timePickerShow" mode="time" title="选择日期" :params="params"></u-picker>
-		</view>
 	</view>
 </template>
 
 <script>
 	import navbar from '../../compoents/navbar/navbar.vue'
+	import TimePicker from '../../compoents/time-picker.vue'
 	export default {
 		components: {
-			navbar
+			navbar,
+			TimePicker
 		},
 		data() {
 			return {
@@ -105,7 +105,7 @@
 				cachetHeight: 0,
 				timePickerShow: false,
 				params: {
-					month:true,
+					month: true,
 					day: true,
 					hour: true,
 					minute: true,

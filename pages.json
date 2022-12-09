@@ -5,6 +5,30 @@
 
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+			"path": "pages/survey-detail/survey-detail",
+			"style": {
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false,
+				"navigationBarTextStyle": "white",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+
+		},
+		{
+			"path": "pages/statement-detail/statement-detail",
+			"style": {
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false,
+				"navigationBarTextStyle": "white",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+
+		{
 			"path": "pages/test/test",
 			"style": {
 				"navigationBarTitleText": "",
@@ -63,18 +87,6 @@
 		},
 		{
 			"path": "pages/approval-process/approval-process",
-			"style": {
-				"navigationStyle": "custom",
-				"enablePullDownRefresh": false,
-				"navigationBarTextStyle": "white",
-				"app-plus": {
-					"bounce": "none"
-				}
-			}
-
-		},
-		{
-			"path": "pages/statement-detail/statement-detail",
 			"style": {
 				"navigationStyle": "custom",
 				"enablePullDownRefresh": false,
@@ -225,19 +237,6 @@
 				}
 
 			}
-		},
-
-		{
-			"path": "pages/survey-detail/survey-detail",
-			"style": {
-				"navigationStyle": "custom",
-				"enablePullDownRefresh": false,
-				"navigationBarTextStyle": "white",
-				"app-plus": {
-					"bounce": "none"
-				}
-			}
-
 		}
 	],
 	"globalStyle": {

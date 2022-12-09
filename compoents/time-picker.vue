@@ -1,6 +1,5 @@
 <template>
 	<view>
-		<u-popup v-model="popupShow" mode="bottom" border-radius="30" :closeable="true">
 			<view>
 				<view class="title">
 					<span>选择日期</span>
@@ -18,7 +17,6 @@
 					</picker-view>
 				</view>
 			</view>
-		</u-popup>
 	</view>
 </template>
 <script>
@@ -46,7 +44,6 @@
 				list:list.slice(day-1,list.length),
 				value: [0, 0],
 				visible: true,
-				popupShow: true,
 				timeList: ['8：00-8：30', '9：00-9：30', '10：00-10：30','11:00-11:30','12:00-12:30','13:00-13:00','14:00-14:30','15:00-15:30','16:00-16:30'], //时间段数组，这个是固定的，自定义的。
 			}
 		},
@@ -57,7 +54,13 @@
 				// this.day = this.days[val[2]]
 				this.value = e.detail.value
 			}
-		}
+		},
+		props:{
+			popupShow:{
+				default:false,
+				required:true
+			}
+		},
 	}
 </script>
 <style>
