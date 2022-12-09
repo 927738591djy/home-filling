@@ -1,68 +1,68 @@
 
 .top {
-		position: relative;
-		overflow: hidden;
-		height: 11vh;
-		color: #000;
+	position: relative;
+	overflow: hidden;
+	height: 11vh;
+	color: #000;
 }
 .bottom {
-		background-color: #fff;
-		margin: 32rpx 24rpx;
-		padding: 40rpx 32rpx;
-		border-radius: 20rpx;
+	background-color: #fff;
+	margin: 32rpx 24rpx;
+	padding: 40rpx 32rpx;
+	border-radius: 20rpx;
 }
 .bottom-detail {
-		display: flex;
-		justify-content: space-between;
-		margin-bottom: 38rpx;
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 38rpx;
 }
 .bottom-detail:last-child {
-		margin-bottom: 0;
+	margin-bottom: 0;
 }
 .box-label {
-		color: #999999;
+	color: #999999;
 }
 .line {
-		height: 2rpx;
-		background-color: #E7E7E7;
-		margin-bottom: 38rpx;
+	height: 2rpx;
+	background-color: #E7E7E7;
+	margin-bottom: 38rpx;
 }
 .button {
-		position: fixed;
-		width: 80%;
-		background-color: #FD5554;
-		color: #fff;
-		font-size: 32rpx;
-		border-radius: 60rpx;
-		padding: 20rpx;
-		left: 50%;
-		-webkit-transform: translateX(-50%);
-		        transform: translateX(-50%);
-		bottom: 35vh;
-		text-align: center;
+	position: fixed;
+	width: 80%;
+	background-color: #FD5554;
+	color: #fff;
+	font-size: 32rpx;
+	border-radius: 60rpx;
+	padding: 20rpx;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	        transform: translateX(-50%);
+	bottom: 35vh;
+	text-align: center;
 }
  .u-datetime-picker {
-		border-radius: 30rpx !important;
+	border-radius: 30rpx !important;
 }
  .u-picker__title {
-		color: #000;
-		font-size: 32rpx;
-		font-weight: 500;
+	color: #000;
+	font-size: 32rpx;
+	font-weight: 500;
 }
  .u-btn-picker {
-		font-size: 28rpx;
+	font-size: 28rpx;
 }
 
-	/* 	/deep/.u-column-item{
-		height: 80rpx !important;
-	} */
+/* 	/deep/.u-column-item{
+	height: 80rpx !important;
+} */
 
-	/* 	/deep/.uni-picker-view-indicator{
-		height: 80rpx !important;
-	} */
-.picker-border{
-		background-color: #fff;
-		padding-top: 100rpx;
-		border-radius: 20rpx;
+/* 	/deep/.uni-picker-view-indicator{
+	height: 80rpx !important;
+} */
+.picker-border {
+	background-color: #fff;
+	padding-top: 100rpx;
+	border-radius: 20rpx;
 }
 

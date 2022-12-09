@@ -1,7 +1,7 @@
 <template>
-	<view>
+	<view class="install-detail">
 		<view class="top">
-			<navbar color="#000" :statusBarHeight="statusBarHeight" :cachetHeight="cachetHeight" title="预约安装"
+			<navbar color="#000" :statusBarHeight="statusBarHeight" :cachetHeight="cachetHeight" title="订单详情"
 				@onBack="goBack">
 			</navbar>
 		</view>
@@ -9,25 +9,105 @@
 		<view class="bottom">
 			<view class="bottom-box">
 				<view class="report-detail">
-					<view class="box-label">客户姓名：</view>
-					<view>张无忌</view>
+					<view class="box-label">安装完成时间:：</view>
+					<view class="address">2022-11-23 12:30:30</view>
+				</view>
+				<view class="line"></view>
+				<view class="report-detail">
+					<view class="box-label">充电桩型号(TPN):</view>
+					<view>16287628-02-G</view>
 				</view>
 				<view class="report-detail">
-					<view class="box-label">安装地址：</view>
-					<view class="address">上海市嘉定区众仁路勇立大厦M22 4-6</view>
+					<view class="box-label">充电桩编号(TSN):</view>
+					<view class="address">PGT237292839203</view>
 				</view>
-			</view>
-			<view class="bottom-box time">
-				<view class="box-label">勘测时间：</view>
-				<view>
-					<u-icon name="arrow-right" size="40"></u-icon>
+				<view class="report-detail">
+					<view class="box-label">电缆规格:</view>
+					<view class="address"> 3*6</view>
 				</view>
-			</view>
-			<view class="bottom-box">
-				<view class="box-label">勘测总结：</view>
+				<view class="report-detail">
+					<view class="box-label">电缆长度:</view>
+					<view class="address">37</view>
+				</view>
+				<view class="report-detail">
+					<view class="box-label">管长</view>
+					<view class="address">10</view>
+				</view>
+				<view class="line"></view>
+				<view class="report-detail">
+					<view class="box-label">付费金额:</view>
+					<view class="address">37</view>
+				</view>
+				<view class="report-detail">
+					<view class="box-label">付费备注</view>
+					<view class="address">10</view>
+				</view>
+				<view class="line"></view>
+				<view class="box-label">安装总结：</view>
 				<view class="survey-textarea">
-					<textarea v-model="text" placeholder="请输入勘测总结" />
+					<textarea v-model="text" placeholder="" />
 				</view>
+					<view class="line"></view>
+					<view class="box-label">安装确认书(最多上传5张):</view>
+					<view class="survey-textarea survey-upload">
+						<u-upload :action="action" :file-list="fileList" upload-text="上传现场勘测照片" :custom-btn="true">
+							<view slot="addBtn" class="slot-btn" hover-class="slot-btn__hover" hover-stay-time="150">
+								<image style="width: 72rpx;height: 72rpx" src="../../static/img/order/addbtn.png" mode="">
+								</image>
+								<view style="color:#000;font-size: 24rpx;">确认书</view>
+							</view>
+						</u-upload>
+					</view>
+					<view class="line"></view>
+					<view class="box-label">增项报价单(最多上传2张):</view>
+					<view class="survey-textarea survey-upload">
+						<u-upload :action="action" :file-list="fileList" upload-text="上传现场勘测照片" :custom-btn="true">
+							<view slot="addBtn" class="slot-btn" hover-class="slot-btn__hover" hover-stay-time="150">
+								<image style="width: 72rpx;height: 72rpx" src="../../static/img/order/addbtn.png" mode="">
+								</image>
+								<view style="color:#000;font-size: 24rpx;">确认书</view>
+							</view>
+						</u-upload>
+					</view>
+					<view class="line"></view>
+					<view class="box-label">电源点(最多上传2张):</view>
+					<view class="survey-textarea survey-upload">
+						<u-upload :action="action" :file-list="fileList" upload-text="上传现场勘测照片" :custom-btn="true">
+							<view slot="addBtn" class="slot-btn" hover-class="slot-btn__hover" hover-stay-time="150">
+								<image style="width: 72rpx;height: 72rpx" src="../../static/img/order/addbtn.png" mode="">
+								</image>
+								<view style="color:#000;font-size: 24rpx;">确认书</view>
+							</view>
+						</u-upload>
+					</view>
+					<view class="line"></view>
+					<view class="box-label">控制箱内部接线(最多上传1张):</view>
+					<view class="survey-textarea survey-upload">
+						<u-upload :action="action" :file-list="fileList" upload-text="上传现场勘测照片" :custom-btn="true">
+							<view slot="addBtn" class="slot-btn" hover-class="slot-btn__hover" hover-stay-time="150">
+								<image style="width: 72rpx;height: 72rpx" src="../../static/img/order/addbtn.png" mode="">
+								</image>
+								<view style="color:#000;font-size: 24rpx;">确认书</view>
+							</view>
+						</u-upload>
+					</view>
+					<view class="line"></view>
+					<view class="report-detail">
+						<view class="box-label">整改金额</view>
+						<view class="address">1033</view>
+					</view>
+					<view class="line"></view>
+					<view class="box-label">上传售后传片(最多上传5张):</view>
+					<view class="survey-textarea survey-upload">
+						<u-upload :action="action" :file-list="fileList" upload-text="上传现场勘测照片" :custom-btn="true">
+							<view slot="addBtn" class="slot-btn" hover-class="slot-btn__hover" hover-stay-time="150">
+								<image style="width: 72rpx;height: 72rpx" src="../../static/img/order/addbtn.png" mode="">
+								</image>
+								<view style="color:#000;font-size: 24rpx;">确认书</view>
+							</view>
+						</u-upload>
+					</view>
+					
 			</view>
 		</view>
 
@@ -98,7 +178,7 @@
 	.report-detail {
 		display: flex;
 		justify-content: space-between;
-		margin-bottom: 20rpx;
+		margin-bottom: 40rpx;
 	}
 
 	.report-detail:last-child {
@@ -123,6 +203,7 @@
 		padding: 20rpx;
 
 	}
+
 	.button {
 		position: fixed;
 		width: 80%;
@@ -137,7 +218,22 @@
 		text-align: center;
 	}
 
-	.survey-detail {
+	.install-detail {
 		padding-bottom: 150rpx;
+	}
+
+	.line {
+		height: 3rpx;
+		background-color: #E7E7E7;
+		margin: 40rpx 0;
+	}
+	.survey-upload {
+		text-align: center;
+		padding: 44rpx 0;
+		display: flex;
+		justify-content: center;
+		background-color: #FAFAFA;
+		border: 6rpx dotted #E7E7E7;
+		margin: 28rpx 0 40rpx 0;
 	}
 </style>

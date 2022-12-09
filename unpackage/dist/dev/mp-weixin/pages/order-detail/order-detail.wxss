@@ -24,7 +24,7 @@
 .report-detail {
 	display: flex;
 	justify-content: space-between;
-	margin-bottom: 20rpx;
+	margin-bottom: 40rpx;
 }
 .report-detail:last-child {
 	margin-bottom: 0rpx;
@@ -58,7 +58,21 @@
 	bottom: 36rpx;
 	text-align: center;
 }
-.survey-detail {
+.install-detail {
 	padding-bottom: 150rpx;
+}
+.line {
+	height: 3rpx;
+	background-color: #E7E7E7;
+	margin: 40rpx 0;
+}
+.survey-upload {
+	text-align: center;
+	padding: 44rpx 0;
+	display: flex;
+	justify-content: center;
+	background-color: #FAFAFA;
+	border: 6rpx dotted #E7E7E7;
+	margin: 28rpx 0 40rpx 0;
 }
 

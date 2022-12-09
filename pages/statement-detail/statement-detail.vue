@@ -49,10 +49,10 @@
 			提交审核
 		</view>
 
-	
-			<u-picker v-model="timeSelectShow" mode="time" title="完成时间" confirm-color="#FC615F" cancel-color="#969799"
-				:params="params"></u-picker>
-	
+
+		<u-picker v-model="timeSelectShow" mode="time" title="完成时间" confirm-color="#FC615F" cancel-color="#969799"
+			:params="params"></u-picker>
+
 	</view>
 </template>
 
@@ -150,13 +150,14 @@
 	/deep/.u-btn-picker {
 		font-size: 28rpx;
 	}
-/* 	/deep/.u-column-item{
+
+	/* 	/deep/.u-column-item{
 		height: 80rpx !important;
 	} */
-/* 	/deep/.uni-picker-view-indicator{
+	/* 	/deep/.uni-picker-view-indicator{
 		height: 80rpx !important;
 	} */
-	.picker-border{
+	.picker-border {
 		background-color: #fff;
 		padding-top: 100rpx;
 		border-radius: 20rpx;

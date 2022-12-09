@@ -1,8 +1,8 @@
 {
   "pages": [
-    "pages/appointment-install/appointment-install",
     "pages/order-detail/order-detail",
     "pages/out-stock/out-stock",
+    "pages/appointment-install/appointment-install",
     "pages/look-stock/look-stock",
     "pages/approval-process/approval-process",
     "pages/statement-detail/statement-detail",
