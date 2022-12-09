@@ -4,6 +4,18 @@
 	},
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+			"path": "pages/appointment-install/appointment-install",
+			"style": {
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false,
+				"navigationBarTextStyle": "white",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+
+		},
+		{
 			"path": "pages/order-detail/order-detail",
 			"style": {
 				"navigationStyle": "custom",
@@ -113,18 +125,6 @@
 		},
 		{
 			"path": "pages/to-install/to-install",
-			"style": {
-				"navigationStyle": "custom",
-				"enablePullDownRefresh": false,
-				"navigationBarTextStyle": "white",
-				"app-plus": {
-					"bounce": "none"
-				}
-			}
-
-		},
-		{
-			"path": "pages/appointment-install /appointment-install ",
 			"style": {
 				"navigationStyle": "custom",
 				"enablePullDownRefresh": false,
