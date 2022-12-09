@@ -59,6 +59,33 @@
 <script>
 	import navbar from '../../compoents/navbar/navbar.vue'
 	export default {
+		data() {
+			return {
+				years: [],
+				months: [],
+				days: [],
+				hours: [],
+				minutes: [],
+				seconds: [],
+				year: 0,
+				month: 0,
+				day: 0,
+				hour: 0,
+				minute: 0,
+				second: 0,
+				reset: false,
+				startDate: '',
+				endDate: '',
+				valueArr: [],
+				provinces: provinces,
+				citys: citys[0],
+				areas: areas[0][0],
+				province: 0,
+				city: 0,
+				area: 0,
+				moving: false // 列是否还在滑动中，微信小程序如果在滑动中就点确定，结果可能不准确
+			};
+		},
 		components: {
 			navbar
 		},

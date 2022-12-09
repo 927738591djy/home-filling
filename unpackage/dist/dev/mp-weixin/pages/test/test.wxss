@@ -1,0 +1,13 @@
+
+ .u-datetime-picker {
+	border-radius: 30rpx !important;
+}
+ .u-picker__title {
+	color: #000;
+	font-size: 32rpx;
+	font-weight: 500;
+}
+ .u-btn-picker {
+	font-size: 28rpx;
+}
+

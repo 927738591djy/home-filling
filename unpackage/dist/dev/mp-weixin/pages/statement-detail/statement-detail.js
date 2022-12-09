@@ -163,7 +163,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compoents/navbar/navbar */ "compoents/navbar/navbar").then((function () {return resolve(__webpack_require__(/*! ../../compoents/navbar/navbar.vue */ 200));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _data$components$data;function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compoents/navbar/navbar */ "compoents/navbar/navbar").then((function () {return resolve(__webpack_require__(/*! ../../compoents/navbar/navbar.vue */ 200));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = (_data$components$data = {
 
 
 
@@ -223,32 +223,59 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-{
-  components: {
-    navbar: navbar },
 
   data: function data() {
     return {
-      statusBarHeight: 0,
-      cachetHeight: 0,
-      timeSelectShow: false,
-      params: {
-        hour: true,
-        minute: true,
-        second: true } };
-
-
+      years: [],
+      months: [],
+      days: [],
+      hours: [],
+      minutes: [],
+      seconds: [],
+      year: 0,
+      month: 0,
+      day: 0,
+      hour: 0,
+      minute: 0,
+      second: 0,
+      reset: false,
+      startDate: '',
+      endDate: '',
+      valueArr: [],
+      provinces: provinces,
+      citys: citys[0],
+      areas: areas[0][0],
+      province: 0,
+      city: 0,
+      area: 0,
+      moving: false // 列是否还在滑动中，微信小程序如果在滑动中就点确定，结果可能不准确
+    };
   },
-  methods: {},
+  components: {
+    navbar: navbar } }, _defineProperty(_data$components$data, "data", function data()
+
+{
+  return {
+    statusBarHeight: 0,
+    cachetHeight: 0,
+    timeSelectShow: false,
+    params: {
+      hour: true,
+      minute: true,
+      second: true } };
 
 
-  onLoad: function onLoad() {
-    // 状态栏高度，单位：rpx
-    this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight;
-    console.log(this.statusBarHeight + '状态');
-    this.cachetHeight = uni.getMenuButtonBoundingClientRect().height;
-    console.log(this.cachetHeight);
-  } };exports.default = _default;
+}), _defineProperty(_data$components$data, "methods",
+{}), _defineProperty(_data$components$data, "onLoad", function onLoad()
+
+
+{
+  // 状态栏高度，单位：rpx
+  this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight;
+  console.log(this.statusBarHeight + '状态');
+  this.cachetHeight = uni.getMenuButtonBoundingClientRect().height;
+  console.log(this.cachetHeight);
+}), _data$components$data);exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
