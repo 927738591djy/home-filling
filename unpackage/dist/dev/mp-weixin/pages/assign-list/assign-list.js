@@ -98,10 +98,10 @@ var components
 try {
   components = {
     uCellGroup: function() {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-cell-group/u-cell-group */ "node-modules/uview-ui/components/u-cell-group/u-cell-group").then(__webpack_require__.bind(null, /*! uview-ui/components/u-cell-group/u-cell-group.vue */ 253))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-cell-group/u-cell-group */ "node-modules/uview-ui/components/u-cell-group/u-cell-group").then(__webpack_require__.bind(null, /*! uview-ui/components/u-cell-group/u-cell-group.vue */ 260))
     },
     uCellItem: function() {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-cell-item/u-cell-item */ "node-modules/uview-ui/components/u-cell-item/u-cell-item").then(__webpack_require__.bind(null, /*! uview-ui/components/u-cell-item/u-cell-item.vue */ 260))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-cell-item/u-cell-item */ "node-modules/uview-ui/components/u-cell-item/u-cell-item").then(__webpack_require__.bind(null, /*! uview-ui/components/u-cell-item/u-cell-item.vue */ 267))
     }
   }
 } catch (e) {
@@ -125,12 +125,12 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  var l0 = _vm.__map(10, function(i, index) {
-    var $orig = _vm.__get_orig(i)
+  var l0 = _vm.__map(_vm.engineerNameList, function(item, __i0__) {
+    var $orig = _vm.__get_orig(item)
 
     var a0 = {
-      color: _vm.currentIndex == index ? "#FF2B2F" : "#000",
-      fontSize: _vm.currentIndex == index ? "32rpx" : "28rpx"
+      color: _vm.currentId == item.engineerId ? "#FF2B2F" : "#000",
+      fontSize: _vm.currentId == item.engineerId ? "32rpx" : "28rpx"
     }
     return {
       $orig: $orig,
@@ -179,7 +179,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compoents/navbar/navbar */ "compoents/navbar/navbar").then((function () {return resolve(__webpack_require__(/*! ../../compoents/navbar/navbar.vue */ 215));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compoents/navbar/navbar */ "compoents/navbar/navbar").then((function () {return resolve(__webpack_require__(/*! ../../compoents/navbar/navbar.vue */ 222));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -217,22 +217,35 @@ __webpack_require__.r(__webpack_exports__);
     return {
       statusBarHeight: 0,
       cachetHeight: 0,
-      currentIndex: 0 };
-
+      currentId: 0,
+      currentEnginnerName: '',
+      engineerNameList: [] //工程师姓名列表
+    };
   },
   methods: {
-    selectEngineer: function selectEngineer(index) {
-      console.log(index);
-      console.log(222222);
-      this.currentIndex = index;
+    selectEngineer: function selectEngineer(id, name) {
+      this.currentId = id;
+      this.currentEnginnerName = name;
     },
     backOrderAssign: function backOrderAssign() {
-      uni.navigateBack({
-        delta: 1 });
+      uni.navigateTo({
+        url: '' });
 
+    },
+    // 服务商工程师列表查询
+    getEngineerNameList: function getEngineerNameList() {var _this = this;
+      this.$lsxmApi.getEngineerNameList().then(function (res) {
+        if (res.data.data.code == 200 || res.data.data.code == 1) {
+          // 请求成功,返回数据
+          _this.engineerNameList = res.data.data.data;
+        } else {
+          // 弹出错误提示消息
+        }
+      });
     } },
 
   onLoad: function onLoad() {
+    this.getEngineerNameList();
     // 状态栏高度，单位：rpx
     this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight;
     console.log(this.statusBarHeight + '状态');

@@ -1,5 +1,7 @@
 {
   "pages": [
+    "pages/order-allocation/order-allocation",
+    "pages/index/index",
     "pages/survey-detail/survey-detail",
     "pages/statement-detail/statement-detail",
     "pages/test/test",
@@ -15,9 +17,7 @@
     "pages/to-install/to-install",
     "pages/survey-report/survey-report",
     "pages/order-survey/order-survey",
-    "pages/order-allocation/order-allocation",
     "pages/trip/trip",
-    "pages/index/index",
     "pages/order-assign/order-assign",
     "pages/assign-list/assign-list"
   ],

@@ -11,15 +11,15 @@
 				</view>
 				<view class="order-detail-line">
 					<view class="order-detail-label">订单号</view>
-					<view>INSTAR-28197289</view>
+					<view>{{orderDetailObj.orderNo}}</view>
 				</view>
 				<view class="order-detail-line">
-					<view class="order-detail-label">INSTAR-28197289号</view>
-					<view>177656203938</view>
+					<view class="order-detail-label">RN号</view>
+					<view>{{orderDetailObj.rnNo}}</view>
 				</view>
 				<view class="order-detail-line">
 					<view class="order-detail-label">品牌</view>
-					<view>特斯拉</view>
+					<view>{{orderDetailObj.brandName}}</view>
 				</view>
 			</view>
 			
@@ -29,15 +29,15 @@
 				</view>
 				<view class="order-detail-line">
 					<view class="order-detail-label">客户姓名</view>
-					<view>张翼德</view>
+					<view>{{orderDetailObj.customerName}}</view>
 				</view>
 				<view class="order-detail-line">
 					<view class="order-detail-label">手机号</view>
-					<view>177656203938</view>
+					<view>{{orderDetailObj.customerPhone}}</view>
 				</view>
 				<view class="order-detail-line">
 					<view class="order-detail-label">地址</view>
-					<view>上海市嘉定区众仁路</view>
+					<view>{{orderDetailObj.customerAdress}}</view>
 				</view>
 			</view>
 			
@@ -47,15 +47,15 @@
 				</view>
 				<view class="order-detail-line">
 					<view class="order-detail-label">客服专员</view>
-					<view>孙权</view>
+					<view>{{orderDetailObj.csName}}</view>
 				</view>
 				<view class="order-detail-line">
 					<view class="order-detail-label">专员手机号</view>
-					<view>177656203938</view>
+					<view>{{orderDetailObj.csPhone}}</view>
 				</view>
 				<view class="order-detail-line">
-					<view class="order-detail-label">已派单</view>
-					<view>上海市嘉定区众仁路</view>
+					<view class="order-detail-label">订单状态</view>
+					<view>{{orderDetailObj.orderStatus}}</view>
 				</view>
 				<view class="order-detail-line">
 					<view class="order-detail-label">指派工程师</view>
@@ -78,6 +78,8 @@
 			return {
 				statusBarHeight: 0,
 				cachetHeight: 0,
+				orderId:'', //此订单id
+				orderDetailObj:{} 
 			}
 		},
 		methods: {
@@ -85,14 +87,28 @@
 				uni.navigateTo({
 					url:'../assign-list/assign-list'
 				})
+			},
+			
+			//获取此订单详情
+			getOrderAllocationDetail(){
+				this.$lsxmApi.getOrderAllocationDetail({orderId:this.orderId}).then(res => {
+					if (res.data.data.code == 200 || res.data.data.code == 1) {
+						// 请求成功,返回数据
+						this.orderDetailObj = res.data.data.data
+					} else {
+						// 弹出错误提示消息
+					}
+				})
 			}
 		},
-		onLoad() {
+		onLoad(options) {
+			this.orderId = options.orderId
+			this.getOrderAllocationDetail()
 			// 状态栏高度，单位：rpx
 			this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight;
-			console.log(this.statusBarHeight + '状态');
 			this.cachetHeight = uni.getMenuButtonBoundingClientRect().height
-			console.log(this.cachetHeight);
+			
+			
 		},
 	}
 </script>

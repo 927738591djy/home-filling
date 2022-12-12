@@ -98,7 +98,7 @@ var components
 try {
   components = {
     uTabs: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-tabs/u-tabs */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-tabs/u-tabs")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-tabs/u-tabs.vue */ 236))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-tabs/u-tabs */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-tabs/u-tabs")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-tabs/u-tabs.vue */ 253))
     }
   }
 } catch (e) {
@@ -155,7 +155,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compoents/navbar/navbar */ "compoents/navbar/navbar").then((function () {return resolve(__webpack_require__(/*! ../../compoents/navbar/navbar.vue */ 215));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compoents/navbar/navbar */ "compoents/navbar/navbar").then((function () {return resolve(__webpack_require__(/*! ../../compoents/navbar/navbar.vue */ 222));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -230,25 +230,40 @@ __webpack_require__.r(__webpack_exports__);
         name: '售后单' }],
 
 
-      current: 0 };
-
+      current: 0,
+      orderAllocationList: [] //订单分配列表
+    };
   },
   methods: {
     change: function change(index) {
       this.current = index;
     },
-    toOrderDetail: function toOrderDetail() {
+    toOrderDetail: function toOrderDetail(orderId) {
       uni.navigateTo({
-        url: '../order-assign/order-assign' });
+        url: '../order-assign/order-assign?orderId=' + orderId });
 
+    },
+    // 获取订单分配列表
+    getOrderAllocationList: function getOrderAllocationList(orderId) {var _this = this;
+      this.$lsxmApi.getOrderAllocationList({ phone: 1775529928 }).then(function (res) {
+        if (res.data.data.code == 200 || res.data.data.code == 1) {
+          // 请求成功,返回数据
+          _this.orderAllocationList = res.data.data.data;
+          console.log(_this.orderAllocationList);
+        } else {
+          // 弹出错误提示消息
+        }
+      });
     } },
 
   onLoad: function onLoad() {
+    this.getOrderAllocationList();
     // 状态栏高度，单位：rpx
     this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight;
     console.log(this.statusBarHeight + '状态');
     this.cachetHeight = uni.getMenuButtonBoundingClientRect().height;
     console.log(this.cachetHeight);
+
   } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

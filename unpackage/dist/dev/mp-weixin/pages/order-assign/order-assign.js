@@ -158,7 +158,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compoents/navbar/navbar */ "compoents/navbar/navbar").then((function () {return resolve(__webpack_require__(/*! ../../compoents/navbar/navbar.vue */ 215));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compoents/navbar/navbar */ "compoents/navbar/navbar").then((function () {return resolve(__webpack_require__(/*! ../../compoents/navbar/navbar.vue */ 222));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -237,7 +237,9 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       statusBarHeight: 0,
-      cachetHeight: 0 };
+      cachetHeight: 0,
+      orderId: '', //此订单id
+      orderDetailObj: {} };
 
   },
   methods: {
@@ -245,14 +247,28 @@ __webpack_require__.r(__webpack_exports__);
       uni.navigateTo({
         url: '../assign-list/assign-list' });
 
+    },
+
+    //获取此订单详情
+    getOrderAllocationDetail: function getOrderAllocationDetail() {var _this = this;
+      this.$lsxmApi.getOrderAllocationDetail({ orderId: this.orderId }).then(function (res) {
+        if (res.data.data.code == 200 || res.data.data.code == 1) {
+          // 请求成功,返回数据
+          _this.orderDetailObj = res.data.data.data;
+        } else {
+          // 弹出错误提示消息
+        }
+      });
     } },
 
-  onLoad: function onLoad() {
+  onLoad: function onLoad(options) {
+    this.orderId = options.orderId;
+    this.getOrderAllocationDetail();
     // 状态栏高度，单位：rpx
     this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight;
-    console.log(this.statusBarHeight + '状态');
     this.cachetHeight = uni.getMenuButtonBoundingClientRect().height;
-    console.log(this.cachetHeight);
+
+
   } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

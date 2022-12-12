@@ -19,7 +19,7 @@
 		</view>
 				
 		<view class="bottom-boxs">
-			<view class="bottom-box" v-for="(i,index) in 5"  :key="index">
+			<view class="bottom-box" v-for="item in orderAllocationList"  :key="item.orderId">
 				<view>
 					<image style="width: 36rpx;height: 36rpx;vertical-align: middle;"
 						src="../../static/img/order/order.png"></image>
@@ -30,14 +30,14 @@
 					<view class="order-detail">
 						<view class="red-circle"></view>
 						<view class="order-label">下单时间：</view>
-						<view>2022-11-14 07:20:17</view>
+						<view>{{item.orderCreateTime}}</view>
 					</view>
 					<view class="order-detail">
 						<view class="blue-circle"></view>
 						<view class="order-label">客户信息：</view>
-						<view>张三 138 7289 2990</view>
+						<view>{{item.customerName+item.customerPhone}}</view>
 					</view>
-					<view @click="toOrderDetail" class="button">立即指派</view>
+					<view @click="toOrderDetail(item.orderId)" class="button">立即指派</view>
 				</view>
 
 			</view>
@@ -73,26 +73,41 @@
 						name: '售后单',
 					}
 				],
-				current: 0
+				current: 0,
+				orderAllocationList:[] //订单分配列表
 			}
 		},
 		methods: {
 			change(index) {
 				this.current = index;
 			},
-			toOrderDetail(){
+			toOrderDetail(orderId){
 				uni.navigateTo({
-					url:'../order-assign/order-assign'
+					url:'../order-assign/order-assign?orderId='+ orderId
+				})
+			},
+			// 获取订单分配列表
+			getOrderAllocationList(orderId){
+				this.$lsxmApi.getOrderAllocationList({phone:1775529928}).then(res => {
+					if (res.data.data.code == 200 || res.data.data.code == 1) {
+						// 请求成功,返回数据
+						this.orderAllocationList = res.data.data.data
+						console.log(this.orderAllocationList);
+					} else {
+						// 弹出错误提示消息
+					}
 				})
 			}
 		},
 		onLoad() {
+			this.getOrderAllocationList()
 			// 状态栏高度，单位：rpx
 			this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight;
 			console.log(this.statusBarHeight + '状态');
 			this.cachetHeight = uni.getMenuButtonBoundingClientRect().height
 			console.log(this.cachetHeight);
-		},
+			
+		}
 	}
 </script>
 

@@ -101,10 +101,10 @@ try {
       return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-section/u-section */ "node-modules/uview-ui/components/u-section/u-section").then(__webpack_require__.bind(null, /*! uview-ui/components/u-section/u-section.vue */ 201))
     },
     uGrid: function() {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-grid/u-grid */ "node-modules/uview-ui/components/u-grid/u-grid").then(__webpack_require__.bind(null, /*! uview-ui/components/u-grid/u-grid.vue */ 274))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-grid/u-grid */ "node-modules/uview-ui/components/u-grid/u-grid").then(__webpack_require__.bind(null, /*! uview-ui/components/u-grid/u-grid.vue */ 281))
     },
     uGridItem: function() {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-grid-item/u-grid-item */ "node-modules/uview-ui/components/u-grid-item/u-grid-item").then(__webpack_require__.bind(null, /*! uview-ui/components/u-grid-item/u-grid-item.vue */ 281))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-grid-item/u-grid-item */ "node-modules/uview-ui/components/u-grid-item/u-grid-item").then(__webpack_require__.bind(null, /*! uview-ui/components/u-grid-item/u-grid-item.vue */ 288))
     }
   }
 } catch (e) {
@@ -190,54 +190,46 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 var _default =
 {
   data: function data() {
     return {
-      statusBarHeight: 0 };
-
+      statusBarHeight: 0,
+      homeMenuList: [] //首页图文菜单列表
+    };
   },
   onLoad: function onLoad() {
     // 状态栏高度，单位：px
     this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight;
     console.log(this.statusBarHeight);
+    this.getHomeMenuList();
+    this.loginAuthorization();
+  },
+  methods: {
+    // 获取首页菜单列表图文
+    getHomeMenuList: function getHomeMenuList() {var _this = this;
+      this.$lsxmApi.getHomeMenuList().then(function (res) {
+        if (res.data.data.code == 200 || res.data.data.code == 1) {
+          // 请求成功,返回数据
+          _this.homeMenuList = res.data.data.data;
+          console.log(_this.homeMenuList);
+        } else {
+          // 弹出错误提示消息
+        }
+      });
+    },
 
-  } };exports.default = _default;
+    loginAuthorization: function loginAuthorization() {var _this2 = this;
+      this.$lsxmApi.loginAuthorization({ phone: 1775529928 }).then(function (res) {
+        if (res.data.data.code == 200 || res.data.data.code == 1) {
+          // 请求成功,返回数据
+          _this2.homeMenuList = res.data.data.data;
+          console.log(_this2.homeMenuList);
+        } else {
+          // 弹出错误提示消息
+        }
+      });
+    } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

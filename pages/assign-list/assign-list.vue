@@ -14,8 +14,8 @@
 		</view>
 		<view class="bottom">
 			<u-cell-group>
-				<u-cell-item v-for="(i,index) in 10" :key="index" @click="selectEngineer" title="孙策"
-					:title-style="{color: currentIndex == index?'#FF2B2F':'#000',  fontSize:currentIndex == index?'32rpx':'28rpx'}" :index="index"
+				<u-cell-item v-for="item in engineerNameList" :key="item.engineerId" @click="selectEngineer(item.engineerId,item.engineerName)" :title="item.engineerName"
+					:title-style="{color: currentId == item.engineerId?'#FF2B2F':'#000',  fontSize:currentId == item.engineerId?'32rpx':'28rpx'}" :index="item.engineerId"
 					:arrow="false" :border-bottom="true"
 					></u-cell-item>
 			</u-cell-group>
@@ -36,22 +36,35 @@
 			return {
 				statusBarHeight: 0,
 				cachetHeight: 0,
-				currentIndex:0,
+				currentId:0,
+				currentEnginnerName:'',
+				engineerNameList:[] //工程师姓名列表
 			}
 		},
 		methods: {
-			selectEngineer(index) {
-				console.log(index);
-				console.log(222222);
-				this.currentIndex = index
+			selectEngineer(id,name) {
+				this.currentId = id
+				this.currentEnginnerName = name
 			},
 			backOrderAssign(){
-				uni.navigateBack({
-					delta:1
+				uni.navigateTo({
+					url:''
+				})
+			},
+			// 服务商工程师列表查询
+			getEngineerNameList(){
+				this.$lsxmApi.getEngineerNameList().then(res => {
+					if (res.data.data.code == 200 || res.data.data.code == 1) {
+						// 请求成功,返回数据
+							this.engineerNameList = res.data.data.data
+					} else {
+						// 弹出错误提示消息
+					}
 				})
 			}
 		},
 		onLoad() {
+			this.getEngineerNameList()
 			// 状态栏高度，单位：rpx
 			this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight;
 			console.log(this.statusBarHeight + '状态');

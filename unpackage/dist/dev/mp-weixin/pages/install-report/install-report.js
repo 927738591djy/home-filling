@@ -98,7 +98,7 @@ var components
 try {
   components = {
     uUpload: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-upload/u-upload */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-upload/u-upload")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-upload/u-upload.vue */ 229))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-upload/u-upload */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-upload/u-upload")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-upload/u-upload.vue */ 246))
     }
   }
 } catch (e) {
@@ -155,7 +155,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compoents/navbar/navbar */ "compoents/navbar/navbar").then((function () {return resolve(__webpack_require__(/*! ../../compoents/navbar/navbar.vue */ 215));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compoents/navbar/navbar */ "compoents/navbar/navbar").then((function () {return resolve(__webpack_require__(/*! ../../compoents/navbar/navbar.vue */ 222));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
