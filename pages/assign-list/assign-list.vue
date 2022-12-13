@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view class="assign-list">
 		<view class="top">
 			<navbar color="#000" :statusBarHeight="statusBarHeight" :cachetHeight="cachetHeight" title="指派列表"
 				@onBack="goBack">
@@ -48,7 +48,7 @@
 			},
 			backOrderAssign(){
 				uni.navigateTo({
-					url:''
+					url:'../order-assign/order-assign?engineerId=' + this.currentId +'&engineerName='+ this.currentEnginnerName
 				})
 			},
 			// 服务商工程师列表查询
@@ -123,5 +123,8 @@
 		transform: translateX(-50%);
 		bottom: 36rpx;
 		text-align: center;
+	}
+	.assign-list{
+		padding-bottom: 400rpx;
 	}
 </style>

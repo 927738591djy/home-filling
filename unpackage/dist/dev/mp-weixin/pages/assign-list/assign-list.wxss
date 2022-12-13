@@ -48,4 +48,7 @@
 	bottom: 36rpx;
 	text-align: center;
 }
+.assign-list.data-v-787cdd00{
+	padding-bottom: 400rpx;
+}
 
