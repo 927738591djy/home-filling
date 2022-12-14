@@ -1,0 +1,45 @@
+
+.top {
+	background-color: #30384E;
+	position: relative;
+	overflow: hidden;
+	height: 25vh;
+	color: #000;
+}
+.avatar {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-top: 10vh;
+}
+.avatar image {
+	width: 116rpx;
+	height: 116rpx;
+}
+.nick-name {
+	color: #fff;
+	font-size: 32rpx;
+}
+.bottom {
+	margin-top: 32rpx;
+}
+ .u-cell {
+	padding: 38rpx 32rpx !important;
+	color: #000;
+	font-size: 28rpx;
+}
+ .u-iconfont {
+	color: #000;
+}
+.icon {
+	display: flex;
+	align-items: center;
+}
+.icon image {
+	width: 48rpx;
+	height: 48rpx;
+	vertical-align: middle;
+	margin-right: 20rpx;
+}
+

@@ -98,13 +98,13 @@ var components
 try {
   components = {
     uSection: function() {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-section/u-section */ "node-modules/uview-ui/components/u-section/u-section").then(__webpack_require__.bind(null, /*! uview-ui/components/u-section/u-section.vue */ 226))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-section/u-section */ "node-modules/uview-ui/components/u-section/u-section").then(__webpack_require__.bind(null, /*! uview-ui/components/u-section/u-section.vue */ 254))
     },
     uGrid: function() {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-grid/u-grid */ "node-modules/uview-ui/components/u-grid/u-grid").then(__webpack_require__.bind(null, /*! uview-ui/components/u-grid/u-grid.vue */ 233))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-grid/u-grid */ "node-modules/uview-ui/components/u-grid/u-grid").then(__webpack_require__.bind(null, /*! uview-ui/components/u-grid/u-grid.vue */ 261))
     },
     uGridItem: function() {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-grid-item/u-grid-item */ "node-modules/uview-ui/components/u-grid-item/u-grid-item").then(__webpack_require__.bind(null, /*! uview-ui/components/u-grid-item/u-grid-item.vue */ 240))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-grid-item/u-grid-item */ "node-modules/uview-ui/components/u-grid-item/u-grid-item").then(__webpack_require__.bind(null, /*! uview-ui/components/u-grid-item/u-grid-item.vue */ 268))
     }
   }
 } catch (e) {
