@@ -52,17 +52,19 @@
 				<view class="red-title">
 					<u-section title="位置信息" :right="false" line-color="#FF2C34" font-size="32"></u-section>
 				</view>
-				<view class="order-detail-line">
+				<view class="order-detail-line order-detail-input">
 					<view class="order-detail-label">物业名称</view>
-					<view class="gray">请输入物业名称</view>
+					<view class="gray">
+						<u-input v-model="value" :type="type" :border="border" placeholder="请输入物业名称" input-align="right"/>
+					</view>
 				</view>
-				<view class="order-detail-line">
+				<view class="order-detail-line order-detail-input">
 					<view class="order-detail-label">小区名称</view>
-					<view class="gray">请输入小区名称</view>
+					<u-input v-model="value" :type="type" :border="border" placeholder="请输入小区名称" input-align="right"/>
 				</view>
-				<view class="order-detail-line">
+				<view class="order-detail-line order-detail-input">
 					<view class="order-detail-label">变更地址</view>
-					<view class="gray">请输入变更地址</view>
+					<u-input v-model="value" :type="type" :border="border" placeholder="请输入变更地址" input-align="right"/>
 				</view>
 			</view>
 
@@ -176,5 +178,10 @@
 
 	.survey-detail {
 		padding-bottom: 150rpx;
+	}
+	.order-detail-input{
+		display: flex;
+		align-items: center;
+		padding: 10rpx 0;
 	}
 </style>

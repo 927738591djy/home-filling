@@ -1,10 +1,10 @@
 {
   "pages": [
+    "pages/survey-detail/survey-detail",
     "pages/statement-detail/statement-detail",
     "pages/look-stock/look-stock",
     "pages/install-report/install-report",
     "pages/survey-report/survey-report",
-    "pages/survey-detail/survey-detail",
     "pages/order-allocation/order-allocation",
     "pages/my/my",
     "pages/setting/setting",

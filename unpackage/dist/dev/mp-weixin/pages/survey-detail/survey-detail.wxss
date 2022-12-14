@@ -37,4 +37,9 @@
 .survey-detail {
 	padding-bottom: 150rpx;
 }
+.order-detail-input{
+	display: flex;
+	align-items: center;
+	padding: 10rpx 0;
+}
 
