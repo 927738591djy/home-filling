@@ -69,7 +69,7 @@
 		</view>
 
 
-		<view v-if="engineerName" class="button" @click="submit">
+		<view v-if="engineerName" class="button" @click="orderAssignmentSubmit">
 			提交
 		</view>
 	</view>
@@ -112,7 +112,7 @@
 				})
 			},
 
-			submit() {
+			
 				orderAssignmentSubmit() {
 					this.$lsxmApi.orderAssignmentSubmit({
 						engineerId: this.engineerId,
@@ -126,7 +126,7 @@
 						}
 					})
 				}
-			}
+			
 		},
 		onLoad(options) {
 			console.log(options);
