@@ -211,8 +211,12 @@ __webpack_require__.r(__webpack_exports__);
       cachetHeight: 0 };
 
   },
-  methods: {},
+  methods: {
+    toSetting: function toSetting() {
+      uni.navigateTo({
+        url: '../setting/setting' });
 
+    } },
 
   onLoad: function onLoad() {
     // 状态栏高度，单位：rpx

@@ -11,33 +11,33 @@
 		</view>
 
 		<view class="bottom">
-		
-				<u-cell-item title="我的订单" bg-color="#fff">
-					<div class="icon" slot="icon">
-						<image src="../../static/img/my/order.png"></image>
-					</div>
-				</u-cell-item>
-				<u-cell-item title="我的审批" bg-color="#fff">
-					<div class="icon" slot="icon">
-						<image src="../../static/img/my/approval.png"></image>
-					</div>
-				</u-cell-item>
-	
-		
-				<div style="margin: 20rpx 0;">
-					<u-cell-item title="关于我们" bg-color="#fff">
-						<div class="icon" slot="icon">
-							<image src="../../static/img/my/about.png"></image>
-						</div>
-					</u-cell-item>
-							
+
+			<u-cell-item title="我的订单" bg-color="#fff">
+				<div class="icon" slot="icon">
+					<image src="../../static/img/my/order.png"></image>
 				</div>
-				<u-cell-item title="我的订单" bg-color="#fff">
+			</u-cell-item>
+			<u-cell-item title="我的审批" bg-color="#fff">
+				<div class="icon" slot="icon">
+					<image src="../../static/img/my/approval.png"></image>
+				</div>
+			</u-cell-item>
+
+
+			<div style="margin: 20rpx 0;">
+				<u-cell-item title="关于我们" bg-color="#fff">
 					<div class="icon" slot="icon">
-						<image src="../../static/img/my/setting.png"></image>
+						<image src="../../static/img/my/about.png"></image>
 					</div>
 				</u-cell-item>
-	
+
+			</div>
+			<u-cell-item title="设置" @click="toSetting" bg-color="#fff">
+				<div class="icon" slot="icon">
+					<image src="../../static/img/my/setting.png"></image>
+				</div>
+			</u-cell-item>
+
 		</view>
 	</view>
 </template>
@@ -55,7 +55,11 @@
 			}
 		},
 		methods: {
-
+			toSetting() {
+				uni.navigateTo({
+					url: '../setting/setting'
+				})
+			}
 		},
 		onLoad() {
 			// 状态栏高度，单位：rpx
