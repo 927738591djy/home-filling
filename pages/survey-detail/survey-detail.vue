@@ -55,16 +55,16 @@
 				<view class="order-detail-line order-detail-input">
 					<view class="order-detail-label">物业名称</view>
 					<view class="gray">
-						<u-input v-model="value" :type="type" :border="border" placeholder="请输入物业名称" input-align="right"/>
+						<u-input v-model="value"  placeholder="请输入物业名称" input-align="right"/>
 					</view>
 				</view>
 				<view class="order-detail-line order-detail-input">
 					<view class="order-detail-label">小区名称</view>
-					<u-input v-model="value" :type="type" :border="border" placeholder="请输入小区名称" input-align="right"/>
+					<u-input v-model="value"   placeholder="请输入小区名称" input-align="right"/>
 				</view>
 				<view class="order-detail-line order-detail-input">
 					<view class="order-detail-label">变更地址</view>
-					<u-input v-model="value" :type="type" :border="border" placeholder="请输入变更地址" input-align="right"/>
+					<u-input v-model="value"  placeholder="请输入变更地址" input-align="right"/>
 				</view>
 			</view>
 
