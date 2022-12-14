@@ -58,19 +58,19 @@
 				</view>
 			</view>
 		</view>
-		
-		
-		<view class="button" @click="backOrderAssign">
-			提交审核
-		</view>
+
+		<RedButton title="提交审核"></RedButton>
+
 	</view>
 </template>
 
 <script>
 	import navbar from '../../compoents/navbar/navbar.vue'
+	import RedButton from '../../compoents/red-button.vue'
 	export default {
 		components: {
-			navbar
+			navbar,
+			RedButton
 		},
 		data() {
 			return {
@@ -106,7 +106,7 @@
 		border-radius: 20rpx;
 		padding: 40rpx;
 		padding-bottom: 15rpx;
-		margin-top:32rpx;
+		margin-top: 32rpx;
 	}
 
 	.line {
@@ -130,19 +130,6 @@
 	}
 
 	.install-report {
-		padding:0rpx 24rpx 150rpx 24rpx;
-	}
-	.button {
-		position: fixed;
-		width: 80%;
-		background-color: #FD5554;
-		color: #fff;
-		font-size: 32rpx;
-		border-radius: 60rpx;
-		padding: 20rpx;
-		left: 50%;
-		transform: translateX(-50%);
-		bottom: 36rpx;
-		text-align: center;
+		padding: 0rpx 24rpx 150rpx 24rpx;
 	}
 </style>

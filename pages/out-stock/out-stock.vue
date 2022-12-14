@@ -54,18 +54,18 @@
 
 
 
-		<view class="button" @click="backOrderAssign">
-			确认出库
-		</view>
+		<RedButton title="确认出库"></RedButton>
 
 	</view>
 </template>
 
 <script>
 	import navbar from '../../compoents/navbar/navbar.vue'
+	import RedButton from '../../compoents/red-button.vue'
 	export default {
 		components: {
-			navbar
+			navbar,
+			RedButton
 		},
 		data() {
 			return {
@@ -75,7 +75,6 @@
 			}
 		},
 		methods: {
-
 		},
 		onLoad() {
 			// 状态栏高度，单位：rpx
@@ -150,7 +149,7 @@
 		padding: 20rpx;
 		left: 50%;
 		transform: translateX(-50%);
-		bottom:20vh;
+		bottom: 20vh;
 		text-align: center;
 	}
 

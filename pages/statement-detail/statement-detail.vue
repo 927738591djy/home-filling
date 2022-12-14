@@ -44,10 +44,10 @@
 			</view>
 		</view>
 
+		<div>
+			<RedButton title="提交审核"></RedButton>
+		</div>
 
-		<view class="button" @click="backOrderAssign">
-			提交审核
-		</view>
 
 
 		<u-picker v-model="timeSelectShow" mode="time" title="完成时间" confirm-color="#FC615F" cancel-color="#969799"
@@ -58,6 +58,7 @@
 
 <script>
 	import navbar from '../../compoents/navbar/navbar.vue'
+	import RedButton from '../../compoents/red-button.vue'
 	export default {
 		data() {
 			return {
@@ -87,7 +88,8 @@
 			};
 		},
 		components: {
-			navbar
+			navbar,
+			RedButton
 		},
 		data() {
 			return {
@@ -102,7 +104,6 @@
 			}
 		},
 		methods: {
-
 		},
 		onLoad() {
 			// 状态栏高度，单位：rpx

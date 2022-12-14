@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view class="survey-report">
 		<view class="top">
 			<navbar color="#000" :statusBarHeight="statusBarHeight" :cachetHeight="cachetHeight" title="勘测报告"
 				@onBack="goBack">
@@ -41,21 +41,18 @@
 		</view>
 
 
-
-		<view class="button" @click="backOrderAssign">
-			提交审核
-		</view>
-
-
+		<RedButton title="提交审核"></RedButton>
 
 	</view>
 </template>
 
 <script>
 	import navbar from '../../compoents/navbar/navbar.vue'
+	import RedButton from '../../compoents/red-button.vue'
 	export default {
 		components: {
-			navbar
+			navbar,
+			RedButton
 		},
 		data() {
 			return {
@@ -140,21 +137,7 @@
 		justify-content: center;
 	}
 
-	.button {
-		position: fixed;
-		width: 80%;
-		background-color: #FD5554;
-		color: #fff;
-		font-size: 32rpx;
-		border-radius: 60rpx;
-		padding: 20rpx;
-		left: 50%;
-		transform: translateX(-50%);
-		bottom: 36rpx;
-		text-align: center;
-	}
-
-	.survey-detail {
-		padding-bottom: 150rpx;
+	.survey-report {
+		padding-bottom: 100rpx;
 	}
 </style>

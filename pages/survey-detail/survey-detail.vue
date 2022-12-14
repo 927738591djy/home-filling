@@ -80,10 +80,8 @@
 		</view>
 
 
-
-		<view class="button" @click="backOrderAssign">
-			立即指派
-		</view>
+		<RedButton title="提交"></RedButton>
+		
 		<u-popup v-model="timePickerShow" mode="bottom" border-radius="30" :closeable="true">
 			<TimePicker></TimePicker>
 		</u-popup>
@@ -94,10 +92,12 @@
 <script>
 	import navbar from '../../compoents/navbar/navbar.vue'
 	import TimePicker from '../../compoents/time-picker.vue'
+	import RedButton from '../../compoents/red-button.vue'
 	export default {
 		components: {
 			navbar,
-			TimePicker
+			TimePicker,
+			RedButton
 		},
 		data() {
 			return {
@@ -172,20 +172,6 @@
 
 	.gray {
 		color: #999999;
-	}
-
-	.button {
-		position: fixed;
-		width: 80%;
-		background-color: #FD5554;
-		color: #fff;
-		font-size: 32rpx;
-		border-radius: 60rpx;
-		padding: 20rpx;
-		left: 50%;
-		transform: translateX(-50%);
-		bottom: 36rpx;
-		text-align: center;
 	}
 
 	.survey-detail {

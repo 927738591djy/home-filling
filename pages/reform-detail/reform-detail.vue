@@ -60,24 +60,24 @@
 
 
 
-		<view class="button" @click="backOrderAssign">
-			重现编辑
-		</view>
+		<RedButton title="整改提交" bgColor="#FF3A3B"></RedButton>
 
 	</view>
 </template>
 
 <script>
 	import navbar from '../../compoents/navbar/navbar.vue'
+	import RedButton from '../../compoents/red-button.vue'
 	export default {
 		components: {
-			navbar
+			navbar,
+			RedButton
 		},
 		data() {
 			return {
 				statusBarHeight: 0,
 				cachetHeight: 0,
-				
+
 			}
 		},
 		methods: {
@@ -173,7 +173,8 @@
 		background-color: #E7E7E7;
 		margin: 40rpx 0;
 	}
-	.reform-textarea{
+
+	.reform-textarea {
 		border: 4rpx solid #FF0006;
 		border-radius: 10px;
 	}

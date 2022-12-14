@@ -163,7 +163,8 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _data$components$data;function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compoents/navbar/navbar */ "compoents/navbar/navbar").then((function () {return resolve(__webpack_require__(/*! ../../compoents/navbar/navbar.vue */ 240));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = (_data$components$data = {
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _data$components$data;function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compoents/navbar/navbar */ "compoents/navbar/navbar").then((function () {return resolve(__webpack_require__(/*! ../../compoents/navbar/navbar.vue */ 240));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var RedButton = function RedButton() {__webpack_require__.e(/*! require.ensure | compoents/red-button */ "compoents/red-button").then((function () {return resolve(__webpack_require__(/*! ../../compoents/red-button.vue */ 390));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = (_data$components$data = {
+
 
 
 
@@ -252,7 +253,8 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   components: {
-    navbar: navbar } }, _defineProperty(_data$components$data, "data", function data()
+    navbar: navbar,
+    RedButton: RedButton } }, _defineProperty(_data$components$data, "data", function data()
 
 {
   return {
@@ -267,7 +269,6 @@ __webpack_require__.r(__webpack_exports__);
 
 }), _defineProperty(_data$components$data, "methods",
 {}), _defineProperty(_data$components$data, "onLoad", function onLoad()
-
 
 {
   // 状态栏高度，单位：rpx

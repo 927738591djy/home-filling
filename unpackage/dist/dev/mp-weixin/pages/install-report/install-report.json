@@ -4,6 +4,7 @@
   "navigationBarTextStyle": "white",
   "usingComponents": {
     "u-upload": "/node-modules/uview-ui/components/u-upload/u-upload",
-    "navbar": "/compoents/navbar/navbar"
+    "navbar": "/compoents/navbar/navbar",
+    "red-button": "/compoents/red-button"
   }
 }

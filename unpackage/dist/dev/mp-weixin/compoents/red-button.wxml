@@ -1,0 +1,1 @@
+<view class="button" style="{{'background-color:'+(bgColor)+';'}}">{{''+title+''}}</view>

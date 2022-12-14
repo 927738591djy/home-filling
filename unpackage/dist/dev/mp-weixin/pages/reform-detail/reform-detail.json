@@ -3,6 +3,7 @@
   "enablePullDownRefresh": false,
   "navigationBarTextStyle": "white",
   "usingComponents": {
-    "navbar": "/compoents/navbar/navbar"
+    "navbar": "/compoents/navbar/navbar",
+    "red-button": "/compoents/red-button"
   }
 }
