@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/install-detail/install-detail",
     "pages/survey-detail/survey-detail",
     "pages/statement-detail/statement-detail",
     "pages/look-stock/look-stock",
@@ -16,7 +17,6 @@
     "pages/approval-process/approval-process",
     "pages/statement/statement",
     "pages/reform-detail/reform-detail",
-    "pages/install-detail/install-detail",
     "pages/to-install/to-install",
     "pages/order-survey/order-survey",
     "pages/trip/trip",

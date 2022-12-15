@@ -3,6 +3,7 @@
   "enablePullDownRefresh": false,
   "navigationBarTextStyle": "white",
   "usingComponents": {
+    "u-icon": "/node-modules/uview-ui/components/u-icon/u-icon",
     "navbar": "/compoents/navbar/navbar"
   }
 }

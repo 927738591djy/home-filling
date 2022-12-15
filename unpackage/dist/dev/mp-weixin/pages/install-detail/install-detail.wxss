@@ -66,4 +66,8 @@
 	background-color: #E7E7E7;
 	margin: 40rpx 0;
 }
+.select-right{
+	color: #999;
+	display: flex;
+}
 

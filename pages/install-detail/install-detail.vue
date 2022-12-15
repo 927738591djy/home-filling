@@ -43,39 +43,59 @@
 			<view class="bottom-box">
 				<view class="report-detail">
 					<view class="box-label">充电桩型号(TPN):</view>
-					<view>16287628-02-G</view>
+					<!-- <view>16287628-02-G</view> -->
+					<view class="select-right">
+						请选择
+						<u-icon style="margin-left: 10rpx;" top="2" name="arrow-right"></u-icon>
+					</view>
 				</view>
 				<view class="report-detail">
 					<view class="box-label">充电桩编号(TSN):</view>
-					<view class="address">PGT237292839203</view>
+					<!-- <view class="address">PGT237292839203</view> -->
+					<view class="select-right">
+						请选择
+						<u-icon style="margin-left: 10rpx;" top="2" name="arrow-right"></u-icon>
+					</view>
 				</view>
 				<view class="report-detail">
 					<view class="box-label">电缆规格:</view>
-					<view class="address"> 3*6</view>
+					<!-- <view class="address"> 3*6</view> -->
+					<view class="select-right">
+						请选择
+						<u-icon style="margin-left: 10rpx;" top="2" name="arrow-right"></u-icon>
+					</view>
 				</view>
 				<view class="report-detail">
 					<view class="box-label">电缆长度:</view>
-					<view class="address">37</view>
+					<!-- <view class="address">37</view> -->
+					<view class="select-right">
+						请选择
+						<u-icon style="margin-left: 10rpx;" top="2" name="arrow-right"></u-icon>
+					</view>
 				</view>
 				<view class="report-detail">
 					<view class="box-label">管长</view>
-					<view class="address">10</view>
+					<!-- <view class="address">10</view> -->
+					<view class="select-right">
+						请选择
+						<u-icon style="margin-left: 10rpx;" top="2" name="arrow-right"></u-icon>
+					</view>
 				</view>
 				<view class="line"></view>
 				<view class="report-detail">
 					<view class="box-label">付费金额:</view>
-					<view class="address">37</view>
+					<!-- <view class="address">37</view> -->
 				</view>
 				<view class="report-detail">
 					<view class="box-label">付费备注</view>
-					<view class="address">10</view>
+					<!-- <view class="address">10</view> -->
 				</view>
 			</view>
 
 			<view class="bottom-box">
 				<view class="report-detail">
 					<view class="box-label">安装完成时间:：</view>
-					<view class="address">2022-11-23 12:30:30</view>
+					<view class="address">请选择</view>
 				</view>
 				<view class="line"></view>
 				<view class="box-label">安装总结：</view>
@@ -203,5 +223,9 @@
 		height: 3rpx;
 		background-color: #E7E7E7;
 		margin: 40rpx 0;
+	}
+	.select-right{
+		color: #999;
+		display: flex;
 	}
 </style>
