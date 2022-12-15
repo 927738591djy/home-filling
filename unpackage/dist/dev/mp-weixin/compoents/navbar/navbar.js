@@ -127,7 +127,8 @@ var _default =
   data: function data() {
     return {
       statusBarHeight: 0,
-      cachetHeight: 0 };
+      cachetHeight: 0,
+      smallHeight: 0 };
 
   },
   props: {
@@ -157,6 +158,12 @@ var _default =
     this.cachetHeight = uni.getMenuButtonBoundingClientRect().height;
     console.log('statusBarHeight' + this.statusBarHeight);
     console.log('cachetHeight' + this.cachetHeight);
+    if (uni.getSystemInfoSync().platform == 'devtools' || 'ios') {
+      this.smallHeight = 8;
+    }
+    if (uni.getSystemInfoSync().platform == 'android') {
+      this.smallHeight = 6;
+    }
 
   } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
