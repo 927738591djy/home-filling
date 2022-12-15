@@ -1,7 +1,7 @@
 <template>
 	<view class="trip">
 		<view class="top">
-			<navbar :statusBarHeight="statusBarHeight" :cachetHeight="cachetHeight" title="行程安排" @onBack="goBack">
+			<navbar  title="行程安排" :blackArrow="true" >
 			</navbar>
 			<view class="light-circle"></view>
 			<view class="light-circle-right"></view>
@@ -51,22 +51,16 @@
 		},
 		data() {
 			return {
-				statusBarHeight:0,
 				show: true,
-				cachetHeight: 0
 			}
 		},
 		onLoad() {
-			// 状态栏高度，单位：rpx
-			this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight;
-			console.log(this.statusBarHeight + '状态');
-			this.cachetHeight = uni.getMenuButtonBoundingClientRect().height
-			console.log(this.cachetHeight);
+			
 		},
 		mounted() {
-			uni.createSelectorQuery().in(this).select('.middle').boundingClientRect(data => {
-				this.calendarHeight = data.height
-			}).exec()
+			// uni.createSelectorQuery().in(this).select('.middle').boundingClientRect(data => {
+			// 	this.calendarHeight = data.height
+			// }).exec()
 		}
 	}
 </script>

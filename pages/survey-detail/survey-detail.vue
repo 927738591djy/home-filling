@@ -1,8 +1,7 @@
 <template>
 	<view class="survey-detail">
 		<view class="top">
-			<navbar color="#000" :statusBarHeight="statusBarHeight" :cachetHeight="cachetHeight" title="勘测详情"
-				@onBack="goBack">
+			<navbar color="#000" title="勘测详情">
 			</navbar>
 		</view>
 		<view class="bottom">
@@ -103,8 +102,6 @@
 		},
 		data() {
 			return {
-				statusBarHeight: 0,
-				cachetHeight: 0,
 				timePickerShow: false,
 				params: {
 					month: true,
@@ -123,11 +120,6 @@
 			}
 		},
 		onLoad() {
-			// 状态栏高度，单位：rpx
-			this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight;
-			console.log(this.statusBarHeight + '状态');
-			this.cachetHeight = uni.getMenuButtonBoundingClientRect().height
-			console.log(this.cachetHeight);
 		},
 	}
 </script>

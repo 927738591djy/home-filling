@@ -1,8 +1,7 @@
 <template>
 	<view class="order-assign">
 		<view class="top">
-			<navbar color="#000" :statusBarHeight="statusBarHeight" :cachetHeight="cachetHeight" title="订单分配"
-				@onBack="goBack">
+			<navbar color="#000" title="订单分配">
 			</navbar>
 		</view>
 		<view class="bottom">
@@ -83,8 +82,6 @@
 		},
 		data() {
 			return {
-				statusBarHeight: 0,
-				cachetHeight: 0,
 				orderId: '', //此订单id
 				orderDetailObj: {}, //订单详情对象
 				engineerName: '', //工程师姓名
@@ -134,11 +131,6 @@
 			this.engineerName = options.engineerName
 			this.engineerId = options.engineerId
 			this.getOrderAllocationDetail()
-			// 状态栏高度，单位：rpx
-			this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight;
-			this.cachetHeight = uni.getMenuButtonBoundingClientRect().height
-
-
 		},
 	}
 </script>

@@ -145,8 +145,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compoents/navbar/navbar */ "compoents/navbar/navbar").then((function () {return resolve(__webpack_require__(/*! ../../compoents/navbar/navbar.vue */ 249));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
-
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compoents/navbar/navbar */ "compoents/navbar/navbar").then((function () {return resolve(__webpack_require__(/*! ../../compoents/navbar/navbar.vue */ 249));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -271,8 +270,6 @@ __webpack_require__.r(__webpack_exports__);
 
   data: function data() {
     return {
-      statusBarHeight: 0,
-      cachetHeight: 0,
       timeSelectShow: false, //时间选择器弹出
       params: {
         hour: true,
@@ -285,15 +282,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
   onLoad: function onLoad() {
-
-    // 状态栏高度，单位：rpx
-    this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight;
-    console.log(this.statusBarHeight + '状态');
-    this.cachetHeight = uni.getMenuButtonBoundingClientRect().height;
-    console.log(this.cachetHeight);
-
   } };exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

@@ -1,8 +1,7 @@
 <template>
 	<view class="install-detail">
 		<view class="top">
-			<navbar color="#000" :statusBarHeight="statusBarHeight" :cachetHeight="cachetHeight" title="安装详情"
-				@onBack="goBack">
+			<navbar color="#000" title="安装详情">
 			</navbar>
 		</view>
 
@@ -124,8 +123,6 @@
 		},
 		data() {
 			return {
-				statusBarHeight: 0,
-				cachetHeight: 0,
 				timeSelectShow: false, //时间选择器弹出
 				params: {
 					hour: true,
@@ -138,13 +135,6 @@
 
 		},
 		onLoad() {
-			// #ifndef H5 || APP-PLUS || MP-ALIPAY
-			// 状态栏高度，单位：rpx
-			this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight;
-			console.log(this.statusBarHeight + '状态');
-			this.cachetHeight = uni.getMenuButtonBoundingClientRect().height
-			console.log(this.cachetHeight);
-			// #endif
 		},
 	}
 </script>

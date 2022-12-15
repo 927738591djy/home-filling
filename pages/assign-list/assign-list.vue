@@ -1,8 +1,7 @@
 <template>
 	<view class="assign-list">
 		<view class="top">
-			<navbar color="#000" :statusBarHeight="statusBarHeight" :cachetHeight="cachetHeight" title="指派列表"
-				@onBack="goBack">
+			<navbar color="#000" title="指派列表">
 			</navbar>
 		</view>
 		<view class="search">
@@ -34,8 +33,6 @@
 		},
 		data() {
 			return {
-				statusBarHeight: 0,
-				cachetHeight: 0,
 				currentId:0,
 				currentEnginnerName:'',
 				engineerNameList:[] //工程师姓名列表
@@ -65,11 +62,6 @@
 		},
 		onLoad() {
 			this.getEngineerNameList()
-			// 状态栏高度，单位：rpx
-			this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight;
-			console.log(this.statusBarHeight + '状态');
-			this.cachetHeight = uni.getMenuButtonBoundingClientRect().height
-			console.log(this.cachetHeight);
 		},
 	}
 </script>

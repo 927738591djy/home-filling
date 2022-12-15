@@ -9,18 +9,12 @@
 <script>
 	export default {
 		data() {
-			return {}
+			return {
+				statusBarHeight:0,
+				cachetHeight:0
+			}
 		},
 		props: {
-			statusBarHeight: {
-				type: Number,
-				default: 0
-			},
-			cachetHeight: {
-				type: Number,
-				default: 0
-			},
-
 			title: {
 				required: true,
 				default: ''
@@ -38,6 +32,16 @@
 					delta:1
 				})
 			}
+		},
+			
+		created(){
+			// #ifndef H5 || APP-PLUS || MP-ALIPAY
+			// 状态栏高度，单位：rpx
+			this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight;
+			this.cachetHeight = uni.getMenuButtonBoundingClientRect().height
+			console.log('statusBarHeight'+this.statusBarHeight);
+			console.log('cachetHeight'+this.cachetHeight);
+			// #endif
 		}
 	}
 </script>

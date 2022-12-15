@@ -1,8 +1,7 @@
 <template>
 	<view>
 		<view class="top">
-			<navbar color="#000" :statusBarHeight="statusBarHeight" :cachetHeight="cachetHeight" title="设置"
-				@onBack="goBack">
+			<navbar color="#000" title="设置">
 			</navbar>
 		</view>
 		<view class="bottom">
@@ -20,8 +19,6 @@
 		},
 		data() {
 			return {
-				statusBarHeight: 0,
-				cachetHeight: 0,
 				checked:false,
 			}
 		},
@@ -29,11 +26,6 @@
 	
 		},
 		onLoad() {
-			// 状态栏高度，单位：rpx
-			this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight;
-			console.log(this.statusBarHeight + '状态');
-			this.cachetHeight = uni.getMenuButtonBoundingClientRect().height
-			console.log(this.cachetHeight);
 		},
 	}
 </script>

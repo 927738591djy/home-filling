@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view class="top">
-			<navbar color="#fff" :statusBarHeight="statusBarHeight" :cachetHeight="cachetHeight" title="我的"
+			<navbar color="#fff" title="我的"
 				:blackArrow="true" @onBack="goBack">
 			</navbar>
 			<div class="avatar">
@@ -50,8 +50,6 @@
 		},
 		data() {
 			return {
-				statusBarHeight: 0,
-				cachetHeight: 0,
 			}
 		},
 		methods: {
@@ -62,10 +60,6 @@
 			}
 		},
 		onLoad() {
-			// 状态栏高度，单位：rpx
-			this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight;
-			this.cachetHeight = uni.getMenuButtonBoundingClientRect().height
-
 		}
 	}
 </script>

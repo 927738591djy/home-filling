@@ -206,9 +206,7 @@ __webpack_require__.r(__webpack_exports__);
     navbar: navbar },
 
   data: function data() {
-    return {
-      statusBarHeight: 0,
-      cachetHeight: 0 };
+    return {};
 
   },
   methods: {
@@ -219,10 +217,6 @@ __webpack_require__.r(__webpack_exports__);
     } },
 
   onLoad: function onLoad() {
-    // 状态栏高度，单位：rpx
-    this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight;
-    this.cachetHeight = uni.getMenuButtonBoundingClientRect().height;
-
   } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

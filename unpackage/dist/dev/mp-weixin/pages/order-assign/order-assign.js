@@ -236,15 +236,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 {
   components: {
     navbar: navbar },
 
   data: function data() {
     return {
-      statusBarHeight: 0,
-      cachetHeight: 0,
       orderId: '', //此订单id
       orderDetailObj: {}, //订单详情对象
       engineerName: '', //工程师姓名
@@ -294,11 +291,6 @@ __webpack_require__.r(__webpack_exports__);
     this.engineerName = options.engineerName;
     this.engineerId = options.engineerId;
     this.getOrderAllocationDetail();
-    // 状态栏高度，单位：rpx
-    this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight;
-    this.cachetHeight = uni.getMenuButtonBoundingClientRect().height;
-
-
   } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
