@@ -95,7 +95,7 @@
 			<view class="bottom-box">
 				<view class="report-detail">
 					<view class="box-label">安装完成时间:：</view>
-					<view class="address">请选择</view>
+					<view class="address" @click="timeSelectShow = !timeSelectShow">请选择</view>
 				</view>
 				<view class="line"></view>
 				<view class="box-label">安装总结：</view>
@@ -104,17 +104,14 @@
 					<textarea v-model="text" placeholder="请输入安装总结" />
 				</view>
 			</view>
-
-
 		</view>
-
-
 
 		<view class="button" @click="backOrderAssign">
 			提交
 		</view>
 
-
+		<u-picker v-model="timeSelectShow" mode="time" title="完成时间" confirm-color="#FC615F" cancel-color="#969799"
+			:params="params"></u-picker>
 
 	</view>
 </template>
@@ -129,17 +126,25 @@
 			return {
 				statusBarHeight: 0,
 				cachetHeight: 0,
+				timeSelectShow: false, //时间选择器弹出
+				params: {
+					hour: true,
+					minute: true,
+					second: true,
+				} //时间选择器的配置参数
 			}
 		},
 		methods: {
 
 		},
 		onLoad() {
+			// #ifndef H5 || APP-PLUS || MP-ALIPAY
 			// 状态栏高度，单位：rpx
 			this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight;
 			console.log(this.statusBarHeight + '状态');
 			this.cachetHeight = uni.getMenuButtonBoundingClientRect().height
 			console.log(this.cachetHeight);
+			// #endif
 		},
 	}
 </script>
@@ -224,7 +229,8 @@
 		background-color: #E7E7E7;
 		margin: 40rpx 0;
 	}
-	.select-right{
+
+	.select-right {
 		color: #999;
 		display: flex;
 	}

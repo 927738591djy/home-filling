@@ -81,6 +81,9 @@ try {
   components = {
     uIcon: function() {
       return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-icon/u-icon */ "node-modules/uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! uview-ui/components/u-icon/u-icon.vue */ 235))
+    },
+    uPicker: function() {
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-picker/u-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-picker/u-picker")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-picker/u-picker.vue */ 270))
     }
   }
 } catch (e) {
@@ -104,6 +107,11 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  if (!_vm._isMounted) {
+    _vm.e0 = function($event) {
+      _vm.timeSelectShow = !_vm.timeSelectShow
+    }
+  }
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -257,9 +265,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
 {
   components: {
     navbar: navbar },
@@ -267,18 +272,26 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       statusBarHeight: 0,
-      cachetHeight: 0 };
-
+      cachetHeight: 0,
+      timeSelectShow: false, //时间选择器弹出
+      params: {
+        hour: true,
+        minute: true,
+        second: true }
+      //时间选择器的配置参数
+    };
   },
   methods: {},
 
 
   onLoad: function onLoad() {
+
     // 状态栏高度，单位：rpx
     this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight;
     console.log(this.statusBarHeight + '状态');
     this.cachetHeight = uni.getMenuButtonBoundingClientRect().height;
     console.log(this.cachetHeight);
+
   } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
