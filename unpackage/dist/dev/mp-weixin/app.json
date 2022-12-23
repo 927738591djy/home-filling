@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/survey-detail/survey-detail",
     "pages/index/index",
+    "pages/survey-detail/survey-detail",
     "pages/approval-process/approval-process",
     "pages/order-allocation/order-allocation",
     "pages/install-detail/install-detail",

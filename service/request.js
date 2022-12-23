@@ -9,10 +9,14 @@ class LsxmRequest {
         baseURL: '',
         header: {
             'content-type': 'application/json',
+			'tenant': 'MDAwMA==',
         },
         method: 'GET',
         dataType: 'json',
-        responseType: 'text'
+        responseType: 'text',
+		HTMLBodyElement:{
+		
+		}
     }
     //拦截器
     interceptors = {
@@ -57,7 +61,6 @@ class LsxmRequest {
         options.data = options.data
         options.header = {...options.header, ...this[config].header}
         options.method = options.method || this[config].method
-
   //       var version = 222;
   //       if( options.url.indexOf("app/config/indexNav")!=-1){
   //           options.data =  {key: options.data.key, version:version};

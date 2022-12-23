@@ -3,12 +3,12 @@ export default{
     apis:{
         //获取首页图文列表
         getHomeMenuList(){
-            return lsxmRequest.get('/home/menuList')
+            return lsxmRequest.get('/sys/menu-applet/menus')
         },
 		
 		//登录授权
 		loginAuthorization(data){
-		    return lsxmRequest.post('/login/authorization',data)
+		    return lsxmRequest.post('/mockLogin',data)
 		},
 		
 		//订单分配列表

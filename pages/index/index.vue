@@ -39,8 +39,9 @@
 			// 状态栏高度，单位：px
 			this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight;
 			console.log(this.statusBarHeight);
-			this.getHomeMenuList()
-			this.loginAuthorization()
+			this.loginAuthorization() 
+			// this.getHomeMenuList()
+			
 		},
 		methods: {
 			// 获取首页菜单列表图文
@@ -50,20 +51,24 @@
 						// 请求成功,返回数据
 						this.homeMenuList = res.data.data.data
 						console.log(this.homeMenuList);
+						console.log(2222);
 					} else {
 						// 弹出错误提示消息
+						console.log(res);
 					}
 				})
 			},
 
 			loginAuthorization() {
-				this.$lsxmApi.loginAuthorization({phone:1775529928}).then(res => {
+				console.log(1111111111);
+				this.$lsxmApi.loginAuthorization('17630150994').then(res => {
 					if (res.data.data.code == 200 || res.data.data.code == 1) {
 						// 请求成功,返回数据
 						this.homeMenuList = res.data.data.data
 						console.log(this.homeMenuList);
 					} else {
 						// 弹出错误提示消息
+						console.log(res)
 					}
 				})
 			}

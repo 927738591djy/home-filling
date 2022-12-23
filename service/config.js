@@ -30,8 +30,7 @@ lsxmRequest.interceptors.response((response) => {
 	// clearTimeout()
 	uni.hideLoading()
     // 超时重新登录
-
-    if(response.data.data.code===501){
+    if(response.data.data.code ===501 ){
 		// uni.reLaunch({
 		// 	url: '../pages/login/login.vue'
 		// })
@@ -52,13 +51,16 @@ lsxmRequest.setConfig((config) => {
 	// let url=process.env.NODE_ENV=='development'?'http://127.0.0.1:8080':'http://127.0.0.1:8080'
 
 	// let url=process.env.NODE_ENV=='development'?'http://prd-app.jinghong.art':'http://prd-app.jinghong.art'
-	let url=process.env.NODE_ENV=='development'?'http://yapi.smart-xwork.cn/mock/190880':'http://yapi.smart-xwork.cn/mock/190880'
+	// let url=process.env.NODE_ENV=='development'?'http://yapi.smart-xwork.cn/mock/190880':'http://yapi.smart-xwork.cn/mock/190880'
+	let url=process.env.NODE_ENV=='development'?'http://106.15.52.75:80/api':'http://106.15.52.75:80/api'
+	
     config.baseURL = url
 
     if (uni.getStorageSync('token')) {
         config.header['X-Jhspace-Token'] = uni.getStorageSync('token');
     }
+	
     return config;
 })
-
+console.log(lsxmRequest)
 export default lsxmRequest
