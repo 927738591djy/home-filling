@@ -766,8 +766,8 @@ function populateParameters(result) {var _result$brand =
     appVersion: "1.0.0",
     appVersionCode: "100",
     appLanguage: getAppLanguage(hostLanguage),
-    uniCompileVersion: "3.6.4",
-    uniRuntimeVersion: "3.6.4",
+    uniCompileVersion: "3.6.3",
+    uniRuntimeVersion: "3.6.3",
     uniPlatform: undefined || "mp-weixin",
     deviceBrand: deviceBrand,
     deviceModel: model,
@@ -1464,7 +1464,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"home-filling","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_NAME":"home-filling","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -2668,9 +2668,9 @@ function normalizeComponent (
 /***/ }),
 
 /***/ 12:
-/*!*****************************************************!*\
-  !*** F:/xmlist/six/home-filling/service/request.js ***!
-  \*****************************************************/
+/*!*******************************************************!*\
+  !*** E:/xmlist/three/home-filling/service/request.js ***!
+  \*******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2691,30 +2691,21 @@ LsxmRequest = /*#__PURE__*/function () {function LsxmRequest() {_classCallCheck(
 
       method: 'GET',
       dataType: 'json',
-      responseType: 'text',
-      HTMLBodyElement: {} });_defineProperty(this, "interceptors",
-
-
+      responseType: 'text' });_defineProperty(this, "interceptors",
 
 
     {
       request: function request(func) {
-        if (func)
-        {
+        if (func) {
           LsxmRequest[requestBefore] = func;
-        } else
-
-        {
+        } else {
           LsxmRequest[requestBefore] = function (request) {return request;};
         }
       },
       response: function response(func) {
-        if (func)
-        {
+        if (func) {
           LsxmRequest[requestAfter] = func;
-        } else
-
-        {
+        } else {
           LsxmRequest[requestAfter] = function (response) {return response;};
         }
       } });}_createClass(LsxmRequest, [{ key: "request", value: function request()
@@ -2737,7 +2728,10 @@ LsxmRequest = /*#__PURE__*/function () {function LsxmRequest() {_classCallCheck(
       options.dataType = options.dataType || this[config].dataType;
       options.url = LsxmRequest[isCompleteURL](options.url) ? options.url : options.baseURL + options.url;
       options.data = options.data;
-      options.header = _objectSpread(_objectSpread({}, options.header), this[config].header);
+      options.header = _objectSpread(_objectSpread({},
+      options.header),
+      this[config].header);
+
       options.method = options.method || this[config].method;
       //       var version = 222;
       //       if( options.url.indexOf("app/config/indexNav")!=-1){
@@ -2749,11 +2743,31 @@ LsxmRequest = /*#__PURE__*/function () {function LsxmRequest() {_classCallCheck(
       // 	options.data.version = version;
       // }
 
-      options = _objectSpread(_objectSpread({}, options), LsxmRequest[requestBefore](options));
+      options = _objectSpread(_objectSpread({},
+      options),
+      LsxmRequest[requestBefore](options));
+
 
       return new Promise(function (resolve, reject) {
         options.success = function (res) {
           //console.log(navigator.userAgent);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2861,17 +2875,14 @@ LsxmRequest = /*#__PURE__*/function () {function LsxmRequest() {_classCallCheck(
 
 LsxmRequest.install = function (Vue) {
   Vue.mixin({
-    beforeCreate: function beforeCreate()
-    {
-      if (this.$options.apis)
-      {
+    beforeCreate: function beforeCreate() {
+      if (this.$options.apis) {
         Vue._lsxmRequest = this.$options.apis;
       }
     } });
 
   Object.defineProperty(Vue.prototype, '$lsxmApi', {
-    get: function get()
-    {
+    get: function get() {
       return Vue._lsxmRequest.apis;
     } });
 
@@ -2883,16 +2894,16 @@ LsxmRequest;exports.default = _default;
 /***/ }),
 
 /***/ 13:
-/*!*************************************************!*\
-  !*** F:/xmlist/six/home-filling/service/api.js ***!
-  \*************************************************/
+/*!***************************************************!*\
+  !*** E:/xmlist/three/home-filling/service/api.js ***!
+  \***************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _config = _interopRequireDefault(__webpack_require__(/*! ./config.js */ 14));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _default =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _config = _interopRequireDefault(__webpack_require__(/*! ./config.js */ 14));var _apis;function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default =
 {
-  apis: {
+  apis: (_apis = {
     //获取首页图文列表
     getHomeMenuList: function getHomeMenuList() {
       return _config.default.get('/sys/menu-applet/menus');
@@ -2903,39 +2914,70 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
       return _config.default.post('/mockLogin', data);
     },
 
-    //订单分配列表
-    getOrderAllocationList: function getOrderAllocationList(data) {
-      return _config.default.post('/order/allocationList', data);
+    // 获取当前用户可见的服务商列表
+    getProviderList: function getProviderList(data) {
+      return _config.default.get('/provider/provider', data);
     },
 
-    //订单分配详情
-    getOrderAllocationDetail: function getOrderAllocationDetail(data) {
-      return _config.default.post('/order/allocationDetail', data);
+    // 获取可见的服务商树形列表
+    getProviderTreeList: function getProviderTreeList(data) {
+      return _config.default.get('/provider/provider/tree', data);
     },
 
-    // 服务商工程师列表查询
-    getEngineerNameList: function getEngineerNameList(data) {
-      return _config.default.post('/engineername/list', data);
+    // 获取工程师列表 需要传服务商id
+    getEngineersList: function getEngineersList(providerId, data) {
+      return _config.default.get('/biz/user/engineers?providerId=' + providerId, data);
     },
 
-    //订单指派提交
-    orderAssignmentSubmit: function orderAssignmentSubmit(data) {
-      return _config.default.post('/order/assignment/submit', data);
-    },
+    // 订单分配列表查询
+    getOrderAllocationList: function getOrderAllocationList(conditionWords, type, data) {
+      return _config.default.get('/order/order/tobeAssignees?conditionWords=' + conditionWords + '&type=' + type, data);
+    } }, _defineProperty(_apis, "getOrderAllocationList", function getOrderAllocationList(
 
 
 
-    //登录
-    login: function login(data) {
-      return _config.default.post('/app/auth/login', data);
-    } } };exports.default = _default;
+
+
+
+
+
+
+
+
+
+
+  data) {
+    return _config.default.post('/order/allocationList', data);
+  }), _defineProperty(_apis, "getOrderAllocationDetail", function getOrderAllocationDetail(
+
+
+  data) {
+    return _config.default.post('/order/allocationDetail', data);
+  }), _defineProperty(_apis, "getEngineerNameList", function getEngineerNameList(
+
+
+  data) {
+    return _config.default.post('/engineername/list', data);
+  }), _defineProperty(_apis, "orderAssignmentSubmit", function orderAssignmentSubmit(
+
+
+  data) {
+    return _config.default.post('/order/assignment/submit', data);
+  }), _defineProperty(_apis, "login", function login(
+
+
+
+
+  data) {
+    return _config.default.post('/app/auth/login', data);
+  }), _apis) };exports.default = _default;
 
 /***/ }),
 
 /***/ 14:
-/*!****************************************************!*\
-  !*** F:/xmlist/six/home-filling/service/config.js ***!
-  \****************************************************/
+/*!******************************************************!*\
+  !*** E:/xmlist/three/home-filling/service/config.js ***!
+  \******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2961,8 +3003,6 @@ lsxmRequest.interceptors.request(function (request) {
       clearTimeout(timers);
     }, 2000);
   }
-
-
   return request;
 });
 
@@ -2999,7 +3039,10 @@ lsxmRequest.setConfig(function (config) {
   config.baseURL = url;
 
   if (uni.getStorageSync('token')) {
-    config.header['X-Jhspace-Token'] = uni.getStorageSync('token');
+    // config.header['X-Jhspace-Token'] = uni.getStorageSync('token');
+    config.header['Authorization'] = 'Bearer' + ' ' + uni.getStorageSync('token');
+    config.header['content-type'] = 'multipart/form-data';
+
   }
 
   return config;
@@ -3011,9 +3054,9 @@ lsxmRequest;exports.default = _default;
 /***/ }),
 
 /***/ 15:
-/*!*****************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/index.js ***!
-  \*****************************************************************/
+/*!*******************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/index.js ***!
+  \*******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3163,9 +3206,9 @@ var install = function install(Vue) {
 /***/ }),
 
 /***/ 16:
-/*!****************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/mixin/mixin.js ***!
-  \****************************************************************************/
+/*!******************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/mixin/mixin.js ***!
+  \******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3237,9 +3280,9 @@ var install = function install(Vue) {
 /***/ }),
 
 /***/ 17:
-/*!******************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/request/index.js ***!
-  \******************************************************************************/
+/*!********************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/request/index.js ***!
+  \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3418,9 +3461,9 @@ new Request();exports.default = _default;
 /***/ }),
 
 /***/ 18:
-/*!***********************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/function/deepMerge.js ***!
-  \***********************************************************************************/
+/*!*************************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/function/deepMerge.js ***!
+  \*************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3459,9 +3502,9 @@ deepMerge;exports.default = _default;
 /***/ }),
 
 /***/ 19:
-/*!***********************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/function/deepClone.js ***!
-  \***********************************************************************************/
+/*!*************************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/function/deepClone.js ***!
+  \*************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3524,9 +3567,9 @@ module.exports = g;
 /***/ }),
 
 /***/ 20:
-/*!******************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/function/test.js ***!
-  \******************************************************************************/
+/*!********************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/function/test.js ***!
+  \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3766,9 +3809,9 @@ function code(value) {var len = arguments.length > 1 && arguments[1] !== undefin
 /***/ }),
 
 /***/ 21:
-/*!*************************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/function/queryParams.js ***!
-  \*************************************************************************************/
+/*!***************************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/function/queryParams.js ***!
+  \***************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3835,17 +3878,17 @@ queryParams;exports.default = _default;
 /***/ }),
 
 /***/ 22:
-/*!*******************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/function/route.js ***!
-  \*******************************************************************************/
+/*!*********************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/function/route.js ***!
+  \*********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 23));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;} /**
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * 路由跳转方法，该方法相对于直接使用uni.xxx的好处是使用更加简单快捷
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * 并且带有路由拦截功能
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          */var
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         * 路由跳转方法，该方法相对于直接使用uni.xxx的好处是使用更加简单快捷
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         * 并且带有路由拦截功能
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         */var
 
 Router = /*#__PURE__*/function () {
   function Router() {_classCallCheck(this, Router);
@@ -4028,9 +4071,9 @@ if (hadRuntime) {
 /***/ }),
 
 /***/ 246:
-/*!*****************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/util/emitter.js ***!
-  \*****************************************************************************/
+/*!*******************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/util/emitter.js ***!
+  \*******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4820,9 +4863,9 @@ function _broadcast(componentName, eventName, params) {
 /***/ }),
 
 /***/ 26:
-/*!************************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/function/timeFormat.js ***!
-  \************************************************************************************/
+/*!**************************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/function/timeFormat.js ***!
+  \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4882,9 +4925,9 @@ timeFormat;exports.default = _default;
 /***/ }),
 
 /***/ 27:
-/*!**********************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/function/timeFrom.js ***!
-  \**********************************************************************************/
+/*!************************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/function/timeFrom.js ***!
+  \************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4940,9 +4983,9 @@ timeFrom;exports.default = _default;
 /***/ }),
 
 /***/ 28:
-/*!***************************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/function/colorGradient.js ***!
-  \***************************************************************************************/
+/*!*****************************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/function/colorGradient.js ***!
+  \*****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5084,9 +5127,9 @@ function colorToRgba(color) {var alpha = arguments.length > 1 && arguments[1] !=
 /***/ }),
 
 /***/ 29:
-/*!******************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/function/guid.js ***!
-  \******************************************************************************/
+/*!********************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/function/guid.js ***!
+  \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5136,9 +5179,9 @@ guid;exports.default = _default;
 /***/ }),
 
 /***/ 296:
-/*!******************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/util/province.js ***!
-  \******************************************************************************/
+/*!********************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/util/province.js ***!
+  \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5148,9 +5191,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /***/ }),
 
 /***/ 297:
-/*!**************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/util/city.js ***!
-  \**************************************************************************/
+/*!****************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/util/city.js ***!
+  \****************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5160,9 +5203,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /***/ }),
 
 /***/ 298:
-/*!**************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/util/area.js ***!
-  \**************************************************************************/
+/*!****************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/util/area.js ***!
+  \****************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5636,9 +5679,9 @@ function resolveLocaleChain(locale) {
 /***/ }),
 
 /***/ 30:
-/*!*******************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/function/color.js ***!
-  \*******************************************************************************/
+/*!*********************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/function/color.js ***!
+  \*********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5684,9 +5727,9 @@ color;exports.default = _default;
 /***/ }),
 
 /***/ 31:
-/*!***********************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/function/type2icon.js ***!
-  \***********************************************************************************/
+/*!*************************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/function/type2icon.js ***!
+  \*************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5730,9 +5773,9 @@ type2icon;exports.default = _default;
 /***/ }),
 
 /***/ 32:
-/*!*************************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/function/randomArray.js ***!
-  \*************************************************************************************/
+/*!***************************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/function/randomArray.js ***!
+  \***************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5748,9 +5791,9 @@ randomArray;exports.default = _default;
 /***/ }),
 
 /***/ 33:
-/*!*********************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/function/addUnit.js ***!
-  \*********************************************************************************/
+/*!***********************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/function/addUnit.js ***!
+  \***********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5767,9 +5810,9 @@ function addUnit() {var value = arguments.length > 0 && arguments[0] !== undefin
 /***/ }),
 
 /***/ 34:
-/*!********************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/function/random.js ***!
-  \********************************************************************************/
+/*!**********************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/function/random.js ***!
+  \**********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5788,9 +5831,9 @@ random;exports.default = _default;
 /***/ }),
 
 /***/ 35:
-/*!******************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/function/trim.js ***!
-  \******************************************************************************/
+/*!********************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/function/trim.js ***!
+  \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5814,9 +5857,9 @@ trim;exports.default = _default;
 /***/ }),
 
 /***/ 36:
-/*!*******************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/function/toast.js ***!
-  \*******************************************************************************/
+/*!*********************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/function/toast.js ***!
+  \*********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5835,9 +5878,9 @@ toast;exports.default = _default;
 /***/ }),
 
 /***/ 37:
-/*!***********************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/function/getParent.js ***!
-  \***********************************************************************************/
+/*!*************************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/function/getParent.js ***!
+  \*************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5893,9 +5936,9 @@ function getParent(name, keys) {
 /***/ }),
 
 /***/ 38:
-/*!*********************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/function/$parent.js ***!
-  \*********************************************************************************/
+/*!***********************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/function/$parent.js ***!
+  \***********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5922,9 +5965,9 @@ function $parent() {var name = arguments.length > 0 && arguments[0] !== undefine
 /***/ }),
 
 /***/ 39:
-/*!*****************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/function/sys.js ***!
-  \*****************************************************************************/
+/*!*******************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/function/sys.js ***!
+  \*******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11466,7 +11509,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"NODE_ENV":"development","VUE_APP_NAME":"home-filling","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"VUE_APP_NAME":"home-filling","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -11487,14 +11530,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"home-filling","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_NAME":"home-filling","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"home-filling","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_NAME":"home-filling","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -11580,7 +11623,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"home-filling","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_NAME":"home-filling","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -11995,9 +12038,9 @@ internalMixin(Vue);
 /***/ }),
 
 /***/ 40:
-/*!**********************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/function/debounce.js ***!
-  \**********************************************************************************/
+/*!************************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/function/debounce.js ***!
+  \************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -12035,9 +12078,9 @@ debounce;exports.default = _default;
 /***/ }),
 
 /***/ 41:
-/*!**********************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/function/throttle.js ***!
-  \**********************************************************************************/
+/*!************************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/function/throttle.js ***!
+  \************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -12078,9 +12121,9 @@ throttle;exports.default = _default;
 /***/ }),
 
 /***/ 42:
-/*!******************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/config/config.js ***!
-  \******************************************************************************/
+/*!********************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/config/config.js ***!
+  \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -12102,9 +12145,9 @@ var version = '1.8.3';var _default =
 /***/ }),
 
 /***/ 43:
-/*!******************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/config/zIndex.js ***!
-  \******************************************************************************/
+/*!********************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/config/zIndex.js ***!
+  \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -12132,9 +12175,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /***/ }),
 
 /***/ 5:
-/*!*********************************************!*\
-  !*** F:/xmlist/six/home-filling/pages.json ***!
-  \*********************************************/
+/*!***********************************************!*\
+  !*** E:/xmlist/three/home-filling/pages.json ***!
+  \***********************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
