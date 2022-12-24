@@ -35,6 +35,11 @@ import LsxmRequest from './service/request.js'
 import apis from './service/api.js'
 import lsxmRequest from './service/config.js'
 import uView from "uview-ui";
+
+
+
+
+
 Vue.use(uView);
 Vue.use(LsxmRequest)
 Vue.prototype.baseDomain = lsxmRequest.getConfig().baseURL

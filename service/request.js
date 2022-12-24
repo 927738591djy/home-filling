@@ -9,6 +9,7 @@ class LsxmRequest {
         baseURL: '',
         header: {
             'content-type': 'application/json',
+			// 'Content-Type': 'text/plain',
 			'tenant': 'MDAwMA==',
         },
         method: 'GET',

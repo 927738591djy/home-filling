@@ -2686,6 +2686,7 @@ LsxmRequest = /*#__PURE__*/function () {function LsxmRequest() {_classCallCheck(
       baseURL: '',
       header: {
         'content-type': 'application/json',
+        // 'Content-Type': 'text/plain',
         'tenant': 'MDAwMA==' },
 
       method: 'GET',
