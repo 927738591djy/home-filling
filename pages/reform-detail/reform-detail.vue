@@ -9,48 +9,48 @@
 			<view class="bottom-box">
 				<view class="box-label" style="color: #FF2B31;">整改内容：</view>
 				<view class="reform-textarea survey-textarea">
-					<textarea v-model="text" placeholder="请输入勘测总结" />
+					<textarea v-model="orderReformDetail.install.auditReason" placeholder="整改内容" />
 				</view>
 
 				<view class="report-detail">
 					<view class="box-label">安装完成时间:</view>
-					<view class="address">2022-11-23 12:30:30</view>
+					<view class="address">{{orderReformDetail.install.finishedTime}}</view>
 				</view>
 				<view class="line"></view>
 				<view class="report-detail">
 					<view class="box-label">充电桩型号(TPN):</view>
-					<view>16287628-02-G</view>
+					<view>{{orderReformDetail.install.installMaterial.chargeModelId}}</view>
 				</view>
 				<view class="report-detail">
 					<view class="box-label">充电桩编号(TSN):</view>
-					<view class="address">PGT237292839203</view>
+					<view class="address">{{orderReformDetail.install.installMaterial.serialNo}}</view>
 				</view>
 				<view class="report-detail">
 					<view class="box-label">电缆规格:</view>
-					<view class="address"> 3*6</view>
+					<view class="address"> {{orderReformDetail.install.installMaterial.cableType}}</view>
 				</view>
 				<view class="report-detail">
 					<view class="box-label">电缆长度:</view>
-					<view class="address">37</view>
+					<view class="address">{{orderReformDetail.install.installMaterial.cableLength}}</view>
 				</view>
 				<view class="report-detail">
 					<view class="box-label">管长</view>
-					<view class="address">10</view>
+					<view class="address">{{orderReformDetail.install.installMaterial.pipaLength}}</view>
 				</view>
 				<view class="line"></view>
 				<view class="report-detail">
 					<view class="box-label">付费金额:</view>
-					<view class="address">37</view>
+					<view class="address"></view>
 				</view>
 				<view class="report-detail">
 					<view class="box-label">付费备注</view>
-					<view class="address">10</view>
+					<view class="address"></view>
 				</view>
 				<view class="line"></view>
 
 				<view class="box-label">安装总结</view>
 				<view class="survey-textarea">
-					<textarea v-model="text" placeholder="" />
+					<textarea v-model="orderReformDetail.install.summaryReport" placeholder="安装总结" />
 				</view>
 
 			</view>
@@ -59,7 +59,7 @@
 
 
 
-		<RedButton title="整改提交" bgColor="#FF3A3B"></RedButton>
+		<RedButton @click.native="ReformSubmit" title="整改提交" bgColor="#FF3A3B"></RedButton>
 
 	</view>
 </template>
@@ -74,12 +74,41 @@
 		},
 		data() {
 			return {
+				orderId: '', //由安装列表哪传过来的订单id
+				orderReformDetail:{} //整改详情对象
 			}
 		},
 		methods: {
+			// 获取整改订单详情
+			getOrderReformDetail() {
+				this.$lsxmApi.getOrderReformDetail(this.orderId).then(res => {
+					if (res.data.data.code == 200 || res.data.data.code == 1) {
+						// 请求成功,返回数据
+						this.orderReformDetail = res.data.data.data
+						console.log(this.orderReformDetail);
 
+					} else {
+						// 弹出错误提示消息
+					}
+				})
+			},
+			
+			// 整改提交
+			ReformSubmit() {
+				this.$lsxmApi.ReformSubmit(this.orderReformDetail).then(res => {
+					if (res.data.data.code == 200 || res.data.data.code == 1) {
+						// 请求成功,返回数据
+					console.log(res);
+						
+					} else {
+						// 弹出错误提示消息
+					}
+				})
+			},
 		},
-		onLoad() {
+		onLoad(options) {
+			this.orderId = options.orderId
+			this.getOrderReformDetail()
 		},
 	}
 </script>

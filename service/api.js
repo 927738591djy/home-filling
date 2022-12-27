@@ -77,6 +77,29 @@ export default {
 				likeKeyWords)
 		},
 		
-
+		// 整改订单详情
+		getOrderReformDetail(orderId) {
+			return lsxmRequest.get('/order/order/get_rectify_detail?orderId=' + orderId)
+		},
+		
+		// 整改提交
+		ReformSubmit(data) {
+			return lsxmRequest.get('/order/order/rectify_submit', data)
+		},
+		
+		//售后订单列表查询
+		getAfterSaleOrderList(orderStatus, likeKeyWords) {
+			return lsxmRequest.get('/order/order/get_after_sale_list?orderStatus=' + orderStatus + '&likeKeyWords=' +
+				likeKeyWords)
+		},
+		// 售后订单详情
+		getAfterSaleOrderDetail(orderId) {
+			return lsxmRequest.get('/order/order/get_after_sale_detail?orderId=' + orderId)
+		},
+		
+		// 售后提交
+		AfterSaleSubmit(data) {
+			return lsxmRequest.get('/aftersale/after-sale/after_sale_submit', data)
+		},
 	}
 }

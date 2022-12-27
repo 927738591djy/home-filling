@@ -1,7 +1,7 @@
 <template>
 	<view class="install-detail">
 		<view class="top">
-			<navbar color="#000"  title="订单详情">
+			<navbar color="#000" title="订单详情">
 			</navbar>
 		</view>
 
@@ -9,110 +9,110 @@
 			<view class="bottom-box">
 				<view class="report-detail">
 					<view class="box-label">安装完成时间:：</view>
-					<view class="address">2022-11-23 12:30:30</view>
+					<view class="address">{{AfterSaleOrderDetail.install.finishedTime}}</view>
 				</view>
 				<view class="line"></view>
 				<view class="report-detail">
 					<view class="box-label">充电桩型号(TPN):</view>
-					<view>16287628-02-G</view>
+					<view>{{AfterSaleOrderDetail.install.installMaterial.chargeModelId}}</view>
 				</view>
 				<view class="report-detail">
 					<view class="box-label">充电桩编号(TSN):</view>
-					<view class="address">PGT237292839203</view>
+					<view class="address">{{AfterSaleOrderDetail.install.installMaterial.serialNo}}</view>
 				</view>
 				<view class="report-detail">
 					<view class="box-label">电缆规格:</view>
-					<view class="address"> 3*6</view>
+					<view class="address">{{AfterSaleOrderDetail.install.installMaterial.cableType}}</view>
 				</view>
 				<view class="report-detail">
 					<view class="box-label">电缆长度:</view>
-					<view class="address">37</view>
+					<view class="address">{{AfterSaleOrderDetail.install.installMaterial.cableLength}}</view>
 				</view>
 				<view class="report-detail">
 					<view class="box-label">管长</view>
-					<view class="address">10</view>
+					<view class="address">{{AfterSaleOrderDetail.install.installMaterial.pipaLength}}</view>
 				</view>
 				<view class="line"></view>
 				<view class="report-detail">
 					<view class="box-label">付费金额:</view>
-					<view class="address">37</view>
+					<view class="address"></view>
 				</view>
 				<view class="report-detail">
 					<view class="box-label">付费备注</view>
-					<view class="address">10</view>
+					<view class="address"></view>
 				</view>
 				<view class="line"></view>
 				<view class="box-label">安装总结：</view>
 				<view class="survey-textarea">
-					<textarea v-model="text" placeholder="" />
+					<textarea v-model="AfterSaleOrderDetail.install.summaryReport" placeholder="安装总结" />
 				</view>
-					<view class="line"></view>
-					<view class="box-label">安装确认书(最多上传5张):</view>
-					<view class="survey-textarea survey-upload">
-						<u-upload :action="action" :file-list="fileList" upload-text="上传现场勘测照片" :custom-btn="true">
-							<view slot="addBtn" class="slot-btn" hover-class="slot-btn__hover" hover-stay-time="150">
-								<image style="width: 72rpx;height: 72rpx" src="../../static/img/order/addbtn.png" mode="">
-								</image>
-								<view style="color:#000;font-size: 24rpx;">确认书</view>
-							</view>
-						</u-upload>
-					</view>
-					<view class="line"></view>
-					<view class="box-label">增项报价单(最多上传2张):</view>
-					<view class="survey-textarea survey-upload">
-						<u-upload :action="action" :file-list="fileList" upload-text="上传现场勘测照片" :custom-btn="true">
-							<view slot="addBtn" class="slot-btn" hover-class="slot-btn__hover" hover-stay-time="150">
-								<image style="width: 72rpx;height: 72rpx" src="../../static/img/order/addbtn.png" mode="">
-								</image>
-								<view style="color:#000;font-size: 24rpx;">确认书</view>
-							</view>
-						</u-upload>
-					</view>
-					<view class="line"></view>
-					<view class="box-label">电源点(最多上传2张):</view>
-					<view class="survey-textarea survey-upload">
-						<u-upload :action="action" :file-list="fileList" upload-text="上传现场勘测照片" :custom-btn="true">
-							<view slot="addBtn" class="slot-btn" hover-class="slot-btn__hover" hover-stay-time="150">
-								<image style="width: 72rpx;height: 72rpx" src="../../static/img/order/addbtn.png" mode="">
-								</image>
-								<view style="color:#000;font-size: 24rpx;">确认书</view>
-							</view>
-						</u-upload>
-					</view>
-					<view class="line"></view>
-					<view class="box-label">控制箱内部接线(最多上传1张):</view>
-					<view class="survey-textarea survey-upload">
-						<u-upload :action="action" :file-list="fileList" upload-text="上传现场勘测照片" :custom-btn="true">
-							<view slot="addBtn" class="slot-btn" hover-class="slot-btn__hover" hover-stay-time="150">
-								<image style="width: 72rpx;height: 72rpx" src="../../static/img/order/addbtn.png" mode="">
-								</image>
-								<view style="color:#000;font-size: 24rpx;">确认书</view>
-							</view>
-						</u-upload>
-					</view>
-					<view class="line"></view>
-					<view class="report-detail">
-						<view class="box-label">整改金额</view>
-						<view class="address">1033</view>
-					</view>
-					<view class="line"></view>
-					<view class="box-label">上传售后传片(最多上传5张):</view>
-					<view class="survey-textarea survey-upload">
-						<u-upload :action="action" :file-list="fileList" upload-text="上传现场勘测照片" :custom-btn="true">
-							<view slot="addBtn" class="slot-btn" hover-class="slot-btn__hover" hover-stay-time="150">
-								<image style="width: 72rpx;height: 72rpx" src="../../static/img/order/addbtn.png" mode="">
-								</image>
-								<view style="color:#000;font-size: 24rpx;">确认书</view>
-							</view>
-						</u-upload>
-					</view>
-					
+				<view class="line"></view>
+				<view class="box-label">安装确认书(最多上传5张):</view>
+				<view class="survey-textarea survey-upload">
+					<u-upload :action="action" :file-list="fileList" upload-text="上传现场勘测照片" :custom-btn="true">
+						<view slot="addBtn" class="slot-btn" hover-class="slot-btn__hover" hover-stay-time="150">
+							<image style="width: 72rpx;height: 72rpx" src="../../static/img/order/addbtn.png" mode="">
+							</image>
+							<view style="color:#000;font-size: 24rpx;">确认书</view>
+						</view>
+					</u-upload>
+				</view>
+				<view class="line"></view>
+				<view class="box-label">增项报价单(最多上传2张):</view>
+				<view class="survey-textarea survey-upload">
+					<u-upload :action="action" :file-list="fileList" upload-text="上传现场勘测照片" :custom-btn="true">
+						<view slot="addBtn" class="slot-btn" hover-class="slot-btn__hover" hover-stay-time="150">
+							<image style="width: 72rpx;height: 72rpx" src="../../static/img/order/addbtn.png" mode="">
+							</image>
+							<view style="color:#000;font-size: 24rpx;">确认书</view>
+						</view>
+					</u-upload>
+				</view>
+				<view class="line"></view>
+				<view class="box-label">电源点(最多上传2张):</view>
+				<view class="survey-textarea survey-upload">
+					<u-upload :action="action" :file-list="fileList" upload-text="上传现场勘测照片" :custom-btn="true">
+						<view slot="addBtn" class="slot-btn" hover-class="slot-btn__hover" hover-stay-time="150">
+							<image style="width: 72rpx;height: 72rpx" src="../../static/img/order/addbtn.png" mode="">
+							</image>
+							<view style="color:#000;font-size: 24rpx;">确认书</view>
+						</view>
+					</u-upload>
+				</view>
+				<view class="line"></view>
+				<view class="box-label">控制箱内部接线(最多上传1张):</view>
+				<view class="survey-textarea survey-upload">
+					<u-upload :action="action" :file-list="fileList" upload-text="上传现场勘测照片" :custom-btn="true">
+						<view slot="addBtn" class="slot-btn" hover-class="slot-btn__hover" hover-stay-time="150">
+							<image style="width: 72rpx;height: 72rpx" src="../../static/img/order/addbtn.png" mode="">
+							</image>
+							<view style="color:#000;font-size: 24rpx;">确认书</view>
+						</view>
+					</u-upload>
+				</view>
+				<view class="line"></view>
+				<view class="report-detail">
+					<view class="box-label">整改金额</view>
+					<view class="address">1033</view>
+				</view>
+				<view class="line"></view>
+				<view class="box-label">上传售后传片(最多上传5张):</view>
+				<view class="survey-textarea survey-upload">
+					<u-upload :action="action" :file-list="fileList" upload-text="上传现场勘测照片" :custom-btn="true">
+						<view slot="addBtn" class="slot-btn" hover-class="slot-btn__hover" hover-stay-time="150">
+							<image style="width: 72rpx;height: 72rpx" src="../../static/img/order/addbtn.png" mode="">
+							</image>
+							<view style="color:#000;font-size: 24rpx;">确认书</view>
+						</view>
+					</u-upload>
+				</view>
+
 			</view>
 		</view>
 
 
 
-		<view class="button" @click="backOrderAssign">
+		<view class="button" @click.native="AfterSaleSubmit">
 			提交审核
 		</view>
 
@@ -129,12 +129,42 @@
 		},
 		data() {
 			return {
+				orderId: '', //由安装列表哪传过来的订单id
+				AfterSaleOrderDetail: {} //整改详情对象
 			}
 		},
 		methods: {
+			// 获取整改订单详情
+			getAfterSaleOrderDetail() {
+				this.$lsxmApi.getAfterSaleOrderDetail(this.orderId).then(res => {
+					if (res.data.data.code == 200 || res.data.data.code == 1) {
+						// 请求成功,返回数据
+						this.AfterSaleOrderDetail = res.data.data.data
+						console.log(this.AfterSaleOrderDetail);
 
+					} else {
+						// 弹出错误提示消息
+					}
+				})
+			},
+			
+			
+			// 整改提交
+			AfterSaleSubmit() {
+				this.$lsxmApi.AfterSaleSubmit(this.AfterSaleOrderDetail).then(res => {
+					if (res.data.data.code == 200 || res.data.data.code == 1) {
+						// 请求成功,返回数据
+					console.log(res);
+						
+					} else {
+						// 弹出错误提示消息
+					}
+				})
+			},
 		},
-		onLoad() {
+		onLoad(options) {
+			this.orderId = options.orderId
+			this.getAfterSaleOrderDetail()
 		},
 	}
 </script>
@@ -219,6 +249,7 @@
 		background-color: #E7E7E7;
 		margin: 40rpx 0;
 	}
+
 	.survey-upload {
 		text-align: center;
 		padding: 44rpx 0;
