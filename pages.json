@@ -4,6 +4,66 @@
 	},
 
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+	{
+	    "path" : "pages/to-reform/to-reform",
+	    "style": {
+	    	"navigationStyle": "custom",
+	    	"enablePullDownRefresh": false,
+	    	"navigationBarTextStyle": "white",
+	    	"app-plus": {
+	    		"bounce": "none"
+	    	}
+	    }
+	    
+	},
+	{
+		"path": "pages/to-install/to-install",
+		"style": {
+			"navigationStyle": "custom",
+			"enablePullDownRefresh": false,
+			"navigationBarTextStyle": "white",
+			"app-plus": {
+				"bounce": "none"
+			}
+		}
+	
+	},
+	{
+		"path": "pages/survey-report/survey-report",
+		"style": {
+			"navigationStyle": "custom",
+			"enablePullDownRefresh": false,
+			"navigationBarTextStyle": "white",
+			"app-plus": {
+				"bounce": "none"
+			}
+		}
+	
+	},
+	{
+		"path": "pages/order-survey/order-survey",
+		"style": {
+			"navigationStyle": "custom",
+			"enablePullDownRefresh": false,
+			"navigationBarTextStyle": "white",
+			"app-plus": {
+				"bounce": "none"
+			}
+		}
+	
+	},
+	{
+		"path": "pages/order-allocation/order-allocation",
+		"style": {
+			"navigationStyle": "custom",
+			"enablePullDownRefresh": false,
+			"navigationBarTextStyle": "white",
+			"app-plus": {
+				"bounce": "none"
+			}
+		}
+	
+	},
 		{
 			"path": "pages/index/index",
 			"style": {
@@ -29,18 +89,6 @@
 		},
 		{
 			"path": "pages/approval-process/approval-process",
-			"style": {
-				"navigationStyle": "custom",
-				"enablePullDownRefresh": false,
-				"navigationBarTextStyle": "white",
-				"app-plus": {
-					"bounce": "none"
-				}
-			}
-
-		},
-		{
-			"path": "pages/order-allocation/order-allocation",
 			"style": {
 				"navigationStyle": "custom",
 				"enablePullDownRefresh": false,
@@ -88,18 +136,6 @@
 		},
 		{
 			"path": "pages/install-report/install-report",
-			"style": {
-				"navigationStyle": "custom",
-				"enablePullDownRefresh": false,
-				"navigationBarTextStyle": "white",
-				"app-plus": {
-					"bounce": "none"
-				}
-			}
-
-		},
-		{
-			"path": "pages/survey-report/survey-report",
 			"style": {
 				"navigationStyle": "custom",
 				"enablePullDownRefresh": false,
@@ -203,30 +239,6 @@
 
 		},
 		{
-			"path": "pages/to-install/to-install",
-			"style": {
-				"navigationStyle": "custom",
-				"enablePullDownRefresh": false,
-				"navigationBarTextStyle": "white",
-				"app-plus": {
-					"bounce": "none"
-				}
-			}
-
-		},
-		{
-			"path": "pages/order-survey/order-survey",
-			"style": {
-				"navigationStyle": "custom",
-				"enablePullDownRefresh": false,
-				"navigationBarTextStyle": "white",
-				"app-plus": {
-					"bounce": "none"
-				}
-			}
-
-		},
-		{
 			"path": "pages/trip/trip",
 			"style": {
 				"navigationStyle": "custom",
@@ -260,7 +272,7 @@
 				}
 			}
 		}
-	],
+    ],
 	"globalStyle": {
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#000"

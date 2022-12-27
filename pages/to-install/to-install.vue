@@ -15,40 +15,40 @@
 		</view>
 
 		<view style="padding: 0 40rpx 0 0;width: 100%; background-color: #fff;">
-			<u-tabs font-size="27" :list="list" :is-scroll="false" :current="current" @change="change"
+			<u-tabs font-size="27" :list="tabsList" :is-scroll="false" :current="tabsCurrent" @change="tabsChange"
 				active-color="#FC615F"></u-tabs>
 		</view>
 
 		<view class="bottom-boxs">
-			<view class="bottom-box" v-for="(i,index) in 5" :key="index">
+			<view class="bottom-box" v-for="item in orderInstallList" :key="item.id">
 				<view class="box-left">
 					<view class="box-title">
 						<view class="tag">
 							<view class="tag-text">
-								待勘测
+								{{item.stateMainText}}
 							</view>
 						</view>
-						<view class="bottom-box-title">勘测单</view>
+						<view class="bottom-box-title">{{item.brandInfo.name}}</view>
 					</view>
 					<view class="order-detail">
 						<view class="order-label">下单时间：</view>
-						<view>2022-11-14 07:20:17</view>
+						<view>{{item.createdDate}}</view>
 					</view>
 					<view class="order-detail">
 						<view class="order-label">客户信息：</view>
-						<view>张三 138 7289 2990</view>
+						<view>{{item.cust.name + item.cust.mobile}}</view>
 					</view>
 					<view class="order-detail">
 						<view class="order-label">勘测时间：</view>
-						<view>2022-11-15</view>
+						<view>{{item.survey.createdDate}}</view>
 					</view>
 					<view class="order-detail">
 						<view class="order-label">安装地址：</view>
-						<view>上海市嘉定区众仁路勇立大厦</view>
+						<view>{{item.install.villageAddress}}</view>
 					</view>
 				</view>
 
-				<view class="box-right" @click="toSurveyDetail">
+				<view class="box-right" @click="toSurveyDetail(item.id)">
 					<u-icon size="50" name="arrow-right"></u-icon>
 				</view>
 
@@ -65,7 +65,7 @@
 		},
 		data() {
 			return {
-				list: [{
+				tabsList: [{
 					name: '全部',
 					count: 4
 				}, {
@@ -73,21 +73,50 @@
 				}, {
 					name: '已完成',
 				}, ],
-				current: 0
+				tabsCurrent: 0,
+				orderInstallList: [], //待勘测订单列表
+				orderStatus: 'ALL', //订单状态:全部，已完成，进行中
+				likeKeyWords:'' //搜索关键词
 			}
 		},
 		methods: {
-			change(index) {
-				this.current = index;
+			tabsChange(index) {
+				this.tabsCurrent = index;
+				console.log(index);
+				switch (index) {
+					case 0:
+						this.orderStatus = 'ALL'
+						break;
+					case 1:
+						this.orderStatus = 'DOING'
+						break;
+					case 2:
+						this.orderStatus = 'FINISHED'
+						break;
+					default:
+						break;
+				}
+				this.getOrderInstallList()
 			},
-			toSurveyDetail(){
+			toSurveyDetail(orderId){
 				uni.navigateTo({
-					url:'../survey-detail/survey-detail'
+					url:'../install-detail/install-detail?orderId='+ orderId
 				})
-			}
+			},
+			// 待安装订单列表查询
+			getOrderInstallList() {
+				this.$lsxmApi.getOrderInstallList(this.orderStatus, this.likeKeyWords).then(res => {
+					if (res.data.data.code == 200 || res.data.data.code == 1) {
+						// 请求成功,返回数据
+						this.orderInstallList = res.data.data.data.records
+					} else {
+						// 弹出错误提示消息
+					}
+				})
+			},
 		},
 		onLoad() {
-			
+			this.getOrderInstallList()
 		},
 	}
 </script>

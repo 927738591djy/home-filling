@@ -15,7 +15,7 @@
 		</view>
 
 		<view style="padding: 0 40rpx 0 0;width: 100%; background-color: #fff;">
-			<u-tabs font-size="27" :list="list" :is-scroll="false" :current="current" @change="change" active-color="#FC615F"></u-tabs>
+			<u-tabs font-size="27" :list="tabsList" :is-scroll="false" :current="tabsCurrent" @change="tabsChange" active-color="#FC615F"></u-tabs>
 		</view>
 				
 		<view class="bottom-boxs">
@@ -30,12 +30,12 @@
 					<view class="order-detail">
 						<view class="red-circle"></view>
 						<view class="order-label">下单时间：</view>
-						<view>{{item.orderCreateTime}}</view>
+						<view>{{item.dispatchDate}}</view>
 					</view>
 					<view class="order-detail">
 						<view class="blue-circle"></view>
 						<view class="order-label">客户信息：</view>
-						<view>{{item.customerName+item.customerPhone}}</view>
+						<view>{{item.custName+item.mobile}}</view>
 					</view>
 					<view @click="toOrderDetail(item.orderId)" class="button">立即指派</view>
 				</view>
@@ -53,7 +53,7 @@
 		},
 		data() {
 			return {
-				list: [{
+				tabsList: [{
 						name: '全部',
 						count:4
 					}, {
@@ -71,13 +71,14 @@
 						name: '售后单',
 					}
 				],
-				current: 0,
-				orderAllocationList:[] //订单分配列表
+				tabsCurrent: 0,
+				orderAllocationList:[], //订单分配列表
+				type:''//订单类型
 			}
 		},
 		methods: {
-			change(index) {
-				this.current = index;
+			tabsChange(index) {
+				this.tabsCurrent = index;
 			},
 			toOrderDetail(orderId){
 				uni.navigateTo({
@@ -85,12 +86,11 @@
 				})
 			},
 			// 获取订单分配列表
-			getOrderAllocationList(orderId){
-				this.$lsxmApi.getOrderAllocationList({phone:1775529928}).then(res => {
+			getOrderAllocationList(){
+				this.$lsxmApi.getOrderAllocationList('','').then(res => {
 					if (res.data.data.code == 200 || res.data.data.code == 1) {
 						// 请求成功,返回数据
-						this.orderAllocationList = res.data.data.data
-						console.log(this.orderAllocationList);
+						this.orderAllocationList = res.data.data.data.records
 					} else {
 						// 弹出错误提示消息
 					}

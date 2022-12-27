@@ -66,7 +66,6 @@
 		overflow: hidden;
 		height: 11vh;
 		color: #000;
-
 	}
 
 	.bottom {

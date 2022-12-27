@@ -11,39 +11,39 @@
 				</view>
 				<view class="order-detail-line">
 					<view class="order-detail-label">RN号</view>
-					<view>INSTAR-28197289</view>
+					<view>{{orderSurveyDetail.sallNo}}</view>
 				</view>
 				<view class="order-detail-line">
 					<view class="order-detail-label">品牌</view>
-					<view>特斯拉</view>
+					<view>{{orderSurveyDetail.brandInfo.name}}</view>
 				</view>
 				<view class="order-detail-line">
 					<view class="order-detail-label">客户姓名</view>
-					<view>孙权</view>
+					<view>{{orderSurveyDetail.cust.name}}</view>
 				</view>
 				<view class="order-detail-line">
 					<view class="order-detail-label">客户手机号</view>
-					<view>177653830400</view>
+					<view>{{orderSurveyDetail.cust.mobile}}</view>
 				</view>
 				<view class="order-detail-line">
 					<view class="order-detail-label">地址</view>
-					<view>上海市仁德路1349号</view>
+					<view>{{orderSurveyDetail.villageAddress}}</view>
 				</view>
 				<view class="order-detail-line">
 					<view class="order-detail-label">客服专员</view>
-					<view>小米</view>
+					<view>{{orderSurveyDetail.custServer.nickname}}</view>
 				</view>
 				<view class="order-detail-line">
 					<view class="order-detail-label">客服手机号</view>
-					<view>1373444447</view>
+					<view>{{orderSurveyDetail.custServer.phone}}</view>
 				</view>
 				<view class="order-detail-line">
 					<view class="order-detail-label">订单状态</view>
-					<view>已派单</view>
+					<view>{{orderSurveyDetail.stateSubText}}</view>
 				</view>
 				<view class="order-detail-line">
 					<view class="order-detail-label">勘测工程师</view>
-					<view>张飞</view>
+					<view>{{orderSurveyDetail.survey.engineer.nickname}}</view>
 				</view>
 			</view>
 
@@ -54,16 +54,16 @@
 				<view class="order-detail-line order-detail-input">
 					<view class="order-detail-label">物业名称</view>
 					<view class="gray">
-						<u-input v-model="value"  placeholder="请输入物业名称" input-align="right"/>
+						<u-input v-model="orderSurveyDetail.propertyName"  placeholder="请输入物业名称" input-align="right"/>
 					</view>
 				</view>
 				<view class="order-detail-line order-detail-input">
 					<view class="order-detail-label">小区名称</view>
-					<u-input v-model="value"   placeholder="请输入小区名称" input-align="right"/>
+					<u-input v-model="orderSurveyDetail.villageName"   placeholder="请输入小区名称" input-align="right"/>
 				</view>
 				<view class="order-detail-line order-detail-input">
 					<view class="order-detail-label">变更地址</view>
-					<u-input v-model="value"  placeholder="请输入变更地址" input-align="right"/>
+					<u-input v-model="orderSurveyDetail.villageAddress"  placeholder="请输入变更地址" input-align="right"/>
 				</view>
 			</view>
 
@@ -73,19 +73,18 @@
 				</view>
 				<view class="order-detail-line">
 					<view class="order-detail-label">预约勘测时间</view>
-					<view @click="timePickerShow =!timePickerShow">
+					<view @click="timePickerShow=!timePickerShow" v-if="!orderSurveyDetail.survey.timePre">
 						<u-icon class="gray" name="arrow-right" size="40"></u-icon>
 					</view>
+					<view>{{orderSurveyDetail.survey.timePre}}</view>
 				</view>
 			</view>
 		</view>
 
 
-		<RedButton title="提交"></RedButton>
-		
-		<u-popup v-model="timePickerShow" mode="bottom" border-radius="30" :closeable="true">
-			<TimePicker></TimePicker>
-		</u-popup>
+		<RedButton @click.native="appointmentSurvey" title="提交"></RedButton>
+		<u-picker show="timePickerShow"  mode="time" title="选择日期" confirm-color="#FC615F" cancel-color="#969799"
+			:params="params" @confirm="timeConfirm"></u-picker>
 
 	</view>
 </template>
@@ -102,13 +101,17 @@
 		},
 		data() {
 			return {
+				timeShow:true,
+				orderId:'', //订单id
+				orderSurveyDetail:{},//勘测订单详情对象
 				timePickerShow: false,
 				params: {
+					year:true,
 					month: true,
 					day: true,
 					hour: true,
 					minute: true,
-					second: false
+					second: true
 				},
 			}
 		},
@@ -117,9 +120,50 @@
 				uni.navigateTo({
 					url: '../assign-list/assign-list'
 				})
+			},
+			// 获取勘测订单详情
+			getOrderSurveyDetail() {
+				this.$lsxmApi.getOrderSurveyDetail(this.orderId
+				).then(res => {
+					if (res.data.data.code == 200 || res.data.data.code == 1) {
+						// 请求成功,返回数据
+						this.orderSurveyDetail  = res.data.data.data
+						console.log(this.orderSurveyDetail);
+						
+					} else {
+						// 弹出错误提示消息
+					}
+				})
+			},
+			
+			// 预约勘测
+			preSurvey() {
+				this.$lsxmApi.preSurvey(this.orderSurveyDetail).then(res => {
+					if (res.data.data.code == 200 || res.data.data.code == 1) {
+						// 请求成功,返回数据
+					console.log(res);
+						
+					} else {
+						// 弹出错误提示消息
+					}
+				})
+			},
+			
+			// 确定预约勘测时间
+			timeConfirm(e){
+				console.log(e);
+				
+			},
+			
+			// 点击提交预约勘测
+			appointmentSurvey(){
+				console.log(22222);
+				this.preSurvey()
 			}
 		},
-		onLoad() {
+		onLoad(options) {
+			this.orderId = options.orderId
+			this.getOrderSurveyDetail()
 		},
 	}
 </script>

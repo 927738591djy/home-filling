@@ -13,8 +13,8 @@
 		</view>
 		<view class="bottom">
 			<u-cell-group>
-				<u-cell-item v-for="item in engineerNameList" :key="item.engineerId" @click="selectEngineer(item.engineerId,item.engineerName)" :title="item.engineerName"
-					:title-style="{color: currentId == item.engineerId?'#FF2B2F':'#000',  fontSize:currentId == item.engineerId?'32rpx':'28rpx'}" :index="item.engineerId"
+				<u-cell-item v-for="item in engineerNameList" :key="item.id" @click="selectEngineer(item.id,item.nickname)" :title="item.nickname"
+					:title-style="{color: currentId == item.id?'#FF2B2F':'#000',  fontSize:currentId == item.id?'32rpx':'28rpx'}" :index="item.id"
 					:arrow="false" :border-bottom="true"
 					></u-cell-item>
 			</u-cell-group>
@@ -33,6 +33,7 @@
 		},
 		data() {
 			return {
+				orderId:'',//订单id
 				currentId:0,
 				currentEnginnerName:'',
 				engineerNameList:[] //工程师姓名列表
@@ -45,14 +46,15 @@
 			},
 			backOrderAssign(){
 				uni.navigateTo({
-					url:'../order-assign/order-assign?engineerId=' + this.currentId +'&engineerName='+ this.currentEnginnerName
+					url:'../order-assign/order-assign?engineerId=' + this.currentId +'&engineerName='+ this.currentEnginnerName +'&orderId='+ this.orderId
 				})
 			},
 			// 服务商工程师列表查询
-			getEngineerNameList(){
-				this.$lsxmApi.getEngineerNameList().then(res => {
+			getEngineersList(){
+				this.$lsxmApi.getEngineersList('1603271820159483904').then(res => {
 					if (res.data.data.code == 200 || res.data.data.code == 1) {
 						// 请求成功,返回数据
+						console.log(res.data.data.data);
 							this.engineerNameList = res.data.data.data
 					} else {
 						// 弹出错误提示消息
@@ -60,8 +62,9 @@
 				})
 			}
 		},
-		onLoad() {
-			this.getEngineerNameList()
+		onLoad(options) {
+			this.orderId = options.orderId
+			this.getEngineersList()
 		},
 	}
 </script>

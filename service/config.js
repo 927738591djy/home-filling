@@ -19,8 +19,6 @@ lsxmRequest.interceptors.request((request) => {
 			clearTimeout(timers)
 		},2000)
 	}
-
-
     return request
 })
 
@@ -57,7 +55,11 @@ lsxmRequest.setConfig((config) => {
     config.baseURL = url
 
     if (uni.getStorageSync('token')) {
-        config.header['X-Jhspace-Token'] = uni.getStorageSync('token');
+        // config.header['X-Jhspace-Token'] = uni.getStorageSync('token');
+		config.header['Authorization'] = 'Bearer'+ ' ' + uni.getStorageSync('token');
+		// config.header['content-type'] = 'multipart/form-data'
+		console.log(config);
+		
     }
 	
     return config;

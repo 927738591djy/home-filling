@@ -9,33 +9,32 @@
 			<view class="bottom-box">
 				<view class="report-detail">
 					<view class="box-label">客户姓名：</view>
-					<view>张无忌</view>
+					<view>{{orderInstallDetail.cust.name}}</view>
 				</view>
 				<view class="report-detail">
 					<view class="box-label">安装地址：</view>
-					<view class="address">上海市嘉定区众仁路勇立大厦M22 4-6</view>
+					<view class="address">{{orderInstallDetail.villageAddress}}</view>
 				</view>
 			</view>
 			<view class="bottom-box time">
 				<view class="box-label">勘测完成时间：</view>
 				<view>
-					2022-11-15 20：00
-				</view>
+					{{orderInstallDetail.survey.createdDate}}</view>
 			</view>
 			<view class="bottom-box">
 				<view class="box-label">勘测总结：</view>
 				<view class="survey-textarea">
-					<textarea v-model="text" placeholder="请输入勘测总结" />
+					<textarea v-model="orderInstallDetail.survey.summaryReport" placeholder="请输入勘测总结" />
 				</view>
 			</view>
 			<view class="bottom-box">
 				<view class="report-detail">
 					<view class="box-label">安装人员：</view>
-					<view>张无忌</view>
+					<view>{{orderInstallDetail.install.engineer.nickname}}</view>
 				</view>
 				<view class="report-detail">
 					<view class="box-label">预约安装时间：</view>
-					<view class="address">2022-11-15 12:00:00</view>
+					<view class="address">{{orderInstallDetail.install.timePre}}</view>
 				</view>
 			</view>
 
@@ -43,64 +42,71 @@
 				<view class="report-detail">
 					<view class="box-label">充电桩型号(TPN):</view>
 					<!-- <view>16287628-02-G</view> -->
-					<view class="select-right">
+					<view v-if="!orderInstallDetail.install.installMaterial.chargeModelId" class="select-right">
 						请选择
 						<u-icon style="margin-left: 10rpx;" top="2" name="arrow-right"></u-icon>
 					</view>
+					<view v-else>{{orderInstallDetail.install.installMaterial.chargeModelId}}</view>
 				</view>
 				<view class="report-detail">
 					<view class="box-label">充电桩编号(TSN):</view>
 					<!-- <view class="address">PGT237292839203</view> -->
-					<view class="select-right">
+					<view v-if="!orderInstallDetail.install.installMaterial.serialNo" class="select-right">
 						请选择
 						<u-icon style="margin-left: 10rpx;" top="2" name="arrow-right"></u-icon>
 					</view>
+					<view v-else>{{orderInstallDetail.install.installMaterial.serialNo}}</view>
 				</view>
 				<view class="report-detail">
 					<view class="box-label">电缆规格:</view>
 					<!-- <view class="address"> 3*6</view> -->
-					<view class="select-right">
+					<view v-if="!orderInstallDetail.install.installMaterial.cableType" class="select-right">
 						请选择
 						<u-icon style="margin-left: 10rpx;" top="2" name="arrow-right"></u-icon>
 					</view>
+					<view v-else>{{orderInstallDetail.install.installMaterial.cableType}}</view>
 				</view>
 				<view class="report-detail">
 					<view class="box-label">电缆长度:</view>
 					<!-- <view class="address">37</view> -->
-					<view class="select-right">
+					<view v-if="!orderInstallDetail.install.installMaterial.cableLength" class="select-right">
 						请选择
 						<u-icon style="margin-left: 10rpx;" top="2" name="arrow-right"></u-icon>
 					</view>
+					<view v-else>{{orderInstallDetail.install.installMaterial.cableLength}}</view>
 				</view>
 				<view class="report-detail">
 					<view class="box-label">管长</view>
 					<!-- <view class="address">10</view> -->
-					<view class="select-right">
+					<view v-if="!orderInstallDetail.install.installMaterial.pipaLength" class="select-right">
 						请选择
 						<u-icon style="margin-left: 10rpx;" top="2" name="arrow-right"></u-icon>
 					</view>
+					<view v-else>{{orderInstallDetail.install.installMaterial.pipaLength}}</view>
 				</view>
 				<view class="line"></view>
 				<view class="report-detail">
 					<view class="box-label">付费金额:</view>
 					<!-- <view class="address">37</view> -->
+					<view></view>
 				</view>
 				<view class="report-detail">
 					<view class="box-label">付费备注</view>
 					<!-- <view class="address">10</view> -->
+					<view></view>
 				</view>
 			</view>
 
 			<view class="bottom-box">
 				<view class="report-detail">
-					<view class="box-label">安装完成时间:：</view>
-					<view class="address" @click="timeSelectShow = !timeSelectShow">请选择</view>
+					<view class="box-label">安装完成时间:</view>
+					<view v-if="!orderInstallDetail.install.createdDate" class="address" @click="timeSelectShow = !timeSelectShow">请选择</view>
+					<view v-else>{{orderInstallDetail.install.createdDate}}</view>
 				</view>
 				<view class="line"></view>
 				<view class="box-label">安装总结：</view>
 				<view class="survey-textarea">
-
-					<textarea v-model="text" placeholder="请输入安装总结" />
+					<textarea v-model="orderInstallDetail.install.summaryReport" placeholder="请输入安装总结" />
 				</view>
 			</view>
 		</view>
@@ -123,6 +129,8 @@
 		},
 		data() {
 			return {
+				orderId: '', //由安装列表哪传过来的订单id
+				orderInstallDetail:{},//安装订单详情对象
 				timeSelectShow: false, //时间选择器弹出
 				params: {
 					hour: true,
@@ -132,9 +140,23 @@
 			}
 		},
 		methods: {
+			// 获取安装订单详情
+			getOrderSurveyDetail() {
+				this.$lsxmApi.getOrderSurveyDetail(this.orderId).then(res => {
+					if (res.data.data.code == 200 || res.data.data.code == 1) {
+						// 请求成功,返回数据
+						this.orderInstallDetail = res.data.data.data
+						console.log(this.orderInstallDetail);
 
+					} else {
+						// 弹出错误提示消息
+					}
+				})
+			},
 		},
-		onLoad() {
+		onLoad(options) {
+			this.orderId = options.orderId
+			this.getOrderSurveyDetail()
 		},
 	}
 </script>

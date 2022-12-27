@@ -12,15 +12,10 @@
 				<u-section title="应用管理" :right="false" line-color="#FF2C34" font-size="32"></u-section>
 			</view>
 			<u-grid :col="3" :border="false">
-				<!-- <u-grid-item :custom-style="{padding:'50rpx 0'}">
-					<image style="width: 80rpx; height: 80rpx;margin-bottom: 24rpx;"
-						src="../../static/img/home/order.png" mode=""></image>
-					<view class="grid-text">订单分配</view>
-				</u-grid-item> -->
-				<u-grid-item v-for="(item,index) in homeMenuList" :custom-style="{padding:'50rpx 0'}">
-					<image style="width: 80rpx; height: 80rpx;margin-bottom: 24rpx;" :src="item.ImageUrl" mode="">
+				<u-grid-item v-for="(item,index) in homeMenuList" :custom-style="{padding:'50rpx 0'}" :key="item.id">
+					<image style="width: 80rpx; height:80rpx;margin-bottom: 24rpx;" :src="item.icon" mode="">
 					</image>
-					<view class="grid-text">{{item.menuName}}</view>
+					<view class="grid-text">{{item.name}}</view>
 				</u-grid-item>
 			</u-grid>
 		</view>
@@ -40,8 +35,11 @@
 			this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight;
 			console.log(this.statusBarHeight);
 			this.loginAuthorization() 
-			// this.getHomeMenuList()
-			
+			this.getHomeMenuList()
+			this.getProviderList() 
+			this.getProviderTreeList()
+			this.getEngineersList()
+			this.getOrderAllocationList()
 		},
 		methods: {
 			// 获取首页菜单列表图文
@@ -50,28 +48,27 @@
 					if (res.data.data.code == 200 || res.data.data.code == 1) {
 						// 请求成功,返回数据
 						this.homeMenuList = res.data.data.data
-						console.log(this.homeMenuList);
-						console.log(2222);
 					} else {
 						// 弹出错误提示消息
 						console.log(res);
 					}
 				})
 			},
-
+			
+			// 获取登录token
 			loginAuthorization() {
-				console.log(1111111111);
 				this.$lsxmApi.loginAuthorization('17630150994').then(res => {
 					if (res.data.data.code == 200 || res.data.data.code == 1) {
 						// 请求成功,返回数据
-						this.homeMenuList = res.data.data.data
-						console.log(this.homeMenuList);
+						let tokenObj = res.data.data.data
+						uni.setStorageSync('token',tokenObj.access_token) //将token存入本地缓存中
 					} else {
 						// 弹出错误提示消息
 						console.log(res)
 					}
 				})
-			}
+			},		
+			
 		}
 	}
 </script>
