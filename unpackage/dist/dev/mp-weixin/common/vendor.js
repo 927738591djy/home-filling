@@ -2972,6 +2972,12 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
     // 安装订单详情
     getOrderInstallDetail: function getOrderInstallDetail(orderId) {
       return _config.default.get('/order/order/get_install_detail?orderId=' + orderId);
+    },
+
+    //待整改订单列表查询
+    getOrderRemoveList: function getOrderRemoveList(orderStatus, likeKeyWords) {
+      return _config.default.get('/order/order/get_rectify_list?orderStatus=' + orderStatus + '&likeKeyWords=' +
+      likeKeyWords);
     } } };exports.default = _default;
 
 /***/ }),

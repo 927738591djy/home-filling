@@ -70,7 +70,13 @@ export default {
 		getOrderInstallDetail(orderId) {
 			return lsxmRequest.get('/order/order/get_install_detail?orderId=' + orderId)
 		},
-
+		
+		//待整改订单列表查询
+		getOrderRemoveList(orderStatus, likeKeyWords) {
+			return lsxmRequest.get('/order/order/get_rectify_list?orderStatus=' + orderStatus + '&likeKeyWords=' +
+				likeKeyWords)
+		},
+		
 
 	}
 }

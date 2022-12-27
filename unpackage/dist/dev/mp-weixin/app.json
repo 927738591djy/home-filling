@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/to-reform/to-reform",
     "pages/to-install/to-install",
     "pages/survey-report/survey-report",
     "pages/order-survey/order-survey",
