@@ -144,6 +144,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 //
 //
 //
+//
 var _default =
 {
   data: function data() {
@@ -152,7 +153,8 @@ var _default =
     var day = date.getDate();
     var list = [];
     var hourList = [];
-    var second = [];
+    var minList = [];
+    var secondList = [];
     for (var i = month; i <= month + 1; i++) {
       for (var j = 1; j <= 31; j++) {
         if (i >= 13) {
@@ -165,8 +167,10 @@ var _default =
     for (var _i = 0; _i <= 23; _i++) {
       hourList.push(_i);
     }
-    for (var _i2 = 0; _i2 <= 23; _i2++) {
-      hourList.push(_i2);
+    for (var _i2 = 0; _i2 <= 59; _i2++) {
+      minList.push(_i2);
+      secondList.push(_i2);
+
     }
     list.splice(day - 1, 1, "今天");
     return {
@@ -177,9 +181,13 @@ var _default =
       list: list.slice(day - 1, list.length),
       value: [0, 0],
       visible: true,
-      timeList: ['8：00-8：30', '9：00-9：30', '10：00-10：30', '11:00-11:30', '12:00-12:30', '13:00-13:00', '14:00-14:30', '15:00-15:30', '16:00-16:30'], //时间段数组，这个是固定的，自定义的。
-      hourList: hourList //循环小时
-    };
+      timeList: ['8：00-8：30', '9：00-9：30', '10：00-10：30', '11:00-11:30', '12:00-12:30', '13:00-13:00',
+      '14:00-14:30', '15:00-15:30', '16:00-16:30'],
+      //时间段数组，这个是固定的，自定义的。
+      hourList: hourList, //循环小时
+      minList: minList,
+      secondList: secondList };
+
   },
   methods: {
     bindChange: function bindChange(e) {

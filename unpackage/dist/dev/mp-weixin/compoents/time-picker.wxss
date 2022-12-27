@@ -82,6 +82,14 @@
 
 
 
+
+
+
+
+
+
+
+
 /* .line {
 	background-color: #E7E7E7;
 	height: 2rpx;
@@ -94,17 +102,17 @@
 	position: relative;
 	z-index: 100;
 	background-color: #fff;
-	width: 80%;
+	width: 90%;
 	height: 100rpx;
 	line-height: 100rpx;
 }
-.title ._span{
+.title ._span {
 	position: absolute;
 	left: 330rpx;
 }
 .picker-view {
 	width: 100%;
-	height:1500rpx;
+	height: 1500rpx;
 }
 .item {
 	position: relative;
@@ -116,17 +124,15 @@
 }
 .left {
 	background-color: #F6F6F6;
-	width: 300rpx;
 	color: #999;
 }
 .right {
-	text-align: left;
-	width: 100%;
+	text-align: center;
 }
 .selected {
 	color: #FF2C34;
 }
-.icon{
+.icon {
 	height: 30rpx;
 	width: 30rpx;
 	position: absolute;
