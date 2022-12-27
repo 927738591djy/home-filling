@@ -9,23 +9,24 @@
 			<view class="bottom-box">
 				<view class="report-detail">
 					<view class="box-label">客户姓名：</view>
-					<view>张无忌</view>
+					<view>{{orderSurveyDetail.cust.name}}</view>
 				</view>
 				<view class="report-detail">
 					<view class="box-label">安装地址：</view>
-					<view class="address">上海市嘉定区众仁路勇立大厦M22 4-6</view>
+					<view class="address">{{orderSurveyDetail.villageAddress}}</view>
 				</view>
 			</view>
 			<view class="bottom-box time">
-				<view class="box-label">勘测时间：</view>
-				<view>
+				<view class="box-label">勘测完成时间：</view>
+				<view v-if="orderSurveyDetail.survey.createdDate">{{orderSurveyDetail.survey.createdDate}}</view>
+				<view v-else>
 					<u-icon name="arrow-right" size="40"></u-icon>
 				</view>
 			</view>
 			<view class="bottom-box">
 				<view class="box-label">勘测总结：</view>
 				<view class="survey-textarea">
-					<textarea v-model="text" placeholder="请输入勘测总结" />
+					<textarea v-model="orderSurveyDetail.survey.summaryReport" placeholder="请输入勘测总结" />
 				</view>
 				<view class="survey-textarea survey-upload">
 					<u-upload :action="action" :file-list="fileList" upload-text="上传现场勘测照片" :custom-btn="true">
@@ -40,7 +41,7 @@
 		</view>
 
 
-		<RedButton title="提交审核"></RedButton>
+		<RedButton @click.native="surveySubmit" title="提交审核"></RedButton>
 
 	</view>
 </template>
@@ -55,14 +56,42 @@
 		},
 		data() {
 			return {
-				
+				orderId: '1603293666569355265', //先写假的,等待勘测列表页面传过来的
+				orderSurveyDetail:{}
 			}
 		},
 		methods: {
+			// 获取勘测订单详情
+			getOrderSurveyDetail() {
+				this.$lsxmApi.getOrderSurveyDetail(this.orderId).then(res => {
+					if (res.data.data.code == 200 || res.data.data.code == 1) {
+						// 请求成功,返回数据
+						this.orderSurveyDetail = res.data.data.data
+						console.log(this.orderSurveyDetail);
 
+					} else {
+						// 弹出错误提示消息
+					}
+				})
+			},
+			
+			// 勘测报告提交
+			surveySubmit() {
+				console.log(222);
+				this.$lsxmApi.surveySubmit(this.orderSurveyDetail).then(res => {
+					if (res.data.data.code == 200 || res.data.data.code == 1) {
+						// 请求成功,返回数据
+						console.log(res);
+			
+					} else {
+						// 弹出错误提示消息
+					}
+				})
+			},
+				
 		},
 		onLoad() {
-		
+			this.getOrderSurveyDetail()
 		},
 	}
 </script>

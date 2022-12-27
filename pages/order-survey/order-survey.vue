@@ -123,8 +123,8 @@
 				})
 			},
 			// 待勘测订单列表查询
-			getOrderSurveyList() {
-				this.$lsxmApi.getOrderSurveyList(this.orderStatus, this.likeKeyWords).then(res => {
+			getOrderInstallDetail() {
+				this.$lsxmApi.getOrderInstallDetail(this.orderStatus, this.likeKeyWords).then(res => {
 					if (res.data.data.code == 200 || res.data.data.code == 1) {
 						// 请求成功,返回数据
 						this.orderSurveyList = res.data.data.data.records
@@ -136,7 +136,7 @@
 
 		},
 		onLoad() {
-			this.getOrderSurveyList()
+			this.getOrderInstallDetail()
 		},
 	}
 </script>

@@ -306,9 +306,30 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
+
+    // 预约勘测
+    preSurvey: function preSurvey() {
+      this.$lsxmApi.preSurvey(this.orderSurveyDetail).then(function (res) {
+        if (res.data.data.code == 200 || res.data.data.code == 1) {
+          // 请求成功,返回数据
+          console.log(res);
+
+        } else {
+          // 弹出错误提示消息
+        }
+      });
+    },
+
     // 确定预约勘测时间
     timeConfirm: function timeConfirm(e) {
       console.log(e);
+
+    },
+
+    // 点击提交预约勘测
+    appointmentSurvey: function appointmentSurvey() {
+      console.log(22222);
+      this.preSurvey();
     } },
 
   onLoad: function onLoad(options) {

@@ -282,12 +282,20 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
+
+
+
+
+
+
 {
   components: {
     navbar: navbar },
 
   data: function data() {
     return {
+      orderId: '', //由安装列表哪传过来的订单id
+      orderInstallDetail: {}, //安装订单详情对象
       timeSelectShow: false, //时间选择器弹出
       params: {
         hour: true,
@@ -296,10 +304,24 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
       //时间选择器的配置参数
     };
   },
-  methods: {},
+  methods: {
+    // 获取安装订单详情
+    getOrderSurveyDetail: function getOrderSurveyDetail() {var _this = this;
+      this.$lsxmApi.getOrderSurveyDetail(this.orderId).then(function (res) {
+        if (res.data.data.code == 200 || res.data.data.code == 1) {
+          // 请求成功,返回数据
+          _this.orderInstallDetail = res.data.data.data;
+          console.log(_this.orderInstallDetail);
 
+        } else {
+          // 弹出错误提示消息
+        }
+      });
+    } },
 
-  onLoad: function onLoad() {
+  onLoad: function onLoad(options) {
+    this.orderId = options.orderId;
+    this.getOrderSurveyDetail();
   } };exports.default = _default;
 
 /***/ }),

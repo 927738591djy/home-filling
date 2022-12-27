@@ -208,21 +208,50 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
+
 {
   components: {
     navbar: navbar,
     RedButton: RedButton },
 
   data: function data() {
-    return {};
-
+    return {
+      orderId: '1603293666569355265', //先写假的,等待勘测列表页面传过来的
+      orderSurveyDetail: {} };
 
   },
-  methods: {},
+  methods: {
+    // 获取勘测订单详情
+    getOrderSurveyDetail: function getOrderSurveyDetail() {var _this = this;
+      this.$lsxmApi.getOrderSurveyDetail(this.orderId).then(function (res) {
+        if (res.data.data.code == 200 || res.data.data.code == 1) {
+          // 请求成功,返回数据
+          _this.orderSurveyDetail = res.data.data.data;
+          console.log(_this.orderSurveyDetail);
+
+        } else {
+          // 弹出错误提示消息
+        }
+      });
+    },
+
+    // 勘测报告提交
+    surveySubmit: function surveySubmit() {
+      console.log(222);
+      this.$lsxmApi.surveySubmit(this.orderSurveyDetail).then(function (res) {
+        if (res.data.data.code == 200 || res.data.data.code == 1) {
+          // 请求成功,返回数据
+          console.log(res);
+
+        } else {
+          // 弹出错误提示消息
+        }
+      });
+    } },
 
 
   onLoad: function onLoad() {
-
+    this.getOrderSurveyDetail();
   } };exports.default = _default;
 
 /***/ }),

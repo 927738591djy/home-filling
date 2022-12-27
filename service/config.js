@@ -57,7 +57,8 @@ lsxmRequest.setConfig((config) => {
     if (uni.getStorageSync('token')) {
         // config.header['X-Jhspace-Token'] = uni.getStorageSync('token');
 		config.header['Authorization'] = 'Bearer'+ ' ' + uni.getStorageSync('token');
-		config.header['content-type'] = 'multipart/form-data'
+		// config.header['content-type'] = 'multipart/form-data'
+		console.log(config);
 		
     }
 	

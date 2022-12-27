@@ -2942,13 +2942,36 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
     // 待勘测订单列表查询
     getOrderSurveyList: function getOrderSurveyList(orderStatus, likeKeyWords) {
-      return _config.default.get('/order/order/get_survey_list?orderStatus=' + orderStatus + '&likeKeyWords=' + likeKeyWords);
+      return _config.default.get('/order/order/get_survey_list?orderStatus=' + orderStatus + '&likeKeyWords=' +
+      likeKeyWords);
     },
 
 
     // 勘测订单详情
     getOrderSurveyDetail: function getOrderSurveyDetail(orderId) {
       return _config.default.get('/order/order/get_survey_detail?orderId=' + orderId);
+    },
+
+    // 预约勘测
+    preSurvey: function preSurvey(data) {
+      return _config.default.post('/order/order/pre_survey', data);
+    },
+
+    // 勘测报告提交
+    surveySubmit: function surveySubmit(data) {
+      return _config.default.post('/order/order/survey_submit', data);
+    },
+
+
+    //待安装订单列表查询
+    getOrderInstallList: function getOrderInstallList(orderStatus, likeKeyWords) {
+      return _config.default.get('/order/order/get_install_list?orderStatus=' + orderStatus + '&likeKeyWords=' +
+      likeKeyWords);
+    },
+
+    // 安装订单详情
+    getOrderInstallDetail: function getOrderInstallDetail(orderId) {
+      return _config.default.get('/order/order/get_install_detail?orderId=' + orderId);
     } } };exports.default = _default;
 
 /***/ }),
@@ -3020,7 +3043,8 @@ lsxmRequest.setConfig(function (config) {
   if (uni.getStorageSync('token')) {
     // config.header['X-Jhspace-Token'] = uni.getStorageSync('token');
     config.header['Authorization'] = 'Bearer' + ' ' + uni.getStorageSync('token');
-    config.header['content-type'] = 'multipart/form-data';
+    // config.header['content-type'] = 'multipart/form-data'
+    console.log(config);
 
   }
 

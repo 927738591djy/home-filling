@@ -1,5 +1,7 @@
 {
   "pages": [
+    "pages/to-install/to-install",
+    "pages/survey-report/survey-report",
     "pages/order-survey/order-survey",
     "pages/order-allocation/order-allocation",
     "pages/index/index",
@@ -9,7 +11,6 @@
     "pages/statement-detail/statement-detail",
     "pages/look-stock/look-stock",
     "pages/install-report/install-report",
-    "pages/survey-report/survey-report",
     "pages/my/my",
     "pages/setting/setting",
     "pages/test/test",
@@ -18,7 +19,6 @@
     "pages/appointment-install/appointment-install",
     "pages/statement/statement",
     "pages/reform-detail/reform-detail",
-    "pages/to-install/to-install",
     "pages/trip/trip",
     "pages/order-assign/order-assign",
     "pages/assign-list/assign-list"

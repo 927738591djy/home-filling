@@ -230,65 +230,6 @@ var _default =
           console.log(res);
         }
       });
-    },
-
-    // 获取当前用户可见的服务商列表
-    getProviderList: function getProviderList() {
-      this.$lsxmApi.getProviderList().then(function (res) {
-        if (res.data.data.code == 200 || res.data.data.code == 1) {
-          // 请求成功,返回数据
-          var tokenObj = res.data.data.data;
-          console.log(tokenObj);
-        } else {
-          // 弹出错误提示消息
-          console.log(res);
-        }
-      });
-    },
-
-
-    //获取可见的服务商树形列表
-    getProviderTreeList: function getProviderTreeList() {
-      this.$lsxmApi.getProviderTreeList().then(function (res) {
-        if (res.data.data.code == 200 || res.data.data.code == 1) {
-          // 请求成功,返回数据
-          var tokenObj = res.data.data.data;
-          console.log(tokenObj);
-        } else {
-          // 弹出错误提示消息
-          console.log(res);
-        }
-      });
-    },
-
-
-    // 获取工程师列表 需要传服务商id
-    getEngineersList: function getEngineersList() {
-      this.$lsxmApi.getEngineersList(1603271820159483904).then(function (res) {
-        if (res.data.data.code == 200 || res.data.data.code == 1) {
-          // 请求成功,返回数据
-          var tokenObj = res.data.data.data;
-          console.log(tokenObj);
-        } else {
-          // 弹出错误提示消息
-          console.log(res);
-        }
-      });
-    },
-
-
-    // 订单分配列表查询
-    getOrderAllocationList: function getOrderAllocationList() {
-      this.$lsxmApi.getOrderAllocationList('特', 'SURVEY_ORDER').then(function (res) {
-        if (res.data.data.code == 200 || res.data.data.code == 1) {
-          // 请求成功,返回数据
-          var tokenObj = res.data.data.data;
-          console.log(tokenObj);
-        } else {
-          // 弹出错误提示消息
-          console.log(res);
-        }
-      });
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

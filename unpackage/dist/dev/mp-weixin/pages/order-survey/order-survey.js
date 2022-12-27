@@ -283,8 +283,8 @@ __webpack_require__.r(__webpack_exports__);
 
     },
     // 待勘测订单列表查询
-    getOrderSurveyList: function getOrderSurveyList() {var _this = this;
-      this.$lsxmApi.getOrderSurveyList(this.orderStatus, this.likeKeyWords).then(function (res) {
+    getOrderInstallDetail: function getOrderInstallDetail() {var _this = this;
+      this.$lsxmApi.getOrderInstallDetail(this.orderStatus, this.likeKeyWords).then(function (res) {
         if (res.data.data.code == 200 || res.data.data.code == 1) {
           // 请求成功,返回数据
           _this.orderSurveyList = res.data.data.data.records;
@@ -296,7 +296,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
   onLoad: function onLoad() {
-    this.getOrderSurveyList();
+    this.getOrderInstallDetail();
   } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

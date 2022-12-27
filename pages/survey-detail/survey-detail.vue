@@ -82,7 +82,7 @@
 		</view>
 
 
-		<RedButton title="提交"></RedButton>
+		<RedButton @click.native="appointmentSurvey" title="提交"></RedButton>
 		<u-picker show="timePickerShow"  mode="time" title="选择日期" confirm-color="#FC615F" cancel-color="#969799"
 			:params="params" @confirm="timeConfirm"></u-picker>
 
@@ -135,9 +135,30 @@
 					}
 				})
 			},
+			
+			// 预约勘测
+			preSurvey() {
+				this.$lsxmApi.preSurvey(this.orderSurveyDetail).then(res => {
+					if (res.data.data.code == 200 || res.data.data.code == 1) {
+						// 请求成功,返回数据
+					console.log(res);
+						
+					} else {
+						// 弹出错误提示消息
+					}
+				})
+			},
+			
 			// 确定预约勘测时间
 			timeConfirm(e){
 				console.log(e);
+				
+			},
+			
+			// 点击提交预约勘测
+			appointmentSurvey(){
+				console.log(22222);
+				this.preSurvey()
 			}
 		},
 		onLoad(options) {

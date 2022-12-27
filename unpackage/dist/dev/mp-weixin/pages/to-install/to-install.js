@@ -225,7 +225,7 @@ __webpack_require__.r(__webpack_exports__);
 
   data: function data() {
     return {
-      list: [{
+      tabsList: [{
         name: '全部',
         count: 4 },
       {
@@ -233,21 +233,50 @@ __webpack_require__.r(__webpack_exports__);
       {
         name: '已完成' }],
 
-      current: 0 };
-
+      tabsCurrent: 0,
+      orderInstallList: [], //待勘测订单列表
+      orderStatus: 'ALL', //订单状态:全部，已完成，进行中
+      likeKeyWords: '' //搜索关键词
+    };
   },
   methods: {
-    change: function change(index) {
-      this.current = index;
-    },
-    toSurveyDetail: function toSurveyDetail() {
-      uni.navigateTo({
-        url: '../survey-detail/survey-detail' });
+    tabsChange: function tabsChange(index) {
+      this.tabsCurrent = index;
+      console.log(index);
+      switch (index) {
+        case 0:
+          this.orderStatus = 'ALL';
+          break;
+        case 1:
+          this.orderStatus = 'DOING';
+          break;
+        case 2:
+          this.orderStatus = 'FINISHED';
+          break;
+        default:
+          break;}
 
+      this.getOrderInstallList();
+    },
+    toSurveyDetail: function toSurveyDetail(orderId) {
+      uni.navigateTo({
+        url: '../install-detail/install-detail?orderId=' + orderId });
+
+    },
+    // 待安装订单列表查询
+    getOrderInstallList: function getOrderInstallList() {var _this = this;
+      this.$lsxmApi.getOrderInstallList(this.orderStatus, this.likeKeyWords).then(function (res) {
+        if (res.data.data.code == 200 || res.data.data.code == 1) {
+          // 请求成功,返回数据
+          _this.orderInstallList = res.data.data.data.records;
+        } else {
+          // 弹出错误提示消息
+        }
+      });
     } },
 
   onLoad: function onLoad() {
-
+    this.getOrderInstallList();
   } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

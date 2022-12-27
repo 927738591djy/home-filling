@@ -39,20 +39,37 @@ export default {
 
 		// 待勘测订单列表查询
 		getOrderSurveyList(orderStatus, likeKeyWords) {
-			return lsxmRequest.get('/order/order/get_survey_list?orderStatus='+ orderStatus + '&likeKeyWords=' + likeKeyWords)
+			return lsxmRequest.get('/order/order/get_survey_list?orderStatus=' + orderStatus + '&likeKeyWords=' +
+				likeKeyWords)
 		},
 
 
 		// 勘测订单详情
 		getOrderSurveyDetail(orderId) {
-			return lsxmRequest.get('/order/order/get_survey_detail?orderId='+orderId )
+			return lsxmRequest.get('/order/order/get_survey_detail?orderId=' + orderId)
+		},
+
+		// 预约勘测
+		preSurvey(data) {
+			return lsxmRequest.post('/order/order/pre_survey', data)
+		},
+
+		// 勘测报告提交
+		surveySubmit(data) {
+			return lsxmRequest.post('/order/order/survey_submit', data)
 		},
 
 
+		//待安装订单列表查询
+		getOrderInstallList(orderStatus, likeKeyWords) {
+			return lsxmRequest.get('/order/order/get_install_list?orderStatus=' + orderStatus + '&likeKeyWords=' +
+				likeKeyWords)
+		},
 
-
-
-
+		// 安装订单详情
+		getOrderInstallDetail(orderId) {
+			return lsxmRequest.get('/order/order/get_install_detail?orderId=' + orderId)
+		},
 
 
 	}
