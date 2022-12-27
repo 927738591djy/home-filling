@@ -73,7 +73,7 @@
 				</view>
 				<view class="order-detail-line">
 					<view class="order-detail-label">预约勘测时间</view>
-					<view @click="timePickerShow =!timePickerShow">
+					<view @click="timePickerShow=!timePickerShow" v-if="!orderSurveyDetail.survey.timePre">
 						<u-icon class="gray" name="arrow-right" size="40"></u-icon>
 					</view>
 					<view>{{orderSurveyDetail.survey.timePre}}</view>
@@ -83,14 +83,8 @@
 
 
 		<RedButton title="提交"></RedButton>
-		
-	<view style="width: 50vw">
-		<u-picker v-model="timePickerShow" mode="time" title="选择日期" confirm-color="#FC615F" cancel-color="#969799"
-			:params="params"></u-picker>
-	</view>
-		<u-popup v-model="timePickerShow" mode="bottom" border-radius="30" :closeable="true">
-			<TimePicker></TimePicker>
-		</u-popup>
+		<u-picker show="timePickerShow"  mode="time" title="选择日期" confirm-color="#FC615F" cancel-color="#969799"
+			:params="params" @confirm="timeConfirm"></u-picker>
 
 	</view>
 </template>
@@ -107,11 +101,12 @@
 		},
 		data() {
 			return {
-				show:true,
+				timeShow:true,
 				orderId:'', //订单id
 				orderSurveyDetail:{},//勘测订单详情对象
 				timePickerShow: false,
 				params: {
+					year:true,
 					month: true,
 					day: true,
 					hour: true,
@@ -140,6 +135,10 @@
 					}
 				})
 			},
+			// 确定预约勘测时间
+			timeConfirm(e){
+				console.log(e);
+			}
 		},
 		onLoad(options) {
 			this.orderId = options.orderId

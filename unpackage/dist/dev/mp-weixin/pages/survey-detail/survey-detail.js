@@ -108,9 +108,6 @@ try {
     },
     uPicker: function() {
       return Promise.all(/*! import() | node-modules/uview-ui/components/u-picker/u-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-picker/u-picker")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-picker/u-picker.vue */ 291))
-    },
-    uPopup: function() {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-popup/u-popup */ "node-modules/uview-ui/components/u-popup/u-popup").then(__webpack_require__.bind(null, /*! uview-ui/components/u-popup/u-popup.vue */ 256))
     }
   }
 } catch (e) {
@@ -267,12 +264,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-
-
-
 {
   components: {
     navbar: navbar,
@@ -281,11 +272,12 @@ __webpack_require__.r(__webpack_exports__);
 
   data: function data() {
     return {
-      show: true,
+      timeShow: true,
       orderId: '', //订单id
       orderSurveyDetail: {}, //勘测订单详情对象
       timePickerShow: false,
       params: {
+        year: true,
         month: true,
         day: true,
         hour: true,
@@ -313,6 +305,10 @@ __webpack_require__.r(__webpack_exports__);
           // 弹出错误提示消息
         }
       });
+    },
+    // 确定预约勘测时间
+    timeConfirm: function timeConfirm(e) {
+      console.log(e);
     } },
 
   onLoad: function onLoad(options) {
