@@ -129,8 +129,8 @@ var render = function() {
     var $orig = _vm.__get_orig(item)
 
     var a0 = {
-      color: _vm.currentId == item.engineerId ? "#FF2B2F" : "#000",
-      fontSize: _vm.currentId == item.engineerId ? "32rpx" : "28rpx"
+      color: _vm.currentId == item.id ? "#FF2B2F" : "#000",
+      fontSize: _vm.currentId == item.id ? "32rpx" : "28rpx"
     }
     return {
       $orig: $orig,
@@ -214,6 +214,7 @@ __webpack_require__.r(__webpack_exports__);
 
   data: function data() {
     return {
+      orderId: '', //订单id
       currentId: 0,
       currentEnginnerName: '',
       engineerNameList: [] //工程师姓名列表
@@ -226,14 +227,15 @@ __webpack_require__.r(__webpack_exports__);
     },
     backOrderAssign: function backOrderAssign() {
       uni.navigateTo({
-        url: '../order-assign/order-assign?engineerId=' + this.currentId + '&engineerName=' + this.currentEnginnerName });
+        url: '../order-assign/order-assign?engineerId=' + this.currentId + '&engineerName=' + this.currentEnginnerName + '&orderId=' + this.orderId });
 
     },
     // 服务商工程师列表查询
-    getEngineerNameList: function getEngineerNameList() {var _this = this;
-      this.$lsxmApi.getEngineerNameList().then(function (res) {
+    getEngineersList: function getEngineersList() {var _this = this;
+      this.$lsxmApi.getEngineersList('1603271820159483904').then(function (res) {
         if (res.data.data.code == 200 || res.data.data.code == 1) {
           // 请求成功,返回数据
+          console.log(res.data.data.data);
           _this.engineerNameList = res.data.data.data;
         } else {
           // 弹出错误提示消息
@@ -241,8 +243,9 @@ __webpack_require__.r(__webpack_exports__);
       });
     } },
 
-  onLoad: function onLoad() {
-    this.getEngineerNameList();
+  onLoad: function onLoad(options) {
+    this.orderId = options.orderId;
+    this.getEngineersList();
   } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

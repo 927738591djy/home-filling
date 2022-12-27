@@ -251,14 +251,13 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     toAssignList: function toAssignList() {
       uni.navigateTo({
-        url: '../assign-list/assign-list' });
+        url: '../assign-list/assign-list?orderId=' + this.orderId });
 
     },
 
     //获取此订单详情
     getOrderAllocationDetail: function getOrderAllocationDetail() {var _this = this;
-      this.$lsxmApi.getOrderAllocationDetail({
-        orderId: this.orderId }).
+      this.$lsxmApi.getOrderAllocationDetail(this.orderId).
       then(function (res) {
         if (res.data.data.code == 200 || res.data.data.code == 1) {
           // 请求成功,返回数据

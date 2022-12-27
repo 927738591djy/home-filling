@@ -210,7 +210,7 @@ __webpack_require__.r(__webpack_exports__);
 
   data: function data() {
     return {
-      list: [{
+      tabsList: [{
         name: '全部',
         count: 4 },
       {
@@ -228,13 +228,14 @@ __webpack_require__.r(__webpack_exports__);
         name: '售后单' }],
 
 
-      current: 0,
-      orderAllocationList: [] //订单分配列表
+      tabsCurrent: 0,
+      orderAllocationList: [], //订单分配列表
+      type: '' //订单类型
     };
   },
   methods: {
-    change: function change(index) {
-      this.current = index;
+    tabsChange: function tabsChange(index) {
+      this.tabsCurrent = index;
     },
     toOrderDetail: function toOrderDetail(orderId) {
       uni.navigateTo({
@@ -242,12 +243,11 @@ __webpack_require__.r(__webpack_exports__);
 
     },
     // 获取订单分配列表
-    getOrderAllocationList: function getOrderAllocationList(orderId) {var _this = this;
-      this.$lsxmApi.getOrderAllocationList({ phone: 1775529928 }).then(function (res) {
+    getOrderAllocationList: function getOrderAllocationList() {var _this = this;
+      this.$lsxmApi.getOrderAllocationList('', '').then(function (res) {
         if (res.data.data.code == 200 || res.data.data.code == 1) {
           // 请求成功,返回数据
-          _this.orderAllocationList = res.data.data.data;
-          console.log(_this.orderAllocationList);
+          _this.orderAllocationList = res.data.data.data.records;
         } else {
           // 弹出错误提示消息
         }

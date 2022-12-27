@@ -106,6 +106,9 @@ try {
     uIcon: function() {
       return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-icon/u-icon */ "node-modules/uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! uview-ui/components/u-icon/u-icon.vue */ 249))
     },
+    uPicker: function() {
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-picker/u-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-picker/u-picker")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-picker/u-picker.vue */ 291))
+    },
     uPopup: function() {
       return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-popup/u-popup */ "node-modules/uview-ui/components/u-popup/u-popup").then(__webpack_require__.bind(null, /*! uview-ui/components/u-popup/u-popup.vue */ 256))
     }
@@ -265,6 +268,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
 {
   components: {
     navbar: navbar,
@@ -273,13 +281,16 @@ __webpack_require__.r(__webpack_exports__);
 
   data: function data() {
     return {
+      show: true,
+      orderId: '', //订单id
+      orderSurveyDetail: {}, //勘测订单详情对象
       timePickerShow: false,
       params: {
         month: true,
         day: true,
         hour: true,
         minute: true,
-        second: false } };
+        second: true } };
 
 
   },
@@ -288,9 +299,25 @@ __webpack_require__.r(__webpack_exports__);
       uni.navigateTo({
         url: '../assign-list/assign-list' });
 
+    },
+    // 获取勘测订单详情
+    getOrderSurveyDetail: function getOrderSurveyDetail() {var _this = this;
+      this.$lsxmApi.getOrderSurveyDetail(this.orderId).
+      then(function (res) {
+        if (res.data.data.code == 200 || res.data.data.code == 1) {
+          // 请求成功,返回数据
+          _this.orderSurveyDetail = res.data.data.data;
+          console.log(_this.orderSurveyDetail);
+
+        } else {
+          // 弹出错误提示消息
+        }
+      });
     } },
 
-  onLoad: function onLoad() {
+  onLoad: function onLoad(options) {
+    this.orderId = options.orderId;
+    this.getOrderSurveyDetail();
   } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

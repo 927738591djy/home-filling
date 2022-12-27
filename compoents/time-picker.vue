@@ -11,8 +11,17 @@
 						<picker-view-column>
 							<view class="item left"  :class="{selected:index==value[0]}" v-for="(item,index) in list" :key="index">{{item}}</view>
 						</picker-view-column>
-						<picker-view-column>
+						<!-- <picker-view-column>
 							<view class="item right" :class="{selected:index==value[1]}" v-for="(item,index) in timeList" :key="index">{{item}}<image v-if="index==value[1]" class="icon" src="../static/selected.png" mode=""></image> </view>
+						</picker-view-column> -->
+						<picker-view-column>
+							<view class="item left">时</view>
+						</picker-view-column>
+						<picker-view-column>
+							<view class="item left">分</view>
+						</picker-view-column>
+						<picker-view-column>
+							<view class="item left">秒</view>
 						</picker-view-column>
 					</picker-view>
 				</view>
@@ -26,6 +35,8 @@
 			const month = date.getMonth() + 1
 			const day = date.getDate()
 			const list = []
+			const hourList = []
+			const second = []
 			for (let i = month; i <= month + 1; i++) {
 				for (let j = 1; j <= 31; j++) {
 					if (i >= 13) {
@@ -34,6 +45,12 @@
 						list.push(i + '月' + j + '日')
 					}
 				}
+			}
+			for(let i = 0;i<=23;i++){
+				hourList.push(i)
+			}
+			for(let i = 0;i<=23;i++){
+				hourList.push(i)
 			}
 			list.splice(day-1, 1, "今天")
 			return {
@@ -45,6 +62,7 @@
 				value: [0, 0],
 				visible: true,
 				timeList: ['8：00-8：30', '9：00-9：30', '10：00-10：30','11:00-11:30','12:00-12:30','13:00-13:00','14:00-14:30','15:00-15:30','16:00-16:30'], //时间段数组，这个是固定的，自定义的。
+				hourList:hourList //循环小时
 			}
 		},
 		methods: {

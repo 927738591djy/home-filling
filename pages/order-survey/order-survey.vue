@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view class="top">
-			<navbar  title="待勘测" :blackArrow="true">
+			<navbar title="待勘测" :blackArrow="true">
 			</navbar>
 			<view class="light-circle"></view>
 			<view class="light-circle-right"></view>
@@ -10,17 +10,43 @@
 			<view class="search-input">
 				<image style="width: 48rpx;height: 48rpx;margin-right: 12rpx;" src="../../static/img/order/search.png">
 				</image>
-				<input type="text" placeholder="搜索预设文案">
+				<input type="text" v-model="likeKeyWords" placeholder="搜索预设文案">
 			</view>
 		</view>
 
 		<view style="padding: 0 40rpx 0 0;width: 100%; background-color: #fff;">
-			<u-tabs font-size="27" :list="list" :is-scroll="false" :current="current" @change="change"
+			<u-tabs font-size="27" :list="tabsList" :is-scroll="false" :current="tabsCurrent" @change="tabsChange"
 				active-color="#FC615F"></u-tabs>
 		</view>
 
 		<view class="bottom-boxs">
-			<view class="bottom-box" v-for="(i,index) in 5" :key="index">
+			<view class="bottom-box" v-for="item in orderSurveyList" :key="item.orderId">
+				<view class="box-left">
+					<view class="box-title">
+						<view class="tag">
+							<view class="tag-text">
+								{{item.statusText}}
+							</view>
+						</view>
+						<view class="bottom-box-title">{{item.brandName}}</view>
+					</view>
+					<view class="order-detail">
+						<view class="order-label">下单时间：</view>
+						<view>{{item.dispatchDate}}</view>
+					</view>
+					<view class="order-detail">
+						<view class="order-label">客户信息：</view>
+						<view>{{item.custName + item.mobile}}</view>
+					</view>
+				</view>
+
+				<view class="box-right" @click="toSurveyDetail(item.orderId)">
+					<u-icon size="50" name="arrow-right"></u-icon>
+				</view>
+
+			</view>
+			
+			<view class="bottom-box" v-for="item in 2" >
 				<view class="box-left">
 					<view class="box-title">
 						<view class="tag">
@@ -39,11 +65,11 @@
 						<view>张三 138 7289 2990</view>
 					</view>
 				</view>
-
-				<view class="box-right" @click="toSurveyDetail">
+			
+				<view class="box-right" @click="toSurveyDetail()">
 					<u-icon size="50" name="arrow-right"></u-icon>
 				</view>
-
+			
 			</view>
 		</view>
 	</view>
@@ -57,7 +83,7 @@
 		},
 		data() {
 			return {
-				list: [{
+				tabsList: [{
 					name: '全部',
 					count: 4
 				}, {
@@ -65,21 +91,52 @@
 				}, {
 					name: '已完成',
 				}, ],
-				current: 0
+				tabsCurrent: 0,
+				orderSurveyList: [], //待勘测订单列表
+				orderStatus: 'ALL', //订单状态:全部，已完成，进行中
+				likeKeyWords:'' //搜索关键词
 			}
 		},
 		methods: {
-			change(index) {
-				this.current = index;
+			tabsChange(index) {
+				this.tabsCurrent = index;
+				console.log(index);
+				switch (index) {
+					case 0:
+						this.orderStatus = 'ALL'
+						break;
+					case 1:
+						this.orderStatus = 'DOING'
+						break;
+					case 2:
+						this.orderStatus = 'FINISHED'
+						break;
+					default:
+						break;
+				}
+				this.getOrderSurveyList()
 			},
-			toSurveyDetail(){
+			toSurveyDetail(orderId) {
+				console.log(orderId);
 				uni.navigateTo({
-					url:'../survey-detail/survey-detail'
+					url: '../survey-detail/survey-detail?orderId='+'1603293666569355265'
 				})
-			}
+			},
+			// 待勘测订单列表查询
+			getOrderSurveyList() {
+				this.$lsxmApi.getOrderSurveyList(this.orderStatus, this.likeKeyWords).then(res => {
+					if (res.data.data.code == 200 || res.data.data.code == 1) {
+						// 请求成功,返回数据
+						this.orderSurveyList = res.data.data.data.records
+					} else {
+						// 弹出错误提示消息
+					}
+				})
+			},
+
 		},
 		onLoad() {
-		
+			this.getOrderSurveyList()
 		},
 	}
 </script>
@@ -173,6 +230,7 @@
 		align-items: center;
 		margin-bottom: 20rpx;
 	}
+
 	.order-detail {
 		display: flex;
 		align-items: center;
@@ -185,6 +243,5 @@
 		color: #999999;
 	}
 
-.box-left{
-}
+	.box-left {}
 </style>

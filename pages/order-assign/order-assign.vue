@@ -29,15 +29,15 @@
 				</view>
 				<view class="order-detail-line">
 					<view class="order-detail-label">客户姓名</view>
-					<view>{{orderDetailObj.customerName}}</view>
+					<view>{{orderDetailObj.custName}}</view>
 				</view>
 				<view class="order-detail-line">
 					<view class="order-detail-label">手机号</view>
-					<view>{{orderDetailObj.customerPhone}}</view>
+					<view>{{orderDetailObj.custMobile}}</view>
 				</view>
 				<view class="order-detail-line">
 					<view class="order-detail-label">地址</view>
-					<view>{{orderDetailObj.customerAdress}}</view>
+					<view>{{orderDetailObj.adress}}</view>
 				</view>
 			</view>
 
@@ -47,15 +47,15 @@
 				</view>
 				<view class="order-detail-line">
 					<view class="order-detail-label">客服专员</view>
-					<view>{{orderDetailObj.csName}}</view>
+					<view>{{orderDetailObj.custServiceName}}</view>
 				</view>
 				<view class="order-detail-line">
 					<view class="order-detail-label">专员手机号</view>
-					<view>{{orderDetailObj.csPhone}}</view>
+					<view>{{orderDetailObj.custServiceMobile}}</view>
 				</view>
 				<view class="order-detail-line">
 					<view class="order-detail-label">订单状态</view>
-					<view>{{orderDetailObj.orderStatus}}</view>
+					<view>{{orderDetailObj.status}}</view>
 				</view>
 				<view class="order-detail-line">
 					<view class="order-detail-label">指派工程师</view>
@@ -91,15 +91,14 @@
 		methods: {
 			toAssignList() {
 				uni.navigateTo({
-					url: '../assign-list/assign-list'
+					url: '../assign-list/assign-list?orderId='+ this.orderId
 				})
 			},
 
 			//获取此订单详情
 			getOrderAllocationDetail() {
-				this.$lsxmApi.getOrderAllocationDetail({
-					orderId: this.orderId
-				}).then(res => {
+				this.$lsxmApi.getOrderAllocationDetail(this.orderId
+				).then(res => {
 					if (res.data.data.code == 200 || res.data.data.code == 1) {
 						// 请求成功,返回数据
 						this.orderDetailObj = res.data.data.data
