@@ -1,1 +1,0 @@
-<view><view class="top"><navbar vue-id="133a9744-1" color="#000" title="设置" bind:__l="__l"></navbar></view><view class="bottom"><view>授权地理位置</view><u-switch bind:input="__e" vue-id="133a9744-2" active-color="#FF3637" inactive-color="#E9E9E9" value="{{checked}}" data-event-opts="{{[['^input',[['__set_model',['','checked','$event',[]]]]]]}}" bind:__l="__l"></u-switch></view></view>

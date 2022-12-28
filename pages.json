@@ -5,6 +5,18 @@
 
 	"pages": [ 
 		{
+			"path": "pages/to-install/to-install",
+			"style": {
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false,
+				"navigationBarTextStyle": "white",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		
+		},
+		{
 		    "path" : "pages/to-reform/to-reform",
 		    "style": {
 		    	"navigationStyle": "custom",
@@ -41,19 +53,6 @@
 	},
 	{
 		"path": "pages/look-stock/look-stock",
-		"style": {
-			"navigationStyle": "custom",
-			"enablePullDownRefresh": false,
-			"navigationBarTextStyle": "white",
-			"app-plus": {
-				"bounce": "none"
-			}
-		}
-	
-	},
-	
-	{
-		"path": "pages/to-install/to-install",
 		"style": {
 			"navigationStyle": "custom",
 			"enablePullDownRefresh": false,

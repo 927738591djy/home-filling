@@ -1,5 +1,27 @@
 <template>
 	<view>
+		
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				
+			}
+		},
+		methods: {
+			
+		}
+	}
+</script>
+
+<style>
+
+</style>
+<template>
+	<view>
 		<view class="top">
 			<navbar color="#000" title="预约安装">
 			</navbar>

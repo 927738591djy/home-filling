@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="主页_slices">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/unpackage/dist/dev/mp-weixin/static/img/home/主页_slices.zip!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
