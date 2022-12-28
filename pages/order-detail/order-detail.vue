@@ -149,8 +149,10 @@
 			},
 			
 			
-			// 整改提交
+			// 售后提交
 			AfterSaleSubmit() {
+				console.log(122);
+				console.log(this.AfterSaleOrderDetail);
 				this.$lsxmApi.AfterSaleSubmit(this.AfterSaleOrderDetail).then(res => {
 					if (res.data.data.code == 200 || res.data.data.code == 1) {
 						// 请求成功,返回数据

@@ -9,30 +9,31 @@
 			<view class="bottom-box">
 				<view class="report-detail">
 					<view class="box-label">客户姓名：</view>
-					<view>张无忌</view>
+					<view>{{orderInstallDetail.cust.name}}</view>
 				</view>
 				<view class="report-detail">
 					<view class="box-label">安装地址：</view>
-					<view class="address">上海市嘉定区众仁路勇立大厦M22 4-6</view>
+					<view class="address">{{orderInstallDetail.villageAddress}}</view>
 				</view>
 			</view>
 			<view class="bottom-box time">
-				<view class="box-label">勘测时间：</view>
-				<view>
+				<view class="box-label">勘测完成时间：</view>
+				<view v-if="orderInstallDetail.survey.finishedTime">
 					<u-icon name="arrow-right" size="40"></u-icon>
 				</view>
+				<view v-else>{{orderInstallDetail.survey.finishedTime}}</view>
 			</view>
 			<view class="bottom-box">
-				<view class="box-label">勘测总结：</view>
+				<view  class="box-label">勘测总结：</view>
 				<view class="survey-textarea">
-					<textarea v-model="text" placeholder="请输入勘测总结" />
+					<textarea v-model="orderInstallDetail.survey.summary" placeholder="请输入勘测总结" />
 				</view>
 			</view>
 		</view>
 
 
 
-		<view class="button" @click="backOrderAssign">
+		<view class="button" @click="preInstall">
 			提交审核
 		</view>
 
@@ -49,12 +50,41 @@
 		},
 		data() {
 			return {
+				orderId: '', //由安装列表哪传过来的订单id
+				orderInstallDetail:{},//安装订单详情对象
 			}
 		},
 		methods: {
+			// 预约安装
+			preInstall() {
+				this.$lsxmApi.preInstall(this.orderInstallDetail).then(res => {
+					if (res.data.data.code == 200 || res.data.data.code == 1) {
+						// 请求成功,返回数据
+						console.log(res);
 
+					} else {
+						// 弹出错误提示消息
+					}
+				})
+			},
+			
+			// 获取安装订单详情
+			getOrderInstallDetail() {
+				this.$lsxmApi.getOrderInstallDetail(this.orderId).then(res => {
+					if (res.data.data.code == 200 || res.data.data.code == 1) {
+						// 请求成功,返回数据
+						this.orderInstallDetail = res.data.data.data
+						console.log(this.orderInstallDetail);
+			
+					} else {
+						// 弹出错误提示消息
+					}
+				})
+			},
 		},
-		onLoad() {
+		onLoad(options) {
+			this.orderId = options.orderId
+			this.getOrderInstallDetail()
 		},
 	}
 </script>
@@ -114,6 +144,7 @@
 		padding: 20rpx;
 
 	}
+
 	.button {
 		position: fixed;
 		width: 80%;

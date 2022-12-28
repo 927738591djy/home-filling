@@ -46,7 +46,7 @@
 		color: #999;
 }
 .bottom.data-v-1ab3de46 {
-		padding: 24rpx 32rpx;
+		padding: 12rpx 15rpx;
 		border-radius: 5px;
 		margin: 32rpx 24rpx;
 }

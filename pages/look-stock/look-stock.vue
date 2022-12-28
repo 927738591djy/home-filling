@@ -1,7 +1,7 @@
 <template>
 	<view class="look-stock">
 		<view class="top">
-			<navbar title="查看库存" :blackArrow="true">
+			<navbar title="库存查看" :blackArrow="true">
 			</navbar>
 			<view class="light-circle"></view>
 			<view class="light-circle-right"></view>
@@ -10,24 +10,24 @@
 			<view class="search-input">
 				<image style="width: 48rpx;height: 48rpx;margin-right: 12rpx;" src="../../static/img/order/search.png">
 				</image>
-				<input type="text" placeholder="搜索预设文案">
+				<input type="text" v-model="likeKeyWords" placeholder="搜索预设文案">
 			</view>
 		</view>
 
 
 		<view class="bottom">
-			<view v-for="(i,index) in 10" :key="index" class="bottom-box">
+			<view v-for="item in orderAssetList" :key="item.id" class="bottom-box">
 				<view class="bottom-small-box">
 					<view class="box-label">品牌</view>
-					<view class="red">特斯拉</view>
+					<view class="red">{{item.brandName}}</view>
 				</view>
 				<view class="bottom-small-box middle-small-box">
 					<view class="box-label">规格/型号</view>
-					<view class="huang">16276-02-G</view>
+					<view class="huang">{{item.modelName}}</view>
 				</view>
 				<view class="bottom-small-box">
 					<view class="box-label">库存</view>
-					<view class="blue">19</view>
+					<view class="blue">{{item.num}}</view>
 				</view>
 			</view>
 		</view>
@@ -50,6 +50,8 @@
 		},
 		data() {
 			return {
+				likeKeyWords:'',
+				orderAssetList:[]
 			}
 		},
 		methods: {
@@ -60,9 +62,22 @@
 				uni.navigateTo({
 					url: '../order-assign/order-assign'
 				})
-			}
+			},
+			
+			// 库存列表查看
+			getAssetsOrderList() {
+				this.$lsxmApi.getAssetsOrderList(this.likeKeyWords).then(res => {
+					if (res.data.data.code == 200 || res.data.data.code == 1) {
+						// 请求成功,返回数据
+						this.orderAssetList = res.data.data.data.records
+					} else {
+						// 弹出错误提示消息
+					}
+				})
+			},
 		},
 		onLoad() {
+			this.getAssetsOrderList()
 		},
 	}
 </script>
@@ -117,7 +132,7 @@
 	}
 
 	.bottom {
-		padding: 24rpx 32rpx;
+		padding: 12rpx 15rpx;
 		border-radius: 5px;
 		margin: 32rpx 24rpx;
 	}

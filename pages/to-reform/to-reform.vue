@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view class="top">
-			<navbar  title="待整改" :blackArrow="true">
+			<navbar  :title="navBarTitle" :blackArrow="true">
 			</navbar>
 			<view class="light-circle"></view>
 			<view class="light-circle-right"></view>
@@ -44,7 +44,7 @@
 					</view>
 					<view class="order-detail">
 						<view class="order-label">安装地址：</view>
-						<view>{{item.install.villageAddress}}</view>
+						<view>{{item.villageAddress}}</view>
 					</view>
 				</view>
 
@@ -76,7 +76,8 @@
 				tabsCurrent: 0,
 				orderReformList: [], //待勘测订单列表
 				orderStatus: 'ALL', //订单状态:全部，已完成，进行中
-				likeKeyWords:'' //搜索关键词
+				likeKeyWords:'', //搜索关键词
+				navBarTitle:'' //头部导航栏文字
 			}
 		},
 		methods: {
@@ -99,7 +100,7 @@
 				this.getOrderRemoveList()
 			},
 			jump(orderId){
-				let a = 2
+				let a = 1
 				if(a == 1){
 					this.toReformDetail(orderId)
 				}
@@ -147,12 +148,14 @@
 			},
 		},
 		onLoad() {
-			let a = 2
+			let a = 1
 			if(a == 1){
 				this.getOrderRemoveList() 
+				this.navBarTitle = '待整改'
 			}
 			if(a==2){
 				this.getAfterSaleOrderList()
+				this.navBarTitle = '售后订单'
 			}
 			
 		},

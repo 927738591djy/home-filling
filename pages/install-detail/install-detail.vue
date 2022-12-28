@@ -111,7 +111,7 @@
 			</view>
 		</view>
 
-		<view class="button" @click="backOrderAssign">
+		<view class="button" @click="installSubmit">
 			提交
 		</view>
 
@@ -141,8 +141,8 @@
 		},
 		methods: {
 			// 获取安装订单详情
-			getOrderSurveyDetail() {
-				this.$lsxmApi.getOrderSurveyDetail(this.orderId).then(res => {
+			getOrderInstallDetail() {
+				this.$lsxmApi.getOrderInstallDetail(this.orderId).then(res => {
 					if (res.data.data.code == 200 || res.data.data.code == 1) {
 						// 请求成功,返回数据
 						this.orderInstallDetail = res.data.data.data
@@ -153,10 +153,22 @@
 					}
 				})
 			},
+			
+			installSubmit(){
+				this.$lsxmApi.installSubmit(this.orderInstallDetail).then(res => {
+					if (res.data.data.code == 200 || res.data.data.code == 1) {
+						// 请求成功,返回数据
+					console.log(res);
+				
+					} else {
+						// 弹出错误提示消息
+					}
+				})
+			}
 		},
 		onLoad(options) {
 			this.orderId = options.orderId
-			this.getOrderSurveyDetail()
+			this.getInstallDetail()
 		},
 	}
 </script>

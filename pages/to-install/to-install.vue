@@ -44,11 +44,11 @@
 					</view>
 					<view class="order-detail">
 						<view class="order-label">安装地址：</view>
-						<view>{{item.install.villageAddress}}</view>
+						<view>{{item.villageAddress}}</view>
 					</view>
 				</view>
 
-				<view class="box-right" @click="toSurveyDetail(item.id)">
+				<view class="box-right" @click="toInstallDetail(item.id)">
 					<u-icon size="50" name="arrow-right"></u-icon>
 				</view>
 
@@ -98,9 +98,10 @@
 				}
 				this.getOrderInstallList()
 			},
-			toSurveyDetail(orderId){
+			toInstallDetail(orderId){
 				uni.navigateTo({
-					url:'../install-detail/install-detail?orderId='+ orderId
+					// url:'../install-detail/install-detail?orderId='+ orderId
+					url:'../appointment-install/appointment-install?orderId='+ orderId
 				})
 			},
 			// 待安装订单列表查询

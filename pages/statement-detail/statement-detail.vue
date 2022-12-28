@@ -61,29 +61,7 @@
 	export default {
 		data() {
 			return {
-				years: [],
-				months: [],
-				days: [],
-				hours: [],
-				minutes: [],
-				seconds: [],
-				year: 0,
-				month: 0,
-				day: 0,
-				hour: 0,
-				minute: 0,
-				second: 0,
-				reset: false,
-				startDate: '',
-				endDate: '',
-				valueArr: [],
-				provinces: provinces,
-				citys: citys[0],
-				areas: areas[0][0],
-				province: 0,
-				city: 0,
-				area: 0,
-				moving: false // 列是否还在滑动中，微信小程序如果在滑动中就点确定，结果可能不准确
+			orderSettleDetail:{} //结算详情对象
 			};
 		},
 		components: {
@@ -101,9 +79,23 @@
 			}
 		},
 		methods: {
-		},
-		onLoad() {
+			// 获取结算订单详情
+			getSettleDetail() {
+				this.$lsxmApi.getSettleDetail(this.orderId).then(res => {
+					if (res.data.data.code == 200 || res.data.data.code == 1) {
+						// 请求成功,返回数据
+						this.orderSettleDetail = res.data.data.data
+						console.log(this.orderSettleDetail);
 			
+					} else {
+						// 弹出错误提示消息
+					}
+				})
+			},
+		},
+		onLoad(options) {
+			this.orderId = options.orderId
+			this.getSettleDetail()
 		},
 	}
 </script>

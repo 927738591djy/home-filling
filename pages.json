@@ -3,7 +3,43 @@
 		"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
 	},
 
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+	"pages": [ 
+	{
+		"path": "pages/trip/trip",
+		"style": {
+			"navigationStyle": "custom",
+			"enablePullDownRefresh": false,
+			"navigationBarTextStyle": "white",
+			"app-plus": {
+				"bounce": "none"
+			}
+		}
+	},
+	{
+		"path": "pages/statement/statement",
+		"style": {
+			"navigationStyle": "custom",
+			"enablePullDownRefresh": false,
+			"navigationBarTextStyle": "white",
+			"app-plus": {
+				"bounce": "none"
+			}
+		}
+	
+	},
+	{
+		"path": "pages/look-stock/look-stock",
+		"style": {
+			"navigationStyle": "custom",
+			"enablePullDownRefresh": false,
+			"navigationBarTextStyle": "white",
+			"app-plus": {
+				"bounce": "none"
+			}
+		}
+	
+	},
+	
 	{
 	    "path" : "pages/to-reform/to-reform",
 	    "style": {
@@ -29,7 +65,7 @@
 	
 	},
 	{
-		"path": "pages/survey-report/survey-report",
+		"path": "pages/order-survey/order-survey",
 		"style": {
 			"navigationStyle": "custom",
 			"enablePullDownRefresh": false,
@@ -41,7 +77,7 @@
 	
 	},
 	{
-		"path": "pages/order-survey/order-survey",
+		"path": "pages/survey-report/survey-report",
 		"style": {
 			"navigationStyle": "custom",
 			"enablePullDownRefresh": false,
@@ -121,18 +157,6 @@
 					"bounce": "none"
 				}
 			}
-		},
-		{
-			"path": "pages/look-stock/look-stock",
-			"style": {
-				"navigationStyle": "custom",
-				"enablePullDownRefresh": false,
-				"navigationBarTextStyle": "white",
-				"app-plus": {
-					"bounce": "none"
-				}
-			}
-
 		},
 		{
 			"path": "pages/install-report/install-report",
@@ -215,18 +239,6 @@
 
 		},
 		{
-			"path": "pages/statement/statement",
-			"style": {
-				"navigationStyle": "custom",
-				"enablePullDownRefresh": false,
-				"navigationBarTextStyle": "white",
-				"app-plus": {
-					"bounce": "none"
-				}
-			}
-
-		},
-		{
 			"path": "pages/reform-detail/reform-detail",
 			"style": {
 				"navigationStyle": "custom",
@@ -237,17 +249,6 @@
 				}
 			}
 
-		},
-		{
-			"path": "pages/trip/trip",
-			"style": {
-				"navigationStyle": "custom",
-				"enablePullDownRefresh": false,
-				"navigationBarTextStyle": "white",
-				"app-plus": {
-					"bounce": "none"
-				}
-			}
 		},
 		{
 			"path": "pages/order-assign/order-assign",

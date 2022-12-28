@@ -25,7 +25,7 @@
 					<view class="box-title">
 						<view class="tag">
 							<view class="tag-text">
-								{{item.statusText}}
+								{{item.stateSubText}}
 							</view>
 						</view>
 						<view class="bottom-box-title">{{item.brandName}}</view>
@@ -36,7 +36,7 @@
 					</view>
 					<view class="order-detail">
 						<view class="order-label">客户信息：</view>
-						<view>{{item.custName + item.mobile}}</view>
+						<view>{{item.cust.name + item.cust.mobile}}</view>
 					</view>
 				</view>
 
@@ -123,8 +123,8 @@
 				})
 			},
 			// 待勘测订单列表查询
-			getOrderInstallDetail() {
-				this.$lsxmApi.getOrderInstallDetail(this.orderStatus, this.likeKeyWords).then(res => {
+			getOrderSurveyList() {
+				this.$lsxmApi.getOrderSurveyList(this.orderStatus, this.likeKeyWords).then(res => {
 					if (res.data.data.code == 200 || res.data.data.code == 1) {
 						// 请求成功,返回数据
 						this.orderSurveyList = res.data.data.data.records
@@ -136,7 +136,7 @@
 
 		},
 		onLoad() {
-			this.getOrderInstallDetail()
+			this.getOrderSurveyList()
 		},
 	}
 </script>

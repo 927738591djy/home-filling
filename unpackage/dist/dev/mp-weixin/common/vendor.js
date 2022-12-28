@@ -766,8 +766,8 @@ function populateParameters(result) {var _result$brand =
     appVersion: "1.0.0",
     appVersionCode: "100",
     appLanguage: getAppLanguage(hostLanguage),
-    uniCompileVersion: "3.6.4",
-    uniRuntimeVersion: "3.6.4",
+    uniCompileVersion: "3.6.3",
+    uniRuntimeVersion: "3.6.3",
     uniPlatform: undefined || "mp-weixin",
     deviceBrand: deviceBrand,
     deviceModel: model,
@@ -1464,7 +1464,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"VUE_APP_NAME":"home-filling","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"home-filling","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -2668,9 +2668,9 @@ function normalizeComponent (
 /***/ }),
 
 /***/ 12:
-/*!*****************************************************!*\
-  !*** F:/xmlist/six/home-filling/service/request.js ***!
-  \*****************************************************/
+/*!*******************************************************!*\
+  !*** E:/xmlist/three/home-filling/service/request.js ***!
+  \*******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2894,9 +2894,9 @@ LsxmRequest;exports.default = _default;
 /***/ }),
 
 /***/ 13:
-/*!*************************************************!*\
-  !*** F:/xmlist/six/home-filling/service/api.js ***!
-  \*************************************************/
+/*!***************************************************!*\
+  !*** E:/xmlist/three/home-filling/service/api.js ***!
+  \***************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2974,6 +2974,17 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
       return _config.default.get('/order/order/get_install_detail?orderId=' + orderId);
     },
 
+    // 安装提交
+    installSubmit: function installSubmit(data) {
+      return _config.default.post('/order/order/install_submit', data);
+    },
+
+    // 预约安装
+    preInstall: function preInstall(data) {
+      return _config.default.post('/install/install/pre_install', data);
+    },
+
+
     //待整改订单列表查询
     getOrderRemoveList: function getOrderRemoveList(orderStatus, likeKeyWords) {
       return _config.default.get('/order/order/get_rectify_list?orderStatus=' + orderStatus + '&likeKeyWords=' +
@@ -3003,14 +3014,34 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
     // 售后提交
     AfterSaleSubmit: function AfterSaleSubmit(data) {
       return _config.default.get('/aftersale/after-sale/after_sale_submit', data);
+    },
+
+    // 结算单列表待确认
+    getToConfirmSettleOrderList: function getToConfirmSettleOrderList(likeKeyWords) {
+      return _config.default.get('/settle/settle/get_to_confirm_settle_list?likeKeyWords' + likeKeyWords);
+    },
+
+    // 结算单列表已结算
+    getPayedSettleOrderList: function getPayedSettleOrderList(likeKeyWords) {
+      return _config.default.get('/settle/settle/get_payed_settle_list?likeKeyWords=' + likeKeyWords);
+    },
+
+    // 结算订单详情
+    getSettleDetail: function getSettleDetail(orderId) {
+      return _config.default.get('/settle/settle/get_settle_detail?id=' + orderId);
+    },
+
+    // 库存列表
+    getAssetsOrderList: function getAssetsOrderList(likeKeyWords) {
+      return _config.default.get('/asset/asset/get_asset_list?likeKeyWords' + likeKeyWords);
     } } };exports.default = _default;
 
 /***/ }),
 
 /***/ 14:
-/*!****************************************************!*\
-  !*** F:/xmlist/six/home-filling/service/config.js ***!
-  \****************************************************/
+/*!******************************************************!*\
+  !*** E:/xmlist/three/home-filling/service/config.js ***!
+  \******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3088,9 +3119,9 @@ lsxmRequest;exports.default = _default;
 /***/ }),
 
 /***/ 15:
-/*!*****************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/index.js ***!
-  \*****************************************************************/
+/*!*******************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/index.js ***!
+  \*******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3240,9 +3271,9 @@ var install = function install(Vue) {
 /***/ }),
 
 /***/ 16:
-/*!****************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/mixin/mixin.js ***!
-  \****************************************************************************/
+/*!******************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/mixin/mixin.js ***!
+  \******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3314,9 +3345,9 @@ var install = function install(Vue) {
 /***/ }),
 
 /***/ 17:
-/*!******************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/request/index.js ***!
-  \******************************************************************************/
+/*!********************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/request/index.js ***!
+  \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3495,9 +3526,9 @@ new Request();exports.default = _default;
 /***/ }),
 
 /***/ 18:
-/*!***********************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/function/deepMerge.js ***!
-  \***********************************************************************************/
+/*!*************************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/function/deepMerge.js ***!
+  \*************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3536,9 +3567,9 @@ deepMerge;exports.default = _default;
 /***/ }),
 
 /***/ 19:
-/*!***********************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/function/deepClone.js ***!
-  \***********************************************************************************/
+/*!*************************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/function/deepClone.js ***!
+  \*************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3601,9 +3632,9 @@ module.exports = g;
 /***/ }),
 
 /***/ 20:
-/*!******************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/function/test.js ***!
-  \******************************************************************************/
+/*!********************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/function/test.js ***!
+  \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3843,9 +3874,9 @@ function code(value) {var len = arguments.length > 1 && arguments[1] !== undefin
 /***/ }),
 
 /***/ 21:
-/*!*************************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/function/queryParams.js ***!
-  \*************************************************************************************/
+/*!***************************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/function/queryParams.js ***!
+  \***************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3912,17 +3943,17 @@ queryParams;exports.default = _default;
 /***/ }),
 
 /***/ 22:
-/*!*******************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/function/route.js ***!
-  \*******************************************************************************/
+/*!*********************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/function/route.js ***!
+  \*********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 23));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;} /**
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * 路由跳转方法，该方法相对于直接使用uni.xxx的好处是使用更加简单快捷
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * 并且带有路由拦截功能
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          */var
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         * 路由跳转方法，该方法相对于直接使用uni.xxx的好处是使用更加简单快捷
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         * 并且带有路由拦截功能
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         */var
 
 Router = /*#__PURE__*/function () {
   function Router() {_classCallCheck(this, Router);
@@ -4837,9 +4868,9 @@ if (hadRuntime) {
 /***/ }),
 
 /***/ 26:
-/*!************************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/function/timeFormat.js ***!
-  \************************************************************************************/
+/*!**************************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/function/timeFormat.js ***!
+  \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4899,9 +4930,9 @@ timeFormat;exports.default = _default;
 /***/ }),
 
 /***/ 27:
-/*!**********************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/function/timeFrom.js ***!
-  \**********************************************************************************/
+/*!************************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/function/timeFrom.js ***!
+  \************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4957,9 +4988,9 @@ timeFrom;exports.default = _default;
 /***/ }),
 
 /***/ 28:
-/*!***************************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/function/colorGradient.js ***!
-  \***************************************************************************************/
+/*!*****************************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/function/colorGradient.js ***!
+  \*****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5101,9 +5132,9 @@ function colorToRgba(color) {var alpha = arguments.length > 1 && arguments[1] !=
 /***/ }),
 
 /***/ 289:
-/*!*****************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/util/emitter.js ***!
-  \*****************************************************************************/
+/*!*******************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/util/emitter.js ***!
+  \*******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5161,9 +5192,9 @@ function _broadcast(componentName, eventName, params) {
 /***/ }),
 
 /***/ 29:
-/*!******************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/function/guid.js ***!
-  \******************************************************************************/
+/*!********************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/function/guid.js ***!
+  \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5213,9 +5244,9 @@ guid;exports.default = _default;
 /***/ }),
 
 /***/ 297:
-/*!******************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/util/province.js ***!
-  \******************************************************************************/
+/*!********************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/util/province.js ***!
+  \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5225,9 +5256,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /***/ }),
 
 /***/ 298:
-/*!**************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/util/city.js ***!
-  \**************************************************************************/
+/*!****************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/util/city.js ***!
+  \****************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5237,9 +5268,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /***/ }),
 
 /***/ 299:
-/*!**************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/util/area.js ***!
-  \**************************************************************************/
+/*!****************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/util/area.js ***!
+  \****************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5713,9 +5744,9 @@ function resolveLocaleChain(locale) {
 /***/ }),
 
 /***/ 30:
-/*!*******************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/function/color.js ***!
-  \*******************************************************************************/
+/*!*********************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/function/color.js ***!
+  \*********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5761,9 +5792,9 @@ color;exports.default = _default;
 /***/ }),
 
 /***/ 31:
-/*!***********************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/function/type2icon.js ***!
-  \***********************************************************************************/
+/*!*************************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/function/type2icon.js ***!
+  \*************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5807,9 +5838,9 @@ type2icon;exports.default = _default;
 /***/ }),
 
 /***/ 32:
-/*!*************************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/function/randomArray.js ***!
-  \*************************************************************************************/
+/*!***************************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/function/randomArray.js ***!
+  \***************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5825,9 +5856,9 @@ randomArray;exports.default = _default;
 /***/ }),
 
 /***/ 33:
-/*!*********************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/function/addUnit.js ***!
-  \*********************************************************************************/
+/*!***********************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/function/addUnit.js ***!
+  \***********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5844,9 +5875,9 @@ function addUnit() {var value = arguments.length > 0 && arguments[0] !== undefin
 /***/ }),
 
 /***/ 34:
-/*!********************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/function/random.js ***!
-  \********************************************************************************/
+/*!**********************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/function/random.js ***!
+  \**********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5865,9 +5896,9 @@ random;exports.default = _default;
 /***/ }),
 
 /***/ 35:
-/*!******************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/function/trim.js ***!
-  \******************************************************************************/
+/*!********************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/function/trim.js ***!
+  \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5891,9 +5922,9 @@ trim;exports.default = _default;
 /***/ }),
 
 /***/ 36:
-/*!*******************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/function/toast.js ***!
-  \*******************************************************************************/
+/*!*********************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/function/toast.js ***!
+  \*********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5912,9 +5943,9 @@ toast;exports.default = _default;
 /***/ }),
 
 /***/ 37:
-/*!***********************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/function/getParent.js ***!
-  \***********************************************************************************/
+/*!*************************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/function/getParent.js ***!
+  \*************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5970,9 +6001,9 @@ function getParent(name, keys) {
 /***/ }),
 
 /***/ 38:
-/*!*********************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/function/$parent.js ***!
-  \*********************************************************************************/
+/*!***********************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/function/$parent.js ***!
+  \***********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5999,9 +6030,9 @@ function $parent() {var name = arguments.length > 0 && arguments[0] !== undefine
 /***/ }),
 
 /***/ 39:
-/*!*****************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/function/sys.js ***!
-  \*****************************************************************************/
+/*!*******************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/function/sys.js ***!
+  \*******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11543,7 +11574,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"VUE_APP_NAME":"home-filling","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_NAME":"home-filling","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -11564,14 +11595,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"VUE_APP_NAME":"home-filling","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"home-filling","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"VUE_APP_NAME":"home-filling","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"home-filling","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -11657,7 +11688,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"VUE_APP_NAME":"home-filling","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"home-filling","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -12072,9 +12103,9 @@ internalMixin(Vue);
 /***/ }),
 
 /***/ 40:
-/*!**********************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/function/debounce.js ***!
-  \**********************************************************************************/
+/*!************************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/function/debounce.js ***!
+  \************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -12112,9 +12143,9 @@ debounce;exports.default = _default;
 /***/ }),
 
 /***/ 41:
-/*!**********************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/function/throttle.js ***!
-  \**********************************************************************************/
+/*!************************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/function/throttle.js ***!
+  \************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -12155,9 +12186,9 @@ throttle;exports.default = _default;
 /***/ }),
 
 /***/ 42:
-/*!******************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/config/config.js ***!
-  \******************************************************************************/
+/*!********************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/config/config.js ***!
+  \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -12179,9 +12210,9 @@ var version = '1.8.3';var _default =
 /***/ }),
 
 /***/ 43:
-/*!******************************************************************************!*\
-  !*** F:/xmlist/six/home-filling/node_modules/uview-ui/libs/config/zIndex.js ***!
-  \******************************************************************************/
+/*!********************************************************************************!*\
+  !*** E:/xmlist/three/home-filling/node_modules/uview-ui/libs/config/zIndex.js ***!
+  \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -12209,9 +12240,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /***/ }),
 
 /***/ 5:
-/*!*********************************************!*\
-  !*** F:/xmlist/six/home-filling/pages.json ***!
-  \*********************************************/
+/*!***********************************************!*\
+  !*** E:/xmlist/three/home-filling/pages.json ***!
+  \***********************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 

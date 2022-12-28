@@ -1,7 +1,7 @@
 <template>
 	<view class="install-detail">
 		<view class="top">
-			<navbar color="#000" title="整改详情">
+			<navbar color="#000" title="整改提交">
 			</navbar>
 		</view>
 
@@ -50,7 +50,7 @@
 
 				<view class="box-label">安装总结</view>
 				<view class="survey-textarea">
-					<textarea v-model="orderReformDetail.install.summaryReport" placeholder="安装总结" />
+					<textarea v-model="orderReformDetail.install.summary" placeholder="安装总结" />
 				</view>
 
 			</view>

@@ -71,6 +71,17 @@ export default {
 			return lsxmRequest.get('/order/order/get_install_detail?orderId=' + orderId)
 		},
 		
+		// 安装提交
+		installSubmit(data) {
+			return lsxmRequest.post('/order/order/install_submit', data)
+		},
+		
+		// 预约安装
+		preInstall(data) {
+			return lsxmRequest.post('/install/install/pre_install', data)
+		},
+		
+		
 		//待整改订单列表查询
 		getOrderRemoveList(orderStatus, likeKeyWords) {
 			return lsxmRequest.get('/order/order/get_rectify_list?orderStatus=' + orderStatus + '&likeKeyWords=' +
@@ -101,5 +112,26 @@ export default {
 		AfterSaleSubmit(data) {
 			return lsxmRequest.get('/aftersale/after-sale/after_sale_submit', data)
 		},
+		
+		// 结算单列表待确认
+		getToConfirmSettleOrderList(likeKeyWords) {
+			return lsxmRequest.get('/settle/settle/get_to_confirm_settle_list?likeKeyWords'+ likeKeyWords)
+		},
+		
+		// 结算单列表已结算
+		getPayedSettleOrderList(likeKeyWords) {
+			return lsxmRequest.get('/settle/settle/get_payed_settle_list?likeKeyWords='+ likeKeyWords)
+		},
+		
+		// 结算订单详情
+		getSettleDetail(orderId) {
+			return lsxmRequest.get('/settle/settle/get_settle_detail?id=' + orderId)
+		},
+		
+		// 库存列表
+		getAssetsOrderList(likeKeyWords) {
+			return lsxmRequest.get('/asset/asset/get_asset_list?likeKeyWords'+ likeKeyWords)
+		},
+		
 	}
 }
