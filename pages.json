@@ -4,6 +4,18 @@
 	},
 
 	"pages": [ 
+		{
+		    "path" : "pages/to-reform/to-reform",
+		    "style": {
+		    	"navigationStyle": "custom",
+		    	"enablePullDownRefresh": false,
+		    	"navigationBarTextStyle": "white",
+		    	"app-plus": {
+		    		"bounce": "none"
+		    	}
+		    }
+		    
+		},
 	{
 		"path": "pages/trip/trip",
 		"style": {
@@ -40,18 +52,6 @@
 	
 	},
 	
-	{
-	    "path" : "pages/to-reform/to-reform",
-	    "style": {
-	    	"navigationStyle": "custom",
-	    	"enablePullDownRefresh": false,
-	    	"navigationBarTextStyle": "white",
-	    	"app-plus": {
-	    		"bounce": "none"
-	    	}
-	    }
-	    
-	},
 	{
 		"path": "pages/to-install/to-install",
 		"style": {
