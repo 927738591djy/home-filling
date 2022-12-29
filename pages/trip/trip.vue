@@ -7,7 +7,7 @@
 			<view class="light-circle-right"></view>
 		</view>
 		<view class="middle">
-			<u-calendar v-model="show" mode="date" @change="change" :change-year="false" active-bg-color="#FF2C34">
+			<u-calendar v-model="show" mode="date" :closeable="true" @change="dateChange" :change-year="false" active-bg-color="#FF2C34">
 				<view slot="tooltip"></view>
 				<view slot="button"></view>
 			</u-calendar>
@@ -52,15 +52,32 @@
 		data() {
 			return {
 				show: true,
+				orderList:[], //
+			}
+		},
+		methods:{
+			// 我的行程列表查询
+			getMyTrip() {
+				this.$lsxmApi.getMyTrip(this.orderStatus, this.likeKeyWords).then(res => {
+					if (res.data.data.code == 200 || res.data.data.code == 1) {
+						// 请求成功,返回数据
+						this.orderList = res.data.data.data.records
+					} else {
+						// 弹出错误提示消息
+					}
+				})
+			},
+			
+			//日期改变回调
+			dateChange(dateChange){
+				console.log(111);
 			}
 		},
 		onLoad() {
-			
+			this.getMyTrip()
 		},
 		mounted() {
-			// uni.createSelectorQuery().in(this).select('.middle').boundingClientRect(data => {
-			// 	this.calendarHeight = data.height
-			// }).exec()
+			
 		}
 	}
 </script>

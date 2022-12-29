@@ -133,5 +133,9 @@ export default {
 			return lsxmRequest.get('/asset/asset/get_asset_list?likeKeyWords'+ likeKeyWords)
 		},
 		
+		// 我的行程
+		getMyTrip(tripDate) {
+			return lsxmRequest.get('/order/order/get_my_trip?tripDate'+ tripDate)
+		},
 	}
 }
