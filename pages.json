@@ -5,6 +5,30 @@
 
 	"pages": [ 
 		{
+		    "path" : "pages/my-order/my-order",
+		    "style": {
+		    	"navigationStyle": "custom",
+		    	"enablePullDownRefresh": false,
+		    	"navigationBarTextStyle": "white",
+		    	"app-plus": {
+		    		"bounce": "none"
+		    	}
+		    }
+		    
+		},
+		{
+		    "path" : "pages/to-reform/to-reform",
+		    "style": {
+		    	"navigationStyle": "custom",
+		    	"enablePullDownRefresh": false,
+		    	"navigationBarTextStyle": "white",
+		    	"app-plus": {
+		    		"bounce": "none"
+		    	}
+		    }
+		    
+		},
+		{
 			"path": "pages/statement/statement",
 			"style": {
 				"navigationStyle": "custom",
@@ -51,18 +75,7 @@
 			}
 		},
 		
-		{
-		    "path" : "pages/to-reform/to-reform",
-		    "style": {
-		    	"navigationStyle": "custom",
-		    	"enablePullDownRefresh": false,
-		    	"navigationBarTextStyle": "white",
-		    	"app-plus": {
-		    		"bounce": "none"
-		    	}
-		    }
-		    
-		},
+		
 	{
 		"path": "pages/look-stock/look-stock",
 		"style": {

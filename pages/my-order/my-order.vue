@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view class="top">
-			<navbar  :title="navBarTitle" :blackArrow="true">
+			<navbar  title="我的订单" :blackArrow="true">
 			</navbar>
 			<view class="light-circle"></view>
 			<view class="light-circle-right"></view>
@@ -19,71 +19,29 @@
 				active-color="#FC615F"></u-tabs>
 		</view>
 
-		<view class="bottom-boxs">
-			<view class="bottom-box" v-for="item in orderReformList" :key="item.id">
-				<view class="box-left">
-					<view class="box-title">
-						<view class="tag">
-							<view class="tag-text">
-								{{item.stateMainText}}
-							</view>
-						</view>
-						<view class="bottom-box-title">{{item.brandInfo.name}}</view>
-					</view>
-					<view class="order-detail">
-						<view class="order-label">下单时间：</view>
-						<view>{{item.createdDate}}</view>
-					</view>
-					<view class="order-detail">
-						<view class="order-label">客户信息：</view>
-						<view>{{item.cust.name + item.cust.mobile}}</view>
-					</view>
-					<view class="order-detail">
-						<view class="order-label">勘测时间：</view>
-						<view>{{item.survey.createdDate}}</view>
-					</view>
-					<view class="order-detail">
-						<view class="order-label">安装地址：</view>
-						<view>{{item.villageAddress}}</view>
-					</view>
-				</view>
-
-				<view class="box-right" @click="jump(item.id)">
-					<u-icon size="50" name="arrow-right"></u-icon>
-				</view>
-			</view>
-			
+		<view class="bottom-boxs">	
 			<view class="bottom-box" v-for="item in 1">
-				<view class="box-left">
 					<view class="box-title">
-						<view class="tag">
-							<view class="tag-text">
-								{{item.stateMainText}}
-							</view>
+						<view class="box-tag">
+							<view class="tag"></view>
+							<view>任务编号: 17292038652</view>
 						</view>
-						<view class="bottom-box-title">{{item.brandInfo.name}}</view>
+						<view class="tag-text">待确认</view>
+					</view>
+					<view class="line"></view>
+					<view class="order-detail">
+						<view class="order-label">客户姓名：</view>
+						<view>张三</view>
 					</view>
 					<view class="order-detail">
-						<view class="order-label">下单时间：</view>
-						<view>{{item.createdDate}}</view>
+						<view class="order-label">安装地址</view>
+						<view>上海市嘉定区众仁路勇立大厦M22 4-6</view>
 					</view>
 					<view class="order-detail">
-						<view class="order-label">客户信息：</view>
-						<view>{{item.cust.name + item.cust.mobile}}</view>
+						<view class="order-label">上门时间：</view>
+						<view> 2022-11-21 13:30</view>
 					</view>
-					<view class="order-detail">
-						<view class="order-label">勘测时间：</view>
-						<view>{{item.survey.createdDate}}</view>
-					</view>
-					<view class="order-detail">
-						<view class="order-label">安装地址：</view>
-						<view>{{item.villageAddress}}</view>
-					</view>
-				</view>
-			
-				<view class="box-right" @click="jump(item.id)">
-					<u-icon size="50" name="arrow-right"></u-icon>
-				</view>
+					
 			</view>
 		
 			
@@ -244,36 +202,18 @@
 		font-size: 28rpx;
 		color: #999;
 	}
-
-
-	.tag {
-		background-color: #FF9600;
-		height: 30rpx;
-		font-size: 20rpx;
-		color: #fff;
-		width: 80rpx;
-		transform: skewX(-15deg);
-		text-align: center;
-		margin-right: 20rpx;
-	}
-
-	.tag-text {
-		transform: skewX(15deg);
-	}
-
 	.bottom-boxs {
 		padding: 32rpx 24rpx 0 24rpx;
 	}
 
 	.bottom-box {
 		background-color: #fff;
-		padding: 24rpx 32rpx;
 		border-radius: 5px;
-		display: flex;
 		margin-bottom: 24rpx;
 		justify-content: space-between;
 		align-items: center;
 		color: #000;
+		padding: 25rpx 0;
 	}
 
 	.bottom-box-title {
@@ -284,20 +224,39 @@
 	.box-title {
 		display: flex;
 		align-items: center;
-		margin-bottom: 20rpx;
+		margin-bottom: 30rpx;
+		justify-content: space-between;
+		padding-right: 32rpx;
 	}
 	.order-detail {
 		display: flex;
 		align-items: center;
 		font-size: 28rpx;
-		padding: 15rpx 0;
-
+		justify-content: space-between;
+		padding: 15rpx 32rpx;
 	}
 
 	.order-label {
 		color: #999999;
 	}
-
-.box-left{
-}
+	.box-tag{
+		display: flex;
+	}
+	.tag{
+		background-color: #FC615F;
+		width: 8rpx;
+		height: 40rpx;
+		margin-right: 30rpx;
+	}
+	.tag-text{
+		color: #FC615F;
+		border: 2rpx solid #FC615F;
+		border-radius: 30rpx;
+		padding:5rpx 15rpx;
+	}
+	.line{
+		height: 1rpx;
+		margin: 20rpx 32rpx;
+		background-color:#E1E1E1;
+	}
 </style>
