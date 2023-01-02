@@ -7,15 +7,15 @@
 		<view class="bottom">
 			<view class="bottom-detail">
 				<view class="box-label">结算单名称:</view>
-				<view>[极氪]2022-11-12结算单</view>
+				<view>{{orderDetail.name}}</view>
 			</view>
 			<view class="bottom-detail">
 				<view class="box-label">发起人:</view>
-				<view>刘琪</view>
+				<view>{{orderDetail.initiateUserName}}</view>
 			</view>
 			<view class="bottom-detail">
 				<view class="box-label">施工队名称:</view>
-				<view>舒启(史海敏)</view>
+				<view>{{orderDetail.providerName}}</view>
 			</view>
 			<view class="bottom-detail">
 				<view class="box-label">订单明细:</view>
@@ -29,17 +29,19 @@
 			</view>
 			<view class="bottom-detail">
 				<view class="box-label">结算金额:</view>
-				<view>29738</view>
+				<view>{{orderDetail.amount}}</view>
 			</view>
 			<view class="bottom-detail">
 				<view class="box-label">结算状态:</view>
-				<view>处理中</view>
+				<view>{{orderDetail.stateText}}</view>
 			</view>
 			<view class="bottom-detail">
 				<view class="box-label">结算日期:</view>
-				<view @click="timeSelectShow=!timeSelectShow">请选择 <u-icon style="margin-left: 15rpx;"
+					<view  v-if="orderDetail.settleDate">{{orderDetail.settleDate}}</view>
+				<view v-else @click="timeSelectShow=!timeSelectShow">请选择 <u-icon style="margin-left: 15rpx;"
 						name="arrow-right"></u-icon>
 				</view>
+			
 			</view>
 		</view>
 
@@ -59,11 +61,6 @@
 	import navbar from '../../compoents/navbar/navbar.vue'
 	import RedButton from '../../compoents/red-button.vue'
 	export default {
-		data() {
-			return {
-			orderSettleDetail:{} //结算详情对象
-			};
-		},
 		components: {
 			navbar,
 			RedButton
@@ -75,17 +72,18 @@
 					hour: true,
 					minute: true,
 					second: true,
-				}
+				},
+				orderDetail:{} //结算详情对象
 			}
 		},
 		methods: {
 			// 获取结算订单详情
 			getSettleDetail() {
-				this.$lsxmApi.getSettleDetail(this.orderId).then(res => {
+				this.$lsxmApi.getSettleDetail(this.id).then(res => {
 					if (res.data.data.code == 200 || res.data.data.code == 1) {
 						// 请求成功,返回数据
-						this.orderSettleDetail = res.data.data.data
-						console.log(this.orderSettleDetail);
+						this.orderDetail = res.data.data.data
+						console.log(this.orderDetail);
 			
 					} else {
 						// 弹出错误提示消息
@@ -94,7 +92,7 @@
 			},
 		},
 		onLoad(options) {
-			this.orderId = options.orderId
+			this.id = options.id
 			this.getSettleDetail()
 		},
 	}

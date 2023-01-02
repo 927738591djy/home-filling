@@ -5,6 +5,18 @@
 
 	"pages": [ 
 		{
+			"path": "pages/statement/statement",
+			"style": {
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false,
+				"navigationBarTextStyle": "white",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		
+		},
+		{
 			"path": "pages/trip/trip",
 			"style": {
 				"navigationStyle": "custom",
@@ -51,18 +63,6 @@
 		    }
 		    
 		},
-	{
-		"path": "pages/statement/statement",
-		"style": {
-			"navigationStyle": "custom",
-			"enablePullDownRefresh": false,
-			"navigationBarTextStyle": "white",
-			"app-plus": {
-				"bounce": "none"
-			}
-		}
-	
-	},
 	{
 		"path": "pages/look-stock/look-stock",
 		"style": {

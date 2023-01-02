@@ -20,7 +20,7 @@
 
 		<view class="bottom">
 			<u-cell-group>
-				<u-cell-item @click="toStateMentDetail(111)" v-for="(i,index) in 10" :key="index" title="舒启海敏iike2021-12-31结算单"></u-cell-item>
+				<u-cell-item @click="toStateMentDetail(item.id)" v-for="item in orderList" :key="item.id" :title="item.name"></u-cell-item>
 			</u-cell-group>
 		</view>
 	</view>
@@ -36,10 +36,8 @@
 			return {
 				tabsList: [{
 					name: '已结算',
-					count: 4
 				}, {
 					name: '待确认',
-					count: 4
 				}],
 				tabsCurrent: 0,
 				orderList:[],
@@ -50,15 +48,15 @@
 			tabsChange(index) {
 				this.tabsCurrent = index;
 				if(this.tabsCurrent == 0){
-					this.getToConfirmSettleOrderList()
-				}
-				if(this.tabsCurrent == 0){
 					this.getPayedSettleOrderList()
 				}
+				if(this.tabsCurrent == 1){
+					this.getToConfirmSettleOrderList()
+				}
 			},
-			toStateMentDetail(orderId){
+			toStateMentDetail(id){
 				uni.navigateTo({
-					url:'../statement-detail/statement-detail?orderId='+orderId
+					url:'../statement-detail/statement-detail?id='+ id
 				})
 			},
 			// 待确认订单列表查询
@@ -85,6 +83,7 @@
 			},
 		},
 		onLoad() {
+			this.getPayedSettleOrderList()
 		},
 	}
 </script>
