@@ -7,38 +7,40 @@
 			<view class="light-circle-right"></view>
 		</view>
 		<view class="middle">
-			<u-calendar v-model="show" mode="date" :closeable="true" @change="dateChange" :change-year="false" active-bg-color="#FF2C34">
-				<view slot="tooltip"></view>
-				<view slot="button"></view>
+			<u-calendar mask-close-able v-model="show" mode="date" :closeable="true" @date="dateChange" :change-year="false" active-bg-color="#FF2C34">
+				<view slot="tooltip">
+						</view>
 			</u-calendar>
 		</view>
-		<view class="bottom" :style="{marginTop:(calendarHeight + 16) +'px'}">
+		<view class="bottom" >
 			<view class="bottom-title">今日事项</view>
-			<view class="bottom-boxs">
-				<view v-for="i in 10" class="bottom-box">
+			<view v-if="orderList.length>0" class="bottom-boxs">
+				<view v-for="item in orderList" class="bottom-box">
 					<view class="type">勘测</view>
-					<view class="car-name">特斯拉</view>
+					<view class="car-name">{{item.brandInfo.name}}</view>
 					<view class="trip-intro">
 						<view class="detail-intro">
 							<view class="tag-name letter">车主:</view>
-							<view class="tag-intro">张三</view>
+							<view class="tag-intro">{{item.cust.name}}</view>
 						</view>
 						<view class="detail-intro">
 							<view class="tag-name letter">工程师:</view>
-							<view class="tag-intro">陈皮阿四</view>
+							<view class="tag-intro">{{item.engineer.nickname}}</view>
 						</view>
 						<view class="detail-intro">
 							<view class="tag-name">安装地址:</view>
-							<view class="tag-intro">上海市嘉定区众任路</view>
+							<view class="tag-intro">{{item.install.villageAddress}}</view>
 						</view>
 						<view class="detail-intro">
 							<view class="tag-name">安装时间:</view>
-							<view class="tag-intro">上午9:20:27</view>
+							<view class="tag-intro">{{item.install.startTime}}</view>
 						</view>
 
 					</view>
 				</view>
 			</view>
+			
+			<view style="display: flex;width:100%;justify-content: center;" v-else>暂无今日行程</view>
 		</view>
 	</view>
 </template>
@@ -53,12 +55,13 @@
 			return {
 				show: true,
 				orderList:[], //
+				tripDate:'' //选择的日期
 			}
 		},
 		methods:{
 			// 我的行程列表查询
 			getMyTrip() {
-				this.$lsxmApi.getMyTrip(this.orderStatus, this.likeKeyWords).then(res => {
+				this.$lsxmApi.getMyTrip(this.tripDate).then(res => {
 					if (res.data.data.code == 200 || res.data.data.code == 1) {
 						// 请求成功,返回数据
 						this.orderList = res.data.data.data.records
@@ -67,13 +70,13 @@
 					}
 				})
 			},
-			
-			//日期改变回调
-			dateChange(dateChange){
-				console.log(111);
+			dateChange(e){
+				this.tripDate = e.date
+				this.getMyTrip()
 			}
 		},
 		onLoad() {
+			this.tripDate = new Date().getFullYear() + '-'+ (new Date().getMonth()+1)+ '-'+ new Date().getDate()
 			this.getMyTrip()
 		},
 		mounted() {
