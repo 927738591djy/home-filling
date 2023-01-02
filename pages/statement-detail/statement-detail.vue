@@ -46,7 +46,7 @@
 		</view>
 
 		<div>
-			<RedButton title="提交审核"></RedButton>
+			<RedButton v-if="orderDetail.auditStatus !== 'AUDITED'" title="提交审核" @click.native="settleSubmit"></RedButton>
 		</div>
 
 
@@ -90,6 +90,19 @@
 					}
 				})
 			},
+			
+			// 结算单提交审批
+			settleSubmit(){
+				this.$lsxmApi.settleSubmit(this.orderDetail).then(res => {
+					if (res.data.data.code == 200 || res.data.data.code == 1) {
+						// 请求成功,返回数据
+					console.log(res);
+						
+					} else {
+						// 弹出错误提示消息
+					}
+				})
+			}
 		},
 		onLoad(options) {
 			this.id = options.id
