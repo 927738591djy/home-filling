@@ -5,6 +5,17 @@
 
 	"pages": [ 
 		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false,
+				"navigationBarTextStyle": "white",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
 			"path": "pages/to-install/to-install",
 			"style": {
 				"navigationStyle": "custom",
@@ -71,17 +82,7 @@
 				}
 			}
 		},
-		{
-			"path": "pages/index/index",
-			"style": {
-				"navigationStyle": "custom",
-				"enablePullDownRefresh": false,
-				"navigationBarTextStyle": "white",
-				"app-plus": {
-					"bounce": "none"
-				}
-			}
-		},
+		
 	{
 		"path": "pages/order-survey/order-survey",
 		"style": {
