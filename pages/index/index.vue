@@ -75,9 +75,14 @@
 		onLoad() {
 			// 状态栏高度，单位：px
 			this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight;
-			// if(uni.getStorageSync('token') !== ''){
-			// 	this.getHomeMenuList()
-			// }
+			if(uni.getStorageSync('token') !== ''){
+				this.getHomeMenuList()
+			}
+		},
+		onShow() {
+			if(uni.getStorageSync('token') !== ''){
+				this.getHomeMenuList()
+			}
 		},
 		methods: {
 			// 获取首页菜单列表图文
@@ -110,7 +115,9 @@
 						uni.setStorageSync('token', tokenObj.access_token) //将token存入本地缓存中
 						console.log(3333);
 						console.log(uni.getStorageSync('token'));
-						
+						if(uni.getStorageSync('token') !== ''){
+							this.getHomeMenuList()
+						}
 					} else {
 						// 弹出错误提示消息
 						console.log('不是内部人员');
