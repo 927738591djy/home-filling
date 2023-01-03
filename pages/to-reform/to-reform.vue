@@ -134,7 +134,7 @@
 				this.getOrderRemoveList()
 			},
 			jump(orderId){
-				let a = 1
+				let a = 2
 				if(a == 1){
 					this.toReformDetail(orderId)
 				}
@@ -182,7 +182,7 @@
 			},
 		},
 		onLoad() {
-			let a = 1
+			let a = 2
 			if(a == 1){
 				this.getOrderRemoveList() 
 				this.navBarTitle = '待整改'

@@ -133,8 +133,6 @@ export default {
 			return lsxmRequest.post('/settle/settle/settle_submit',data)
 		},
 		
-		
-		
 		// 库存列表
 		getAssetsOrderList(likeKeyWords) {
 			return lsxmRequest.get('/asset/asset/get_asset_list?likeKeyWords'+ likeKeyWords)
@@ -144,5 +142,12 @@ export default {
 		getMyTrip(tripDate) {
 			return lsxmRequest.get('/order/order/get_my_trip?tripDate'+ tripDate)
 		},
+		
+		// 我的订单
+		getMyOrder(orderStatus, likeKeyWords) {
+			return lsxmRequest.get('/order/order/get_my_orders?orderStatus=' + orderStatus + '&likeKeyWords=' +
+				likeKeyWords)
+		},
+		
 	}
 }

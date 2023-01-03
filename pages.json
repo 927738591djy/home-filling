@@ -5,6 +5,17 @@
 
 	"pages": [ 
 		{
+			"path": "pages/to-install/to-install",
+			"style": {
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false,
+				"navigationBarTextStyle": "white",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
 		    "path" : "pages/my-order/my-order",
 		    "style": {
 		    	"navigationStyle": "custom",
@@ -13,8 +24,7 @@
 		    	"app-plus": {
 		    		"bounce": "none"
 		    	}
-		    }
-		    
+		    }  
 		},
 		{
 		    "path" : "pages/to-reform/to-reform",
@@ -25,8 +35,19 @@
 		    	"app-plus": {
 		    		"bounce": "none"
 		    	}
-		    }
-		    
+		    }   
+		},
+		{
+			"path": "pages/look-stock/look-stock",
+			"style": {
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false,
+				"navigationBarTextStyle": "white",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		
 		},
 		{
 			"path": "pages/statement/statement",
@@ -38,7 +59,6 @@
 					"bounce": "none"
 				}
 			}
-		
 		},
 		{
 			"path": "pages/trip/trip",
@@ -52,18 +72,6 @@
 			}
 		},
 		{
-			"path": "pages/to-install/to-install",
-			"style": {
-				"navigationStyle": "custom",
-				"enablePullDownRefresh": false,
-				"navigationBarTextStyle": "white",
-				"app-plus": {
-					"bounce": "none"
-				}
-			}
-		
-		},
-		{
 			"path": "pages/index/index",
 			"style": {
 				"navigationStyle": "custom",
@@ -74,20 +82,6 @@
 				}
 			}
 		},
-		
-		
-	{
-		"path": "pages/look-stock/look-stock",
-		"style": {
-			"navigationStyle": "custom",
-			"enablePullDownRefresh": false,
-			"navigationBarTextStyle": "white",
-			"app-plus": {
-				"bounce": "none"
-			}
-		}
-	
-	},
 	{
 		"path": "pages/order-survey/order-survey",
 		"style": {

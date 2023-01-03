@@ -100,8 +100,8 @@
 			},
 			toInstallDetail(orderId){
 				uni.navigateTo({
-					// url:'../install-detail/install-detail?orderId='+ orderId
-					url:'../appointment-install/appointment-install?orderId='+ orderId
+					url:'../install-detail/install-detail?orderId='+ orderId
+					// url:'../appointment-install/appointment-install?orderId='+ orderId
 				})
 			},
 			// 待安装订单列表查询

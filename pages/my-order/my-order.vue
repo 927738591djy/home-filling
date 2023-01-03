@@ -91,16 +91,6 @@
 				}
 				this.getOrderRemoveList()
 			},
-			jump(orderId){
-				let a = 1
-				if(a == 1){
-					this.toReformDetail(orderId)
-				}
-				if(a==2){
-					this.toOrderDetail(orderId)
-				}
-				
-			},
 			// 跳转到整改详情
 			toReformDetail(orderId){
 				uni.navigateTo({
@@ -114,22 +104,9 @@
 				})
 			},
 		
-			
-			// 待整改订单列表查询
-			getOrderRemoveList() {
-				this.$lsxmApi.getOrderRemoveList(this.orderStatus, this.likeKeyWords).then(res => {
-					if (res.data.data.code == 200 || res.data.data.code == 1) {
-						// 请求成功,返回数据
-						this.orderReformList = res.data.data.data.records
-					} else {
-						// 弹出错误提示消息
-					}
-				})
-			},
-			
-			//售后订单列表查询
-			getAfterSaleOrderList() {
-				this.$lsxmApi.getAfterSaleOrderList(this.orderStatus, this.likeKeyWords).then(res => {
+			//我的订单列表查询
+			getMyOrder() {
+				this.$lsxmApi.getMyOrder(this.orderStatus, this.likeKeyWords).then(res => {
 					if (res.data.data.code == 200 || res.data.data.code == 1) {
 						// 请求成功,返回数据
 						this.orderReformList = res.data.data.data.records
@@ -140,16 +117,7 @@
 			},
 		},
 		onLoad() {
-			let a = 1
-			if(a == 1){
-				this.getOrderRemoveList() 
-				this.navBarTitle = '待整改'
-			}
-			if(a==2){
-				this.getAfterSaleOrderList()
-				this.navBarTitle = '售后订单'
-			}
-			
+		this.getMyOrder()
 		},
 	}
 </script>
