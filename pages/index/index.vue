@@ -75,6 +75,9 @@
 		onLoad() {
 			// 状态栏高度，单位：px
 			this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight;
+			// if(uni.getStorageSync('token') !== ''){
+			// 	this.getHomeMenuList()
+			// }
 		},
 		methods: {
 			// 获取首页菜单列表图文
@@ -95,10 +98,7 @@
 				if (uni.getStorageSync('token') == '') {
 					// 获取手机号,再调用登录获取token接口
 					this.loginAuthorization()
-				} else {
-
 				}
-
 			},
 
 			// 获取登录token
@@ -108,6 +108,9 @@
 						// 请求成功,返回数据
 						let tokenObj = res.data.data.data
 						uni.setStorageSync('token', tokenObj.access_token) //将token存入本地缓存中
+						console.log(3333);
+						console.log(uni.getStorageSync('token'));
+						
 					} else {
 						// 弹出错误提示消息
 						console.log('不是内部人员');
