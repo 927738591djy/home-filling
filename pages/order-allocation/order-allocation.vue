@@ -105,6 +105,8 @@
 					default:
 						break;
 				}
+				this.queryParameter.current = 1
+				this.queryParameter.total = 0
 				this.orderAllocationList = []
 				this.getOrderAllocationList()
 			},
