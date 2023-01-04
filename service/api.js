@@ -34,9 +34,8 @@ export default {
 		
 		
 		// 待勘测订单列表查询
-		getOrderSurveyList(orderStatus, likeKeyWords) {
-			return lsxmRequest.get('/order/order/get_survey_list?orderStatus=' + orderStatus + '&likeKeyWords=' +
-				likeKeyWords)
+		getOrderSurveyList(data) {
+			return lsxmRequest.get('/order/order/get_survey_list',data)
 		},
 
 
