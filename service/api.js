@@ -27,6 +27,12 @@ export default {
 			return lsxmRequest.get('/order/order/getOrderDetails?orderId=' + orderId)
 		},
 
+		// 订单分配提交
+		orderAssignmentSubmit(data) {
+			return lsxmRequest.post('/order/order/wxAssign',data)
+		},
+		
+		
 		// 待勘测订单列表查询
 		getOrderSurveyList(orderStatus, likeKeyWords) {
 			return lsxmRequest.get('/order/order/get_survey_list?orderStatus=' + orderStatus + '&likeKeyWords=' +

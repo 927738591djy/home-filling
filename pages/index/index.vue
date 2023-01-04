@@ -21,7 +21,7 @@
 				</u-grid-item>
 			</u-grid>
 
-			<!-- <button open-type="getPhoneNumber" @getphonenumber="getPhoneNumber">唤起授权手机号</button> -->
+			<button open-type="getPhoneNumber" @getphonenumber="getPhoneNumber">唤起授权手机号</button>
 
 		</view>
 	</view>

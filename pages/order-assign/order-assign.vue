@@ -113,10 +113,8 @@
 
 
 			orderAssignmentSubmit() {
-				this.$lsxmApi.orderAssignmentSubmit({
-					engineerId: this.engineerId,
-					engineerName: this.engineerName
-				}).then(res => {
+				this.orderDetailObj.engineerId = this.engineerId
+				this.$lsxmApi.orderAssignmentSubmit(this.orderDetailObj).then(res => {
 					if (res.data.data.code == 200 || res.data.data.code == 1) {
 						// 请求成功,返回数据
 
