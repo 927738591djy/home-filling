@@ -10,16 +10,18 @@
 			<view class="search-input">
 				<image style="width: 48rpx;height: 48rpx;margin-right: 12rpx;" src="../../static/img/order/search.png">
 				</image>
-				<input type="text" placeholder="搜索预设文案">
+				<input type="text" @input="getOrderAllocationList" v-model="queryParameter.conditionWords"
+					placeholder="搜索预设文案">
 			</view>
 		</view>
 
 		<view style="padding: 0 40rpx 0 0;width: 100%; background-color: #fff;">
-			<u-tabs font-size="27" :list="tabsList" :is-scroll="false" :current="tabsCurrent" @change="tabsChange" active-color="#FC615F"></u-tabs>
+			<u-tabs font-size="27" :list="tabsList" :is-scroll="false" :current="tabsCurrent" @change="tabsChange"
+				active-color="#FC615F"></u-tabs>
 		</view>
-				
+
 		<view class="bottom-boxs">
-			<view class="bottom-box" v-for="item in orderAllocationList"  :key="item.orderId">
+			<view class="bottom-box" v-for="item in orderAllocationList" :key="item.orderId">
 				<view>
 					<image style="width: 36rpx;height: 36rpx;vertical-align: middle;"
 						src="../../static/img/order/order.png"></image>
@@ -54,9 +56,9 @@
 		data() {
 			return {
 				tabsList: [{
-						name: '全部',					
+						name: '全部',
 					}, {
-						name: '新订单',					
+						name: '移桩单',
 					}, {
 						name: '勘测单',
 					},
@@ -68,33 +70,81 @@
 					}
 				],
 				tabsCurrent: 0,
-				orderAllocationList:[], //订单分配列表
-				type:''//订单类型
+				orderAllocationList: [], //订单分配列表
+				// 查询参数
+				queryParameter: {
+					total: 0, //订单总数
+					current: 1, //当前页
+					size: 10, //每页限制10条
+					type: '', //订单类型
+					conditionWords: '' //关键字
+				}
 			}
 		},
 		methods: {
+
+			// tab栏改变
 			tabsChange(index) {
 				this.tabsCurrent = index;
+				switch (index) {
+					case 0:
+						this.queryParameter.type = ''
+						break;
+					case 1:
+						this.queryParameter.type = "MOVE_PILE_ORDER"
+						break;
+					case 2:
+						this.queryParameter.type = "SURVEY_ORDER"
+						break;
+					case 3:
+						this.queryParameter.type = "INSTALL_ORDER"
+						break;
+					case 4:
+						this.queryParameter.type = "AFTER_SALES_ORDER"
+						break;
+					default:
+						break;
+				}
+				this.orderAllocationList = []
+				this.getOrderAllocationList()
 			},
-			toOrderDetail(orderId){
+			toOrderDetail(orderId) {
 				uni.navigateTo({
-					url:'../order-assign/order-assign?orderId='+ orderId
+					url: '../order-assign/order-assign?orderId=' + orderId
 				})
 			},
+
+			//uniapp页面触底事件
+			onReachBottom() {
+				
+				if (this.queryParameter.current * this.queryParameter.size >= this.queryParameter.total) {
+					uni.showToast({
+						title: "已经到底啦",
+						icon: 'none'
+					})
+					return
+				}
+				this.queryParameter.current += 1
+				this.getOrderAllocationList()
+
+			},
+
 			// 获取订单分配列表
-			getOrderAllocationList(){
-				this.$lsxmApi.getOrderAllocationList('','').then(res => {
+			getOrderAllocationList() {
+				this.$lsxmApi.getOrderAllocationList(this.queryParameter).then(res => {
 					if (res.data.data.code == 200 || res.data.data.code == 1) {
 						// 请求成功,返回数据
-						this.orderAllocationList = res.data.data.data.records
+						this.orderAllocationList = this.orderAllocationList.concat(res.data.data.data.records)
+						this.queryParameter.total = res.data.data.data.total //分页总数
 					} else {
 						// 弹出错误提示消息
 					}
 				})
 			}
 		},
+
 		onLoad() {
-			this.getOrderAllocationList()		
+			this.getOrderAllocationList()
 		}
 	}
 </script>
@@ -149,7 +199,7 @@
 	}
 
 	.bottom-boxs {
-		padding: 32rpx 24rpx 0 24rpx;
+		padding: 32rpx 24rpx 50rpx 24rpx;
 	}
 
 	.bottom-box {
@@ -209,11 +259,12 @@
 		width: 100%;
 		margin-left: 16rpx;
 	}
-	.button{
+
+	.button {
 		width: 152rpx;
 		height: 56rpx;
 		background: #FF9600;
-		box-shadow: 0px 3px 6px 0px rgba(225,225,225,0.5);
+		box-shadow: 0px 3px 6px 0px rgba(225, 225, 225, 0.5);
 		border-radius: 14px;
 		font-size: 24rpx;
 		color: #E1E1E1;
