@@ -146,7 +146,6 @@
 			}
 			this.queryParameter.current += 1
 			this.getOrderSurveyList()
-		
 		},
 		
 		

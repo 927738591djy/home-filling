@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view class="appointment-install">
 		<view class="top">
 			<navbar color="#000" title="预约安装">
 			</navbar>
@@ -18,91 +18,116 @@
 			</view>
 			<view class="bottom-box time">
 				<view class="box-label">勘测完成时间：</view>
-				<view v-if="orderInstallDetail.survey.finishedTime">
+				<!-- <view v-if="orderInstallDetail.survey.finishedTime">
 					<u-icon name="arrow-right" size="40"></u-icon>
-				</view>
-				<view v-else>{{orderInstallDetail.survey.finishedTime}}</view>
+				</view> -->
+				<view>{{orderInstallDetail.survey.finishedTime}}</view>
 			</view>
 			<view class="bottom-box">
-				<view  class="box-label">勘测总结：</view>
+				<view class="box-label">勘测总结：</view>
 				<view class="survey-textarea">
 					<textarea v-model="orderInstallDetail.survey.summary" placeholder="请输入勘测总结" />
 				</view>
 			</view>
+			<view class="bottom-box time">
+				<view class="box-label">安装人员：</view>
+				<view>{{orderInstallDetail.install.engineer.nickname}}</view>
+			</view>
+
+			<view class="bottom-box time">
+				<view class="box-label">预约安装时间：</view>
+				<view v-if="orderInstallDetail.install.timePre">{{orderInstallDetail.install.timePre}}</view>
+				<view v-else style="color:#D3D3D3;" @click="timeSelectShow = true">请选择</view>
+			</view>
+
 		</view>
 
+		<u-picker v-model="timeSelectShow" mode="time" title="完成时间" confirm-color="#FC615F" cancel-color="#969799"
+			:params="params" @confirm="timeConfirm"></u-picker>
 
-
-		<view class="button" @click="preInstall">
-			提交审核
-		</view>
-
-
-
+		<RedButton @click.native="preInstall" :bgColor="orderInstallDetail.install.timePre?'#FE3738':'#D9D9D9'"  title="提交"></RedButton>
+		
 	</view>
 </template>
 
-
-<script>
-	export default {
-		data() {
-			return {
-				
-			}
-		},
-		methods: {
-			
-		}
-	}
-</script>
-
-<style>
-
-</style>
-
 <script>
 	import navbar from '../../compoents/navbar/navbar.vue'
+	import RedButton from '../../compoents/red-button.vue'
 	export default {
 		components: {
-			navbar
+			navbar,
+			RedButton
 		},
 		data() {
 			return {
 				orderId: '', //由安装列表哪传过来的订单id
-				orderInstallDetail:{},//安装订单详情对象
+				orderInstallDetail: {
+					install:{
+						timePre:''
+					} //这里写一下防止计算属性报错
+				}, //安装订单详情对象
+				timeSelectShow: false, //选择预约安装的时间 
+				params: {
+					// year:true,
+					month: true,
+					day: true,
+					hour: true,
+					minute: true,
+					second: true,
+				}, //时间选择器的配置参数
 			}
 		},
+
+
+		computed: {
+			bgColor(){
+				return this.orderInstallDetail.install.timePre ? 'red':''
+			}
+		},
+
 		methods: {
 			// 预约安装
 			preInstall() {
 				this.$lsxmApi.preInstall(this.orderInstallDetail).then(res => {
 					if (res.data.data.code == 200 || res.data.data.code == 1) {
 						// 请求成功,返回数据
-						console.log(res);
-
+						// 安装成功跳转到安装列表页面
+						uni.navigateTo({
+							url:'/pages/to-install/to-install',
+						})
 					} else {
 						// 弹出错误提示消息
 					}
 				})
 			},
-			
+
 			// 获取安装订单详情
 			getOrderInstallDetail() {
 				this.$lsxmApi.getOrderInstallDetail(this.orderId).then(res => {
 					if (res.data.data.code == 200 || res.data.data.code == 1) {
 						// 请求成功,返回数据
 						this.orderInstallDetail = res.data.data.data
-						console.log(this.orderInstallDetail);
-			
+
 					} else {
 						// 弹出错误提示消息
 					}
 				})
 			},
+
+			// 预约安装时间确认
+			timeConfirm(e) {
+				let year = new Date().getFullYear()
+				this.orderInstallDetail.install.timePre = year + '-' + e.month + '-' + e.day + '-' + e.hour + '-' + e
+					.minute + '-' + e.second
+			}
+
+
 		},
+
 		onLoad(options) {
 			this.orderId = options.orderId
 			this.getOrderInstallDetail()
+			console.log(this.orderInstallDetail.install.timePre);
 		},
 	}
 </script>
@@ -177,7 +202,7 @@
 		text-align: center;
 	}
 
-	.survey-detail {
+	.appointment-install {
 		padding-bottom: 150rpx;
 	}
 </style>

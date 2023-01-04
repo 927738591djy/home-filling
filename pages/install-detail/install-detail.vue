@@ -168,7 +168,7 @@
 		},
 		onLoad(options) {
 			this.orderId = options.orderId
-			this.getInstallDetail()
+			this.getOrderInstallDetail()
 		},
 	}
 </script>

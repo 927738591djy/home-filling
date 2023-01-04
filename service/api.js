@@ -56,9 +56,8 @@ export default {
 
 
 		//待安装订单列表查询
-		getOrderInstallList(orderStatus, likeKeyWords) {
-			return lsxmRequest.get('/order/order/get_install_list?orderStatus=' + orderStatus + '&likeKeyWords=' +
-				likeKeyWords)
+		getOrderInstallList(data) {
+			return lsxmRequest.get('/order/order/get_install_list',data)
 		},
 
 		// 安装订单详情

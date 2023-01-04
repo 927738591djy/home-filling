@@ -28,7 +28,6 @@
 	.button {
 		position: fixed;
 		width: 80%;
-		background-color: #FD5554;
 		color: #fff;
 		font-size: 32rpx;
 		border-radius: 60rpx;

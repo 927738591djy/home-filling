@@ -1,22 +1,25 @@
 <template>
 	<view>
-		<view class="top">
-			<navbar  title="待安装" :blackArrow="true">
-			</navbar>
-			<view class="light-circle"></view>
-			<view class="light-circle-right"></view>
-		</view>
-		<view class="search">
-			<view class="search-input">
-				<image style="width: 48rpx;height: 48rpx;margin-right: 12rpx;" src="../../static/img/order/search.png">
-				</image>
-				<input type="text" placeholder="搜索预设文案">
+		<view style="position: fixed;top:0;left:0;width: 100%;z-index: 100;">
+			<view class="top">
+				<navbar title="待安装" :blackArrow="true">
+				</navbar>
+				<view class="light-circle"></view>
+				<view class="light-circle-right"></view>
 			</view>
-		</view>
-
-		<view style="padding: 0 40rpx 0 0;width: 100%; background-color: #fff;">
-			<u-tabs font-size="27" :list="tabsList" :is-scroll="false" :current="tabsCurrent" @change="tabsChange"
-				active-color="#FC615F"></u-tabs>
+			<view class="search">
+				<view class="search-input">
+					<image style="width: 48rpx;height: 48rpx;margin-right: 12rpx;"
+						src="../../static/img/order/search.png">
+					</image>
+					<input type="text" v-model="queryParameter.likeKeyWords" @input="$u.debounce(search, 600)"
+						placeholder="搜索预设文案">
+				</view>
+			</view>
+			<view style="padding: 0 40rpx 0 0;width: 100%; background-color: #fff;">
+				<u-tabs font-size="27" :list="tabsList" :is-scroll="false" :current="tabsCurrent" @change="tabsChange"
+					active-color="#FC615F"></u-tabs>
+			</view>
 		</view>
 
 		<view class="bottom-boxs">
@@ -25,7 +28,7 @@
 					<view class="box-title">
 						<view class="tag">
 							<view class="tag-text">
-								{{item.stateMainText}}
+								{{item.stateSubText}}
 							</view>
 						</view>
 						<view class="bottom-box-title">{{item.brandInfo.name}}</view>
@@ -48,7 +51,7 @@
 					</view>
 				</view>
 
-				<view class="box-right" @click="toInstallDetail(item.id)">
+				<view class="box-right" @click="toInstallDetail(item.id,item.stateMain)">
 					<u-icon size="50" name="arrow-right"></u-icon>
 				</view>
 
@@ -74,9 +77,15 @@
 					name: '已完成',
 				}, ],
 				tabsCurrent: 0,
-				orderInstallList: [], //待勘测订单列表
-				orderStatus: 'ALL', //订单状态:全部，已完成，进行中
-				likeKeyWords:'' //搜索关键词
+				orderInstallList: [], //待勘测订单列表	
+				// 查询参数
+				queryParameter: {
+					total: 0, //订单总数
+					current: 1, //当前页
+					size: 10, //每页限制10条
+					orderStatus: 'ALL', //订单状态:全部，已完成，进行中
+					likeKeyWords: '' //关键字
+				},
 			}
 		},
 		methods: {
@@ -85,37 +94,71 @@
 				console.log(index);
 				switch (index) {
 					case 0:
-						this.orderStatus = 'ALL'
+						this.queryParameter.orderStatus = 'ALL'
 						break;
 					case 1:
-						this.orderStatus = 'DOING'
+						this.queryParameter.orderStatus = 'DOING'
 						break;
 					case 2:
-						this.orderStatus = 'FINISHED'
+						this.queryParameter.orderStatus = 'FINISHED'
 						break;
 					default:
 						break;
 				}
+				this.queryParameter.current = 1
+				this.queryParameter.total = 0
+				this.orderInstallList = []
 				this.getOrderInstallList()
 			},
-			toInstallDetail(orderId){
-				uni.navigateTo({
-					url:'../install-detail/install-detail?orderId='+ orderId
-					// url:'../appointment-install/appointment-install?orderId='+ orderId
-				})
+
+			// 根据stateMain判断是那种安装状态:待预约安装、待安装、安装中、待安装审核、安装完成
+			toInstallDetail(orderId, stateMain) {
+				if(stateMain == 'SCHEDULED_INSTALL'){
+					uni.navigateTo({
+						url:'../appointment-install/appointment-install?orderId='+ orderId
+					})
+				}else{
+					uni.navigateTo({
+						url: '../install-detail/install-detail?orderId=' + orderId
+					})
+				}
 			},
+
 			// 待安装订单列表查询
 			getOrderInstallList() {
-				this.$lsxmApi.getOrderInstallList(this.orderStatus, this.likeKeyWords).then(res => {
+				this.$lsxmApi.getOrderInstallList(this.queryParameter).then(res => {
 					if (res.data.data.code == 200 || res.data.data.code == 1) {
 						// 请求成功,返回数据
-						this.orderInstallList = res.data.data.data.records
+						this.orderInstallList = this.orderInstallList.concat(res.data.data.data.records)
+						this.queryParameter.total = res.data.data.data.total //分页总数
+
 					} else {
 						// 弹出错误提示消息
 					}
 				})
 			},
+
+			// 鼠标输入事件
+			search() {
+				this.orderInstallList = []
+				this.getOrderInstallList()
+			},
+
 		},
+
+		//uniapp页面触底事件
+		onReachBottom() {
+			if (this.queryParameter.current * this.queryParameter.size >= this.queryParameter.total) {
+				uni.showToast({
+					title: "已经到底啦",
+					icon: 'none'
+				})
+				return
+			}
+			this.queryParameter.current += 1
+			this.getOrderSurveyList()
+		},
+
 		onLoad() {
 			this.getOrderInstallList()
 		},
@@ -177,7 +220,7 @@
 		height: 30rpx;
 		font-size: 20rpx;
 		color: #fff;
-		width: 80rpx;
+		padding: 0 10rpx;
 		transform: skewX(-15deg);
 		text-align: center;
 		margin-right: 20rpx;
@@ -188,6 +231,7 @@
 	}
 
 	.bottom-boxs {
+		margin-top: 320rpx;
 		padding: 32rpx 24rpx 0 24rpx;
 	}
 
@@ -212,6 +256,7 @@
 		align-items: center;
 		margin-bottom: 20rpx;
 	}
+
 	.order-detail {
 		display: flex;
 		align-items: center;
@@ -224,6 +269,5 @@
 		color: #999999;
 	}
 
-.box-left{
-}
+	.box-left {}
 </style>
