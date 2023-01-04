@@ -10,8 +10,8 @@
 			<view class="search-input">
 				<image style="width: 48rpx;height: 48rpx;margin-right: 12rpx;" src="../../static/img/order/search.png">
 				</image>
-				<input type="text" @input="getOrderAllocationList" v-model="queryParameter.conditionWords"
-					placeholder="搜索预设文案">
+				<input type="text"  v-model="queryParameter.conditionWords"
+					placeholder="搜索预设文案" class="debounce" @input="$u.debounce(search, 600)">
 			</view>
 		</view>
 
@@ -140,9 +140,17 @@
 						// 弹出错误提示消息
 					}
 				})
-			}
+			},
+			
+			// 鼠标输入事件
+			search(){
+				this.orderAllocationList = []
+				this.getOrderAllocationList()
+			},
 		},
 
+		
+		
 		onLoad() {
 			this.getOrderAllocationList()
 		}
