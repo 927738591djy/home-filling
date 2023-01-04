@@ -91,38 +91,39 @@
 		methods: {
 			toAssignList() {
 				uni.navigateTo({
-					url: '../assign-list/assign-list?orderId='+ this.orderId
+					url: '../assign-list/assign-list?orderId=' + this.orderId
 				})
 			},
 
 			//获取此订单详情
 			getOrderAllocationDetail() {
-				this.$lsxmApi.getOrderAllocationDetail(this.orderId
-				).then(res => {
+				this.$lsxmApi.getOrderAllocationDetail(this.orderId).then(res => {
 					if (res.data.data.code == 200 || res.data.data.code == 1) {
 						// 请求成功,返回数据
 						this.orderDetailObj = res.data.data.data
+						console.log(this.orderDetailObj);
 					} else {
 						// 弹出错误提示消息
 					}
 				})
 			},
 
-			
-				orderAssignmentSubmit() {
-					this.$lsxmApi.orderAssignmentSubmit({
-						engineerId: this.engineerId,
-						engineerName: this.engineerName
-					}).then(res => {
-						if (res.data.data.code == 200 || res.data.data.code == 1) {
-							// 请求成功,返回数据
 
-						} else {
-							// 弹出错误提示消息
-						}
-					})
-				}
-			
+			orderAssignmentSubmit() {
+				console.log(this.orderDetailObj);
+				this.$lsxmApi.orderAssignmentSubmit({
+					engineerId: this.engineerId,
+					engineerName: this.engineerName
+				}).then(res => {
+					if (res.data.data.code == 200 || res.data.data.code == 1) {
+						// 请求成功,返回数据
+
+					} else {
+						// 弹出错误提示消息
+					}
+				})
+			}
+
 		},
 		onLoad(options) {
 			console.log(options);
