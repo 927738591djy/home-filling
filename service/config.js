@@ -6,7 +6,7 @@ let reson=true
 // 请求拦截器
 lsxmRequest.interceptors.request((request) => {
     if (uni.getStorageSync('token')) {
-        request.header['X-Jhspace-Token'] = uni.getStorageSync('token');
+       request.header['Authorization'] = 'Bearer'+ ' ' + uni.getStorageSync('token');	
     }
 	// 在请求前
     if(reson){
@@ -54,9 +54,9 @@ lsxmRequest.setConfig((config) => {
 	
     config.baseURL = url
 
-    if (uni.getStorageSync('token')) {
-		config.header['Authorization'] = 'Bearer'+ ' ' + uni.getStorageSync('token');	
-    }
+  //   if (uni.getStorageSync('token')) {
+		// config.header['Authorization'] = 'Bearer'+ ' ' + uni.getStorageSync('token');
+  //   }
 	
     return config;
 })

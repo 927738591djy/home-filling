@@ -3,8 +3,6 @@ export default {
 	apis: {
 		//获取首页图文列表
 		getHomeMenuList() {
-			console.log(lsxmRequest);
-			
 			return lsxmRequest.get('/sys/menu-applet/menus')
 		},
 
