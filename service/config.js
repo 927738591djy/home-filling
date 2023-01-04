@@ -24,24 +24,17 @@ lsxmRequest.interceptors.request((request) => {
 
 // 响应拦截器
 lsxmRequest.interceptors.response((response) => {
-	// 在拿到数据后
-	// clearTimeout()
 	uni.hideLoading()
-    // 超时重新登录
-    if(response.data.data.code ===501 ){
-		// uni.reLaunch({
-		// 	url: '../pages/login/login.vue'
-		// })
-		//debugger
-		uni.reLaunch({
-			url: '../../pages/login/login',
-			fail(e){
-
-			}
+	if(response.data.data.code !== 1){
+		uni.showToast({
+			title: response.data.data.message,
+			duration: 2000,
+			icon:'error'
 		});
-    }else{
-        return response;
-    }
+	}else{
+		return response
+	}
+
 })
 
 // 设置默认配置

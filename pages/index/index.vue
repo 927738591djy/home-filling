@@ -13,15 +13,15 @@
 			</view>
 
 			<u-grid :col="3" :border="false">
-				<u-grid-item @click="clickMenuItem" v-for="(item,index) in homeMenuList"
+				<u-grid-item @click="clickMenuItem(item.permission)" v-for="(item,index) in homeMenuList"
 					:custom-style="{padding:'50rpx 0'}" :key="item.id">
-					<image open-type="getPhoneNumber" @getphonenumber="getPhoneNumber" style="width: 80rpx; height:80rpx;margin-bottom: 24rpx;" :src="item.icon" mode="">
+					<image style="width: 80rpx; height:80rpx;margin-bottom: 24rpx;" :src="item.icon" mode="">
 					</image>
 					<view class="grid-text">{{item.name}}</view>
 				</u-grid-item>
 			</u-grid>
 
-			 <!-- <button open-type="getPhoneNumber" @getphonenumber="getPhoneNumber">唤起授权手机号</button> -->
+			<!-- <button open-type="getPhoneNumber" @getphonenumber="getPhoneNumber">唤起授权手机号</button> -->
 
 		</view>
 	</view>
@@ -75,12 +75,8 @@
 		onLoad() {
 			// 状态栏高度，单位：px
 			this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight;
-			if(uni.getStorageSync('token') !== ''){
-				this.getHomeMenuList()
-			}
-		},
-		onShow() {
-			if(uni.getStorageSync('token') !== ''){
+			if (uni.getStorageSync('token') !== '') {
+				// 有token就不去登录了,直接获取首页菜单列表
 				this.getHomeMenuList()
 			}
 		},
@@ -99,10 +95,68 @@
 			},
 
 			// 点击菜单,判断是本地缓存否有token,有的话就不掉用授权登录接口
-			clickMenuItem() {
+			clickMenuItem(permission) {
 				if (uni.getStorageSync('token') == '') {
 					// 获取手机号,再调用登录获取token接口
 					this.loginAuthorization()
+				} else {
+					if (permission == 'menu_1') {
+						uni.navigateTo({
+							url: '/pages/order-allocation/order-allocation'
+						})
+					}
+
+					switch (permission) {
+						case 'menu_1':
+							uni.navigateTo({
+								url: '/pages/order-allocation/order-allocation' //订单分配
+							})
+							break;
+						case 'menu2':
+							uni.navigateTo({
+								url: '/pages/order-survey/order-survey' //待勘测
+							})
+							break;
+						case 'menu3':
+							uni.navigateTo({
+								url: '/pages/to-install/to-install' //待安装
+							})
+							break;
+						case 'menu4':
+							uni.navigateTo({
+								url: '/pages/to-reform/to-reform?type=' + 1 //待整改
+							})
+							break;
+						case 'menu5':
+							uni.navigateTo({
+								url: '/pages/statement/statement'
+							})
+							break;
+						case 'menu6':
+							uni.navigateTo({
+								url: '/pages/to-reform/to-reform?type='+ 2  //售后订单
+							})
+							break;
+						case 'menu7':
+							uni.navigateTo({
+								url: '/pages/my/my' //我的页面
+							})
+							break;
+						case 'menu8':
+							uni.navigateTo({
+								url: '/pages/look-stock/look-stock' //库存查看
+							})
+							break;
+						case 'menu9':
+							uni.navigateTo({
+								url: '/pages/trip/trip' //行程安排
+							})
+							break;
+
+
+						default:
+							break;
+					}
 				}
 			},
 
@@ -113,14 +167,10 @@
 						// 请求成功,返回数据
 						let tokenObj = res.data.data.data
 						uni.setStorageSync('token', tokenObj.access_token) //将token存入本地缓存中
-						console.log(3333);
-						console.log(uni.getStorageSync('token'));
-						if(uni.getStorageSync('token') !== ''){
+						// token存进来了再去获取首页菜单列表
+						if (uni.getStorageSync('token') !== '') {
 							this.getHomeMenuList()
 						}
-					} else {
-						// 弹出错误提示消息
-						console.log('不是内部人员');
 					}
 				})
 			},
@@ -134,35 +184,35 @@
 					}
 				});
 			},
-			
+
 			// 获取用户手机号
-				getPhoneNumber(e){
-					console.log(22);
-					console.log(e.detail.errMsg)                                            // 判断用户是否允许获取手机号
-					console.log(e.detail.iv)                                                    // 参数 iv
-					console.log(e.detail.encryptedData)                               // 参数encryptedData
-					if(e.detail.errMsg == "getPhoneNumber:ok"){                // 用户允许或去手机号
-						uni.request({
-							url:"http://192.168.0.93:6042/login/miniProgramLogin",
-							method:"POST",
-							data:{
-								data:{
-									encryptedData: e.detail.encryptedData,
-									iv: e.detail.iv,
-									sessionKey: this.session_key,
-									openId: this.openId,
-								}
-							},
-							success:(res)=>{
-								if(res.data.errorinfo == null){
-									console.log(res.data)       // 这个里面就有手机号了
-									
-								}
+			getPhoneNumber(e) {
+				console.log(22);
+				console.log(e.detail.errMsg) // 判断用户是否允许获取手机号
+				console.log(e.detail.iv) // 参数 iv
+				console.log(e.detail.encryptedData) // 参数encryptedData
+				if (e.detail.errMsg == "getPhoneNumber:ok") { // 用户允许或去手机号
+					uni.request({
+						url: "http://192.168.0.93:6042/login/miniProgramLogin",
+						method: "POST",
+						data: {
+							data: {
+								encryptedData: e.detail.encryptedData,
+								iv: e.detail.iv,
+								sessionKey: this.session_key,
+								openId: this.openId,
 							}
-						})
-					}
-				},
-						
+						},
+						success: (res) => {
+							if (res.data.errorinfo == null) {
+								console.log(res.data) // 这个里面就有手机号了
+
+							}
+						}
+					})
+				}
+			},
+
 
 
 

@@ -54,18 +54,14 @@
 		data() {
 			return {
 				tabsList: [{
-						name: '全部',
-						count:4
+						name: '全部',					
 					}, {
-						name: '新订单',
-						count:4
+						name: '新订单',					
 					}, {
 						name: '勘测单',
-						count:4
 					},
 					{
 						name: '安装单',
-						count:4
 					},
 					{
 						name: '售后单',
