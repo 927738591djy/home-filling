@@ -262,7 +262,7 @@
 			"style": {
 				"navigationStyle": "custom",
 				"enablePullDownRefresh": false,
-				"navigationBarTextStyle": "white",
+				"navigationBarTextStyle": "black",
 				"app-plus": {
 					"bounce": "none"
 				}

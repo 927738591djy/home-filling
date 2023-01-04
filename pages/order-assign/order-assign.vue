@@ -1,9 +1,12 @@
 <template>
 	<view class="order-assign">
-		<view class="top">
-			<navbar color="#000" title="订单分配">
-			</navbar>
-		</view>
+			
+			<view class="top">
+				<navbar color="#000" title="订单分配">
+				</navbar>
+			</view>
+	
+
 		<view class="bottom">
 			<view class="bottom-box">
 				<view class="red-title">
@@ -110,7 +113,6 @@
 
 
 			orderAssignmentSubmit() {
-				console.log(this.orderDetailObj);
 				this.$lsxmApi.orderAssignmentSubmit({
 					engineerId: this.engineerId,
 					engineerName: this.engineerName
@@ -138,10 +140,14 @@
 <style>
 	.top {
 		background: #fff;
-		position: relative;
-		overflow: hidden;
+		position: fixed;
+		 overflow: hidden; 
 		height: 11vh;
 		color: #000;
+		width: 100%;
+		left: 0;
+		top: 0;
+		z-index: 100;
 	}
 
 	.bottom {
@@ -196,5 +202,6 @@
 
 	.order-assign {
 		padding-bottom: 150rpx;
+		padding-top: 11vh;
 	}
 </style>

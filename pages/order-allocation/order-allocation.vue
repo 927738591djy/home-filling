@@ -1,23 +1,25 @@
 <template>
 	<view class="order-allocation">
-		<view class="top">
-			<navbar title="订单分配" :blackArrow="true">
-			</navbar>
-			<view class="light-circle"></view>
-			<view class="light-circle-right"></view>
-		</view>
-		<view class="search">
-			<view class="search-input">
-				<image style="width: 48rpx;height: 48rpx;margin-right: 12rpx;" src="../../static/img/order/search.png">
-				</image>
-				<input type="text" v-model="queryParameter.conditionWords" placeholder="搜索预设文案" class="debounce"
-					@input="$u.debounce(search, 600)">
+		<view style="position: fixed;top:0;left:0;width: 100%;">
+			<view class="top">
+				<navbar title="订单分配" :blackArrow="true">
+				</navbar>
+				<view class="light-circle"></view>
+				<view class="light-circle-right"></view>
 			</view>
-		</view>
-
-		<view style="padding: 0 40rpx 0 0;width: 100%; background-color: #fff;">
-			<u-tabs font-size="27" :list="tabsList" :is-scroll="false" :current="tabsCurrent" @change="tabsChange"
-				active-color="#FC615F"></u-tabs>
+			<view class="search">
+				<view class="search-input">
+					<image style="width: 48rpx;height: 48rpx;margin-right: 12rpx;" src="../../static/img/order/search.png">
+					</image>
+					<input type="text" v-model="queryParameter.conditionWords" placeholder="搜索预设文案" class="debounce"
+						@input="$u.debounce(search, 600)">
+				</view>
+			</view>
+			
+			<view class="tabs" >
+				<u-tabs font-size="27" :list="tabsList" :is-scroll="false" :current="tabsCurrent" @change="tabsChange"
+					active-color="#FC615F"></u-tabs>
+			</view>
 		</view>
 
 		<view class="bottom-boxs">
@@ -181,9 +183,9 @@
 <style scoped>
 	.top {
 		background: linear-gradient(to bottom, #FF2C2E, #FC615F);
-		position: relative;
 		overflow: hidden;
 		height: 11vh;
+		position: relative;
 	}
 
 	.light-circle {
@@ -302,4 +304,10 @@
 		float: right;
 		margin: 24rpx 0 0 0;
 	}
+	.tabs{
+		padding: 0 40rpx 0 0;width: 100%; background-color: #fff;
+	}
+	/* .order-allocation{
+		padding-top: 20vh;
+	} */
 </style>
