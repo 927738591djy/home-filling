@@ -18,15 +18,15 @@
 			</view>
 			<view class="bottom-box time">
 				<view class="box-label">勘测完成时间：</view>
-				<view v-if="orderSurveyDetail.survey.createdDate">{{orderSurveyDetail.survey.createdDate}}</view>
-				<view v-else>
+				<view v-if="orderSurveyDetail.survey.finishedTime">{{orderSurveyDetail.survey.finishedTime}}</view>
+				<view v-else @click="timePickerShow=!timePickerShow">
 					<u-icon name="arrow-right" size="40"></u-icon>
 				</view>
 			</view>
 			<view class="bottom-box">
 				<view class="box-label">勘测总结：</view>
 				<view class="survey-textarea">
-					<textarea v-model="orderSurveyDetail.survey.summaryReport" placeholder="请输入勘测总结" />
+					<textarea v-model="orderSurveyDetail.survey.summary" placeholder="请输入勘测总结" />
 				</view>
 				<view class="survey-textarea survey-upload">
 					<u-upload :action="action" :file-list="fileList" upload-text="上传现场勘测照片" :custom-btn="true">
@@ -41,8 +41,9 @@
 		</view>
 
 
-		<RedButton @click.native="surveySubmit" title="提交审核"></RedButton>
-
+		<RedButton v-if="orderSurveyDetail.stateSub == 'TO_BE_SURVEYED'" @click.native="surveySubmit" title="提交审核"></RedButton>
+		<u-picker v-model="timePickerShow" mode="time" title="选择日期" confirm-color="#FC615F" cancel-color="#969799"
+			:params="params" @confirm="timeConfirm"></u-picker>
 	</view>
 </template>
 
@@ -56,8 +57,17 @@
 		},
 		data() {
 			return {
-				orderId: '1603293666569355265', //先写假的,等待勘测列表页面传过来的
-				orderSurveyDetail:{}
+				orderId: '',
+				orderSurveyDetail: {},
+				timePickerShow:false,
+				params: {
+					// year:true,
+					month: true,
+					day: true,
+					hour: true,
+					minute: true,
+					second: true
+				},
 			}
 		},
 		methods: {
@@ -74,23 +84,36 @@
 					}
 				})
 			},
-			
+
 			// 勘测报告提交
 			surveySubmit() {
-				console.log(222);
 				this.$lsxmApi.surveySubmit(this.orderSurveyDetail).then(res => {
 					if (res.data.data.code == 200 || res.data.data.code == 1) {
 						// 请求成功,返回数据
-						console.log(res);
-			
+						uni.showToast({
+							title: '勘测报告提交成功',
+							duration: 1500,
+						});
+						setTimeout(()=> {
+							uni.navigateBack()
+						},1500)
+
 					} else {
 						// 弹出错误提示消息
 					}
 				})
 			},
+			
+			// 确定勘测完成时间
+			timeConfirm(e){
+				let year = new Date().getFullYear()
+				this.orderSurveyDetail.survey.finishedTime =  year + '-' + e.month + '-' + e.day + ' ' + e.hour + ':' + e.minute + ":"+ e.second
 				
+			},
+
 		},
-		onLoad() {
+		onLoad(options) {
+			this.orderId = options.orderId
 			this.getOrderSurveyDetail()
 		},
 	}
@@ -99,15 +122,18 @@
 <style>
 	.top {
 		background: #fff;
-		position: relative;
+		position: fixed;
 		overflow: hidden;
 		height: 11vh;
 		color: #000;
-
+		width: 100%;
+		left: 0;
+		top: 0;
+		z-index: 100;
 	}
 
 	.bottom {
-		margin-top: 32rpx;
+		margin-top: 13vh;
 		padding: 0 24rpx;
 	}
 

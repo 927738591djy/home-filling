@@ -117,10 +117,17 @@
 				this.$lsxmApi.orderAssignmentSubmit(this.orderDetailObj).then(res => {
 					if (res.data.data.code == 200 || res.data.data.code == 1) {
 						// 请求成功,返回数据
-
-					} else {
-						// 弹出错误提示消息
-					}
+						uni.showToast({
+							title: '工程师指派成功',
+							duration: 1500,
+						});
+						setTimeout(() => {
+							console.log(2222);
+							uni.navigateBack({
+								delta:3
+							})
+						}, 1500)
+					} 
 				})
 			}
 

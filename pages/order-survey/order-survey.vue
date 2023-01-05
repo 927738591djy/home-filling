@@ -28,7 +28,7 @@
 					<view class="box-title">
 						<view class="tag">
 							<view class="tag-text">
-								{{item.stateMainText}}
+								{{item.stateSubText}}
 							</view>
 						</view>
 						<view class="bottom-box-title">{{item.brandInfo.name}}</view>
@@ -43,7 +43,7 @@
 					</view>
 				</view>
 
-				<view class="box-right" @click="toSurveyDetail(item.id)">
+				<view class="box-right" @click="toSurveyDetail(item.id,item.stateSub)">
 					<u-icon size="50" name="arrow-right"></u-icon>
 				</view>
 
@@ -105,10 +105,17 @@
 				this.orderSurveyList = []
 				this.getOrderSurveyList()
 			},
-			toSurveyDetail(orderId) {
-				uni.navigateTo({
-					url: '../survey-detail/survey-detail?orderId=' + orderId
-				})
+			toSurveyDetail(orderId,stateSub) {
+				if(stateSub == 'SURVEY_TO_BE_SCHEDULE'){
+					uni.navigateTo({
+						url: '../survey-detail/survey-detail?orderId=' + orderId
+					})
+				}else{
+					uni.navigateTo({
+						url: '../survey-report/survey-report?orderId=' + orderId
+					})
+				}
+				
 			},
 			
 			// 待勘测订单列表查询

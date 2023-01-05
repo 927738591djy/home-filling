@@ -339,7 +339,7 @@
 						});
 						setTimeout(() => {
 							uni.navigateBack()
-						}, 1500)
+						}, 2000)
 
 					} else {
 						// 弹出错误提示消息
