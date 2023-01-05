@@ -36,7 +36,7 @@
 
 			<view class="bottom-box time">
 				<view class="box-label">预约安装时间：</view>
-				<view v-if="orderInstallDetail.install.timePre">{{orderInstallDetail.install.timePre}}</view>
+				<view v-if="orderInstallDetail.install.timePre" @click="timeSelectShow = true">{{orderInstallDetail.install.timePre}}</view>
 				<view v-else style="color:#D3D3D3;" @click="timeSelectShow = true">请选择</view>
 			</view>
 
@@ -73,7 +73,6 @@
 					day: true,
 					hour: true,
 					minute: true,
-					second: true,
 				}, //时间选择器的配置参数
 			}
 		},
@@ -123,7 +122,7 @@
 			timeConfirm(e) {
 				let year = new Date().getFullYear()
 				this.orderInstallDetail.install.timePre = year + '-' + e.month + '-' + e.day + ' ' + e.hour + ':' + e
-					.minute + ':' + e.second
+					.minute
 			}
 
 

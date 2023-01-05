@@ -111,16 +111,23 @@
 				this.getOrderInstallList()
 			},
 
-			// 根据stateMain判断是那种安装状态:待预约安装、待安装、安装中、待安装审核、安装完成
+			// 根据 判断是那种安装状态:待预约安装、待安装、安装中、待安装审核、安装完成
 			toInstallDetail(orderId, stateMain) {
 				if(stateMain == 'SCHEDULED_INSTALL'){
 					uni.navigateTo({
 						url:'../appointment-install/appointment-install?orderId='+ orderId
 					})
 				}else{
-					uni.navigateTo({
-						url: '../install-detail/install-detail?orderId=' + orderId
-					})
+					if(stateMain == 'INSTALL_COMPLETE'){
+						uni.navigateTo({
+							url:'../install-report/install-report?orderId='+ orderId
+						})
+					}else{
+						uni.navigateTo({
+							url: '../install-detail/install-detail?orderId=' + orderId
+						})
+					}
+					
 				}
 			},
 

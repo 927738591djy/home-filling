@@ -42,67 +42,62 @@
 
 			<view v-if="orderInstallDetail.stateSub !== 'WAIT_INSTALL'">
 				<view class="bottom-box">
-					
+
 					<!-- 假如是安装中状态的那些 -->
 					<view v-if="orderInstallDetail.stateSub == 'INSTALLING'">
 						<view class="report-detail">
 							<view class="box-label">充电桩型号(TPN):</view>
 							<view class="select-right">
-								<input type="text" disabled style="text-align: right;"
-									v-model="obj.chargeModelId"
+								<input type="text" disabled style="text-align: right;" v-model="obj.chargeModelId"
 									@click="selectMaterial('chargeModelId')" placeholder="请选择">
-								<u-icon v-if="!obj.chargeModelId"
-									style="margin-left: 10rpx;color: #999;" top="2" name="arrow-right"></u-icon>
+								<u-icon v-if="!obj.chargeModelId" style="margin-left: 10rpx;color: #999;" top="2"
+									name="arrow-right"></u-icon>
 							</view>
 						</view>
-						
+
 						<view class="report-detail">
 							<view class="box-label">充电桩编号(TSN):</view>
 							<view class="select-right">
-								<input type="text" disabled style="text-align: right;"
-									v-model="obj.serialNo"
+								<input type="text" disabled style="text-align: right;" v-model="obj.serialNo"
 									@click="selectMaterial('serialNo')" placeholder="请选择">
-								<u-icon v-if="!obj.serialNo"
-									style="margin-left: 10rpx;color: #999;" top="2" name="arrow-right"></u-icon>
+								<u-icon v-if="!obj.serialNo" style="margin-left: 10rpx;color: #999;" top="2"
+									name="arrow-right"></u-icon>
 							</view>
 						</view>
-						
+
 						<view class="report-detail">
 							<view class="box-label">电缆规格:</view>
 							<view class="select-right">
-								<input type="text" disabled style="text-align: right;"
-									v-model="obj.cableType"
+								<input type="text" disabled style="text-align: right;" v-model="obj.cableType"
 									@click="selectMaterial('cableType')" placeholder="请选择">
-								<u-icon v-if="!obj.cableType"
-									style="margin-left: 10rpx;color: #999;" top="2" name="arrow-right"></u-icon>
+								<u-icon v-if="!obj.cableType" style="margin-left: 10rpx;color: #999;" top="2"
+									name="arrow-right"></u-icon>
 							</view>
 						</view>
-						
+
 						<view class="report-detail">
 							<view class="box-label">电缆长度:</view>
 							<view class="select-right">
-								<input type="text" disabled style="text-align: right;"
-									v-model="obj.cableLength"
+								<input type="text" disabled style="text-align: right;" v-model="obj.cableLength"
 									@click="selectMaterial('cableLength')" placeholder="请选择">
-								<u-icon v-if="!obj.cableLength"
-									style="margin-left: 10rpx;color: #999;" top="2" name="arrow-right"></u-icon>
+								<u-icon v-if="!obj.cableLength" style="margin-left: 10rpx;color: #999;" top="2"
+									name="arrow-right"></u-icon>
 							</view>
 						</view>
-						
+
 						<view class="report-detail">
 							<view class="box-label">管长</view>
 							<view class="select-right">
-								<input type="text" disabled style="text-align: right;"
-									v-model="obj.pipaLength"
+								<input type="text" disabled style="text-align: right;" v-model="obj.pipaLength"
 									@click="selectMaterial('pipaLength')" placeholder="请选择">
-								<u-icon v-if="!obj.pipaLength"
-									style="margin-left: 10rpx;color: #999;" top="2" name="arrow-right"></u-icon>
+								<u-icon v-if="!obj.pipaLength" style="margin-left: 10rpx;color: #999;" top="2"
+									name="arrow-right"></u-icon>
 							</view>
 						</view>
-						
+
 					</view>
-					
-			
+
+
 					<view v-else>
 						<view class="report-detail">
 							<view class="box-label">充电桩型号(TPN):</view>
@@ -114,7 +109,7 @@
 									style="margin-left: 10rpx;color: #999;" top="2" name="arrow-right"></u-icon>
 							</view>
 						</view>
-						
+
 						<view class="report-detail">
 							<view class="box-label">充电桩编号(TSN):</view>
 							<view class="select-right">
@@ -125,7 +120,7 @@
 									style="margin-left: 10rpx;color: #999;" top="2" name="arrow-right"></u-icon>
 							</view>
 						</view>
-						
+
 						<view class="report-detail">
 							<view class="box-label">电缆规格:</view>
 							<view class="select-right">
@@ -136,7 +131,7 @@
 									style="margin-left: 10rpx;color: #999;" top="2" name="arrow-right"></u-icon>
 							</view>
 						</view>
-						
+
 						<view class="report-detail">
 							<view class="box-label">电缆长度:</view>
 							<view class="select-right">
@@ -147,7 +142,7 @@
 									style="margin-left: 10rpx;color: #999;" top="2" name="arrow-right"></u-icon>
 							</view>
 						</view>
-						
+
 						<view class="report-detail">
 							<view class="box-label">管长</view>
 							<view class="select-right">
@@ -158,7 +153,7 @@
 									style="margin-left: 10rpx;color: #999;" top="2" name="arrow-right"></u-icon>
 							</view>
 						</view>
-						
+
 					</view>
 					<view class="line"></view>
 					<view class="report-detail">
@@ -199,14 +194,14 @@
 
 			<RedButton v-else @click.native="installSubmit" :bgColor="noEmpty?'#FE3738':'#D9D9D9'" title="提交">
 			</RedButton>
+			<u-picker v-model="timeSelectShow" mode="time" title="完成时间" confirm-color="#FC615F" cancel-color="#969799"
+				:params="params" @confirm="timeConfirm"></u-picker>
 
+			<!-- 充电桩材料选择框 -->
+			<u-select v-model="selectShow" :list="list" @confirm="selectConfirm"></u-select>
 		</view>
 
-		<u-picker v-model="timeSelectShow" mode="time" title="完成时间" confirm-color="#FC615F" cancel-color="#969799"
-			:params="params" @confirm="timeConfirm"></u-picker>
 
-		<!-- 充电桩材料选择框 -->
-		<u-select v-model="selectShow" :list="list" @confirm="selectConfirm"></u-select>
 
 	</view>
 </template>
@@ -264,8 +259,8 @@
 				orderInstallDetail: {}, //安装订单详情对象
 				timeSelectShow: false, //时间选择器弹出
 				params: {
-					month:true,
-					day:true,
+					month: true,
+					day: true,
 					hour: true,
 					minute: true,
 					// second: true,
@@ -291,13 +286,13 @@
 				selectShow: false, //材料选择框显
 				name: '', //这项是表示打开的是哪个属性名的选择框
 				btnShow: false, //待安装审核按钮不显示
-				obj:{
-					chargeModelId:'是',
-					serialNo:'',
-					cableType:'',
-					cableLength:'',
-					pipaLength:'',
-					
+				obj: {
+					chargeModelId: '是',
+					serialNo: '',
+					cableType: '',
+					cableLength: '',
+					pipaLength: '',
+
 				}
 			}
 		},
@@ -326,10 +321,10 @@
 							title: '安装提交成功',
 							duration: 1500,
 						});
-						setTimeout(()=> {
+						setTimeout(() => {
 							uni.navigateBack()
-						},1500)
-					} 
+						}, 1500)
+					}
 				})
 			},
 
@@ -342,10 +337,10 @@
 							title: '安装打卡成功',
 							duration: 1500,
 						});
-						setTimeout(()=> {
+						setTimeout(() => {
 							uni.navigateBack()
-						},1500)
-						
+						}, 1500)
+
 					} else {
 						// 弹出错误提示消息
 					}
@@ -363,14 +358,14 @@
 				console.log(this.name);
 				this.obj[this.name] = e[0].label
 			},
-			
+
 			//用户确认选择时间
-			timeConfirm(e){
+			timeConfirm(e) {
 				let year = new Date().getFullYear()
 				this.orderInstallDetail.install.finishedTime = year + '-' + e.month + '-' + e.day + ' ' + e.hour + ':' + e
 					.minute
 			}
-			
+
 		},
 
 		onLoad(options) {
