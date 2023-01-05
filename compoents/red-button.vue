@@ -36,5 +36,6 @@
 		transform: translateX(-50%);
 		bottom: 36rpx;
 		text-align: center;
+		z-index: 100;
 	}
 </style>

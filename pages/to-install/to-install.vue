@@ -156,7 +156,7 @@
 				return
 			}
 			this.queryParameter.current += 1
-			this.getOrderSurveyList()
+			this.getOrderInstallList()
 		},
 
 		onLoad() {
