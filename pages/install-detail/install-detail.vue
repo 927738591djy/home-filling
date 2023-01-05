@@ -19,7 +19,8 @@
 			<view class="bottom-box time">
 				<view class="box-label">勘测完成时间：</view>
 				<view>
-					{{orderInstallDetail.survey.createdDate}}</view>
+					{{orderInstallDetail.survey.finishedTime}}
+				</view>
 			</view>
 			<view class="bottom-box">
 				<view class="box-label">勘测总结：</view>
@@ -38,82 +39,94 @@
 				</view>
 			</view>
 
-			<view class="bottom-box">
-				<view class="report-detail">
-					<view class="box-label">充电桩型号(TPN):</view>
-					<!-- <view>16287628-02-G</view> -->
-					<view v-if="!orderInstallDetail.install.installMaterial.chargeModelId" class="select-right">
-						请选择
-						<u-icon style="margin-left: 10rpx;" top="2" name="arrow-right"></u-icon>
-					</view>
-					<view v-else>{{orderInstallDetail.install.installMaterial.chargeModelId}}</view>
-				</view>
-				<view class="report-detail">
-					<view class="box-label">充电桩编号(TSN):</view>
-					<!-- <view class="address">PGT237292839203</view> -->
-					<view v-if="!orderInstallDetail.install.installMaterial.serialNo" class="select-right">
-						请选择
-						<u-icon style="margin-left: 10rpx;" top="2" name="arrow-right"></u-icon>
-					</view>
-					<view v-else>{{orderInstallDetail.install.installMaterial.serialNo}}</view>
-				</view>
-				<view class="report-detail">
-					<view class="box-label">电缆规格:</view>
-					<!-- <view class="address"> 3*6</view> -->
-					<view v-if="!orderInstallDetail.install.installMaterial.cableType" class="select-right">
-						请选择
-						<u-icon style="margin-left: 10rpx;" top="2" name="arrow-right"></u-icon>
-					</view>
-					<view v-else>{{orderInstallDetail.install.installMaterial.cableType}}</view>
-				</view>
-				<view class="report-detail">
-					<view class="box-label">电缆长度:</view>
-					<!-- <view class="address">37</view> -->
-					<view v-if="!orderInstallDetail.install.installMaterial.cableLength" class="select-right">
-						请选择
-						<u-icon style="margin-left: 10rpx;" top="2" name="arrow-right"></u-icon>
-					</view>
-					<view v-else>{{orderInstallDetail.install.installMaterial.cableLength}}</view>
-				</view>
-				<view class="report-detail">
-					<view class="box-label">管长</view>
-					<!-- <view class="address">10</view> -->
-					<view v-if="!orderInstallDetail.install.installMaterial.pipaLength" class="select-right">
-						请选择
-						<u-icon style="margin-left: 10rpx;" top="2" name="arrow-right"></u-icon>
-					</view>
-					<view v-else>{{orderInstallDetail.install.installMaterial.pipaLength}}</view>
-				</view>
-				<view class="line"></view>
-				<view class="report-detail">
-					<view class="box-label">付费金额:</view>
-					<!-- <view class="address">37</view> -->
-					<view></view>
-				</view>
-				<view class="report-detail">
-					<view class="box-label">付费备注</view>
-					<!-- <view class="address">10</view> -->
-					<view></view>
-				</view>
-			</view>
+			<u-form labelPosition="left" :model="model1" :rules="rules" ref="form1">
 
-			<view class="bottom-box">
-				<view class="report-detail">
-					<view class="box-label">安装完成时间:</view>
-					<view v-if="!orderInstallDetail.install.createdDate" class="address" @click="timeSelectShow = !timeSelectShow">请选择</view>
-					<view v-else>{{orderInstallDetail.install.createdDate}}</view>
+
+				<view v-if="orderInstallDetail.stateSub !== 'WAIT_INSTALL'">
+					<view class="bottom-box">
+						<view class="report-detail">
+							<view class="box-label">充电桩型号(TPN):</view>
+							<!-- <view>16287628-02-G</view> -->
+							<view v-if="!orderInstallDetail.install.installMaterial.chargeModelId" class="select-right">
+								请选择
+								<u-icon style="margin-left: 10rpx;" top="2" name="arrow-right"></u-icon>
+							</view>
+							<view v-else>{{orderInstallDetail.install.installMaterial.chargeModelId}}</view>
+						</view>
+						<view class="report-detail">
+							<view class="box-label">充电桩编号(TSN):</view>
+							<!-- <view class="address">PGT237292839203</view> -->
+							<view v-if="!orderInstallDetail.install.installMaterial.serialNo" class="select-right">
+								请选择
+								<u-icon style="margin-left: 10rpx;" top="2" name="arrow-right"></u-icon>
+							</view>
+							<view v-else>{{orderInstallDetail.install.installMaterial.serialNo}}</view>
+						</view>
+						<view class="report-detail">
+							<view class="box-label">电缆规格:</view>
+							<!-- <view class="address"> 3*6</view> -->
+							<view v-if="!orderInstallDetail.install.installMaterial.cableType" class="select-right">
+								请选择
+								<u-icon style="margin-left: 10rpx;" top="2" name="arrow-right"></u-icon>
+							</view>
+							<view v-else>{{orderInstallDetail.install.installMaterial.cableType}}</view>
+						</view>
+						<view class="report-detail">
+							<view class="box-label">电缆长度:</view>
+							<!-- <view class="address">37</view> -->
+							<view v-if="!orderInstallDetail.install.installMaterial.cableLength" class="select-right">
+								请选择
+								<u-icon style="margin-left: 10rpx;" top="2" name="arrow-right"></u-icon>
+							</view>
+							<view v-else>{{orderInstallDetail.install.installMaterial.cableLength}}</view>
+						</view>
+						<view class="report-detail">
+							<view class="box-label">管长</view>
+							<!-- <view class="address">10</view> -->
+							<view v-if="!orderInstallDetail.install.installMaterial.pipaLength" class="select-right">
+								请选择
+								<u-icon style="margin-left: 10rpx;" top="2" name="arrow-right"></u-icon>
+							</view>
+							<view v-else>{{orderInstallDetail.install.installMaterial.pipaLength}}</view>
+						</view>
+						<view class="line"></view>
+						<view class="report-detail">
+							<view class="box-label">付费金额:</view>
+							<!-- <view class="address">37</view> -->
+							<view></view>
+						</view>
+						<view class="report-detail">
+							<view class="box-label">付费备注</view>
+							<!-- <view class="address">10</view> -->
+							<view></view>
+						</view>
+					</view>
+
+					<view class="bottom-box">
+						<view class="report-detail">
+							<view class="box-label">安装完成时间:</view>
+							<view v-if="!orderInstallDetail.install.finishedTime" class="address"
+								@click="timeSelectShow = !timeSelectShow">请选择</view>
+							<view v-else>{{orderInstallDetail.install.finishedTime}}</view>
+						</view>
+						<view class="line"></view>
+						<view class="box-label">安装总结：</view>
+						<view class="survey-textarea">
+							<textarea v-model="orderInstallDetail.install.summary" placeholder="请输入安装总结" />
+						</view>
+					</view>
 				</view>
-				<view class="line"></view>
-				<view class="box-label">安装总结：</view>
-				<view class="survey-textarea">
-					<textarea v-model="orderInstallDetail.install.summaryReport" placeholder="请输入安装总结" />
-				</view>
-			</view>
+			</u-form>
+
 		</view>
 
-		<view class="button" @click="installSubmit">
-			提交
-		</view>
+
+
+		<RedButton v-if="orderInstallDetail.stateSub == 'WAIT_INSTALL'" @click.native="installSubmit"
+			:bgColor="orderInstallDetail.install.timePre?'#FE3738':'#D9D9D9'" title="打卡"></RedButton>
+
+		<RedButton v-else @click.native="installSubmit"
+			:bgColor="orderInstallDetail.install.timePre?'#FE3738':'#D9D9D9'" title="提交"></RedButton>
 
 		<u-picker v-model="timeSelectShow" mode="time" title="完成时间" confirm-color="#FC615F" cancel-color="#969799"
 			:params="params"></u-picker>
@@ -123,20 +136,23 @@
 
 <script>
 	import navbar from '../../compoents/navbar/navbar.vue'
+	import RedButton from '../../compoents/red-button.vue'
 	export default {
 		components: {
-			navbar
+			navbar,
+			RedButton
 		},
 		data() {
 			return {
 				orderId: '', //由安装列表哪传过来的订单id
-				orderInstallDetail:{},//安装订单详情对象
+				orderInstallDetail: {}, //安装订单详情对象
 				timeSelectShow: false, //时间选择器弹出
 				params: {
 					hour: true,
 					minute: true,
 					second: true,
-				} //时间选择器的配置参数
+				}, //时间选择器的配置参数
+				btnTilte: '', // 用于确认底部按钮是打卡还是提交，待安装就是打卡，待安装审核就是提交
 			}
 		},
 		methods: {
@@ -153,13 +169,13 @@
 					}
 				})
 			},
-			
-			installSubmit(){
+
+			installSubmit() {
 				this.$lsxmApi.installSubmit(this.orderInstallDetail).then(res => {
 					if (res.data.data.code == 200 || res.data.data.code == 1) {
 						// 请求成功,返回数据
-					console.log(res);
-				
+						console.log(res);
+
 					} else {
 						// 弹出错误提示消息
 					}
@@ -176,15 +192,17 @@
 <style>
 	.top {
 		background: #fff;
-		position: relative;
+		position: fixed;
 		overflow: hidden;
 		height: 11vh;
 		color: #000;
-
+		width: 100%;
+		left: 0;
+		top: 0
 	}
 
 	.bottom {
-		margin-top: 32rpx;
+		margin-top: 13vh;
 		padding: 0 24rpx;
 	}
 
