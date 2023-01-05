@@ -23,7 +23,7 @@
 		</view>
 
 		<view class="bottom-boxs">
-			<view class="bottom-box" v-for="item in orderSurveyList" :key="item.orderId">
+			<view class="bottom-box" v-for="item in orderSurveyList" :key="item.id">
 				<view class="box-left">
 					<view class="box-title">
 						<view class="tag">
@@ -43,7 +43,7 @@
 					</view>
 				</view>
 
-				<view class="box-right" @click="toSurveyDetail(item.orderId)">
+				<view class="box-right" @click="toSurveyDetail(item.id)">
 					<u-icon size="50" name="arrow-right"></u-icon>
 				</view>
 
@@ -106,7 +106,6 @@
 				this.getOrderSurveyList()
 			},
 			toSurveyDetail(orderId) {
-				console.log(orderId);
 				uni.navigateTo({
 					url: '../survey-detail/survey-detail?orderId=' + orderId
 				})

@@ -203,7 +203,7 @@
 		</view>
 
 		<u-picker v-model="timeSelectShow" mode="time" title="完成时间" confirm-color="#FC615F" cancel-color="#969799"
-			:params="params"></u-picker>
+			:params="params" @confirm="timeConfirm"></u-picker>
 
 		<!-- 充电桩材料选择框 -->
 		<u-select v-model="selectShow" :list="list" @confirm="selectConfirm"></u-select>
@@ -264,9 +264,11 @@
 				orderInstallDetail: {}, //安装订单详情对象
 				timeSelectShow: false, //时间选择器弹出
 				params: {
+					month:true,
+					day:true,
 					hour: true,
 					minute: true,
-					second: true,
+					// second: true,
 				}, //时间选择器的配置参数
 				btnTilte: '', // 用于确认底部按钮是打卡还是提交，待安装就是打卡，待安装审核就是提交
 				noEmpty: true,
@@ -310,6 +312,7 @@
 						// 请求成功,返回数据
 						this.orderInstallDetail = res.data.data.data
 						this.btnShow = this.orderInstallDetail.stateSub == 'WAIT_INSTALL_AUDIT' ? false : true
+						console.log(this.orderInstallDetail);
 					}
 				})
 			},
@@ -321,12 +324,12 @@
 						// 请求成功,返回数据
 						uni.showToast({
 							title: '安装提交成功',
-							duration: 2000,
+							duration: 1500,
 						});
-						uni.navigateBack()
-					} else {
-						// 弹出错误提示消息
-					}
+						setTimeout(()=> {
+							uni.navigateBack()
+						},1500)
+					} 
 				})
 			},
 
@@ -337,9 +340,12 @@
 						// 请求成功,返回数据
 						uni.showToast({
 							title: '安装打卡成功',
-							duration: 2000,
+							duration: 1500,
 						});
-						uni.navigateBack()
+						setTimeout(()=> {
+							uni.navigateBack()
+						},1500)
+						
 					} else {
 						// 弹出错误提示消息
 					}
@@ -356,34 +362,15 @@
 			selectConfirm(e) {
 				console.log(this.name);
 				this.obj[this.name] = e[0].label
-				// switch (this.name) {
-				// 	case 'chargeModelId':
-				// 		this.orderInstallDetail.install.installMaterial.chargeModelId = e[0].label
-				// 		break;
-				// 	case 'serialNo':
-				// 		this.orderInstallDetail.install.installMaterial.serialNo = e[0].label
-				// 		break;
-				// 	case 'cableType':
-				// 		this.orderInstallDetail.install.installMaterial.cableType = e[0].label
-				// 		break;
-				// 	case 'cableLength':
-				// 		this.orderInstallDetail.install.installMaterial.cableLength = e[0].label
-				// 		break;
-				// 	case 'pipaLength':
-				// 		this.orderInstallDetail.install.installMaterial.pipaLength = e[0].label
-				// 		break;
-				// 	default:
-				// 		break;
-				// }
-		
-				
-
 			},
-
-
-
-
-
+			
+			//用户确认选择时间
+			timeConfirm(e){
+				let year = new Date().getFullYear()
+				this.orderInstallDetail.install.finishedTime = year + '-' + e.month + '-' + e.day + ' ' + e.hour + ':' + e
+					.minute
+			}
+			
 		},
 
 		onLoad(options) {

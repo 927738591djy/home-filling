@@ -92,9 +92,14 @@
 					if (res.data.data.code == 200 || res.data.data.code == 1) {
 						// 请求成功,返回数据
 						// 安装成功跳转到安装列表页面
-						uni.navigateTo({
-							url:'/pages/to-install/to-install',
-						})
+						uni.showToast({
+							title: '安装预约成功',
+							duration: 1500,
+						});
+						setTimeout(()=> {
+							uni.navigateBack()
+						},1500)
+						
 					} else {
 						// 弹出错误提示消息
 					}
@@ -117,8 +122,8 @@
 			// 预约安装时间确认
 			timeConfirm(e) {
 				let year = new Date().getFullYear()
-				this.orderInstallDetail.install.timePre = year + '-' + e.month + '-' + e.day + '-' + e.hour + '-' + e
-					.minute + '-' + e.second
+				this.orderInstallDetail.install.timePre = year + '-' + e.month + '-' + e.day + ' ' + e.hour + ':' + e
+					.minute + ':' + e.second
 			}
 
 
