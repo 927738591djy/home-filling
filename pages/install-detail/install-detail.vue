@@ -42,77 +42,124 @@
 
 			<view v-if="orderInstallDetail.stateSub !== 'WAIT_INSTALL'">
 				<view class="bottom-box">
-					<view class="report-detail">
-						<view>性别</view>
-						<view class="select-right">
-							<input type="text" disabled style="text-align: right;" v-model="value.sex"
-								@click="selectShow=true" placeholder="请选择">
-							<u-icon v-if="!value.sex" style="margin-left: 10rpx;color: #999;" top="2"
-								name="arrow-right"></u-icon>
+					
+					<!-- 假如是安装中状态的那些 -->
+					<view v-if="orderInstallDetail.stateSub == 'INSTALLING'">
+						<view class="report-detail">
+							<view class="box-label">充电桩型号(TPN):</view>
+							<view class="select-right">
+								<input type="text" disabled style="text-align: right;"
+									v-model="obj.chargeModelId"
+									@click="selectMaterial('chargeModelId')" placeholder="请选择">
+								<u-icon v-if="!obj.chargeModelId"
+									style="margin-left: 10rpx;color: #999;" top="2" name="arrow-right"></u-icon>
+							</view>
 						</view>
-						<!-- <view  @click="selectShow=true" v-if="value.sex">{{value.sex}}</view> -->
-						<!-- 	<view @click="selectShow=true" class="select-right">
-							请选择
-							<u-icon style="margin-left: 10rpx;" top="2" name="arrow-right"></u-icon>
-						</view> -->
-
-					</view>
-
-					<view class="report-detail">
-						<view class="box-label">充电桩型号(TPN):</view>
-						<view class="select-right">
-							<input type="text" disabled style="text-align: right;"
-								v-model="orderInstallDetail.install.installMaterial.chargeModelId"
-								@click="selectMaterial('chargeModelId')" placeholder="请选择">
-							<u-icon v-if="!orderInstallDetail.install.installMaterial.chargeModelId"
-								style="margin-left: 10rpx;color: #999;" top="2" name="arrow-right"></u-icon>
+						
+						<view class="report-detail">
+							<view class="box-label">充电桩编号(TSN):</view>
+							<view class="select-right">
+								<input type="text" disabled style="text-align: right;"
+									v-model="obj.serialNo"
+									@click="selectMaterial('serialNo')" placeholder="请选择">
+								<u-icon v-if="!obj.serialNo"
+									style="margin-left: 10rpx;color: #999;" top="2" name="arrow-right"></u-icon>
+							</view>
 						</view>
-					</view>
-
-					<view class="report-detail">
-						<view class="box-label">充电桩编号(TSN):</view>
-						<view class="select-right">
-							<input type="text" disabled style="text-align: right;"
-								v-model="orderInstallDetail.install.installMaterial.serialNo" @click="selectShow=true"
-								placeholder="请选择">
-							<u-icon v-if="!orderInstallDetail.install.installMaterial.serialNo"
-								style="margin-left: 10rpx;color: #999;" top="2" name="arrow-right"></u-icon>
+						
+						<view class="report-detail">
+							<view class="box-label">电缆规格:</view>
+							<view class="select-right">
+								<input type="text" disabled style="text-align: right;"
+									v-model="obj.cableType"
+									@click="selectMaterial('cableType')" placeholder="请选择">
+								<u-icon v-if="!obj.cableType"
+									style="margin-left: 10rpx;color: #999;" top="2" name="arrow-right"></u-icon>
+							</view>
 						</view>
-					</view>
-
-					<view class="report-detail">
-						<view class="box-label">电缆规格:</view>
-						<view class="select-right">
-							<input type="text" disabled style="text-align: right;"
-								v-model="orderInstallDetail.install.installMaterial.cableType" @click="selectShow=true"
-								placeholder="请选择">
-							<u-icon v-if="!orderInstallDetail.install.installMaterial.cableType"
-								style="margin-left: 10rpx;color: #999;" top="2" name="arrow-right"></u-icon>
+						
+						<view class="report-detail">
+							<view class="box-label">电缆长度:</view>
+							<view class="select-right">
+								<input type="text" disabled style="text-align: right;"
+									v-model="obj.cableLength"
+									@click="selectMaterial('cableLength')" placeholder="请选择">
+								<u-icon v-if="!obj.cableLength"
+									style="margin-left: 10rpx;color: #999;" top="2" name="arrow-right"></u-icon>
+							</view>
 						</view>
-					</view>
-
-					<view class="report-detail">
-						<view class="box-label">电缆长度:</view>
-						<view class="select-right">
-							<input type="text" disabled style="text-align: right;"
-								v-model="orderInstallDetail.install.installMaterial.cableLength" @click="selectShow=true"
-								placeholder="请选择">
-							<u-icon v-if="!orderInstallDetail.install.installMaterial.cableLength"
-								style="margin-left: 10rpx;color: #999;" top="2" name="arrow-right"></u-icon>
+						
+						<view class="report-detail">
+							<view class="box-label">管长</view>
+							<view class="select-right">
+								<input type="text" disabled style="text-align: right;"
+									v-model="obj.pipaLength"
+									@click="selectMaterial('pipaLength')" placeholder="请选择">
+								<u-icon v-if="!obj.pipaLength"
+									style="margin-left: 10rpx;color: #999;" top="2" name="arrow-right"></u-icon>
+							</view>
 						</view>
+						
 					</view>
-
-					<view class="report-detail">
-						<view class="box-label">管长</view>
-						<view class="select-right">
-							<input type="text" disabled style="text-align: right;"
-								v-model="orderInstallDetail.install.installMaterial.pipaLength" @click="selectShow=true"
-								placeholder="请选择">
-							<u-icon v-if="!orderInstallDetail.install.installMaterial.pipaLength"
-								style="margin-left: 10rpx;color: #999;" top="2" name="arrow-right"></u-icon>
+					
+			
+					<view v-else>
+						<view class="report-detail">
+							<view class="box-label">充电桩型号(TPN):</view>
+							<view class="select-right">
+								<input type="text" disabled style="text-align: right;"
+									v-model="orderInstallDetail.install.installMaterial.chargeModelId"
+									@click="selectMaterial('chargeModelId')" placeholder="请选择">
+								<u-icon v-if="!orderInstallDetail.install.installMaterial.chargeModelId"
+									style="margin-left: 10rpx;color: #999;" top="2" name="arrow-right"></u-icon>
+							</view>
 						</view>
+						
+						<view class="report-detail">
+							<view class="box-label">充电桩编号(TSN):</view>
+							<view class="select-right">
+								<input type="text" disabled style="text-align: right;"
+									v-model="orderInstallDetail.install.installMaterial.serialNo"
+									@click="selectMaterial('serialNo')" placeholder="请选择">
+								<u-icon v-if="!orderInstallDetail.install.installMaterial.serialNo"
+									style="margin-left: 10rpx;color: #999;" top="2" name="arrow-right"></u-icon>
+							</view>
+						</view>
+						
+						<view class="report-detail">
+							<view class="box-label">电缆规格:</view>
+							<view class="select-right">
+								<input type="text" disabled style="text-align: right;"
+									v-model="orderInstallDetail.install.installMaterial.cableType"
+									@click="selectMaterial('cableType')" placeholder="请选择">
+								<u-icon v-if="!orderInstallDetail.install.installMaterial.cableType"
+									style="margin-left: 10rpx;color: #999;" top="2" name="arrow-right"></u-icon>
+							</view>
+						</view>
+						
+						<view class="report-detail">
+							<view class="box-label">电缆长度:</view>
+							<view class="select-right">
+								<input type="text" disabled style="text-align: right;"
+									v-model="orderInstallDetail.install.installMaterial.cableLength"
+									@click="selectMaterial('cableLength')" placeholder="请选择">
+								<u-icon v-if="!orderInstallDetail.install.installMaterial.cableLength"
+									style="margin-left: 10rpx;color: #999;" top="2" name="arrow-right"></u-icon>
+							</view>
+						</view>
+						
+						<view class="report-detail">
+							<view class="box-label">管长</view>
+							<view class="select-right">
+								<input type="text" disabled style="text-align: right;"
+									v-model="orderInstallDetail.install.installMaterial.pipaLength"
+									@click="selectMaterial('pipaLength')" placeholder="请选择">
+								<u-icon v-if="!orderInstallDetail.install.installMaterial.pipaLength"
+									style="margin-left: 10rpx;color: #999;" top="2" name="arrow-right"></u-icon>
+							</view>
+						</view>
+						
 					</view>
-
 					<view class="line"></view>
 					<view class="report-detail">
 						<view class="box-label">付费金额:</view>
@@ -127,11 +174,10 @@
 				<view class="bottom-box">
 					<view class="report-detail">
 						<view class="box-label">安装完成时间:</view>
-						
+
 						<view class="select-right" @click="timeSelectShow = !timeSelectShow">
 							<input type="text" disabled style="text-align: right;"
-								v-model="orderInstallDetail.install.finishedTime" 
-								placeholder="请选择">
+								v-model="orderInstallDetail.install.finishedTime" placeholder="请选择">
 							<u-icon v-if="!orderInstallDetail.install.finishedTime"
 								style="margin-left: 10rpx;color: #999;" top="2" name="arrow-right"></u-icon>
 						</view>
@@ -146,10 +192,15 @@
 		</view>
 
 
-		<RedButton v-if="orderInstallDetail.stateSub == 'WAIT_INSTALL'" @click.native="installSubmit"
-			:bgColor="orderInstallDetail.install.timePre?'#FE3738':'#D9D9D9'" title="打卡"></RedButton>
 
-		<RedButton v-else @click.native="installSubmit" :bgColor="noEmpty?'#FE3738':'#D9D9D9'" title="提交"></RedButton>
+		<view v-if="btnShow">
+			<RedButton v-if="orderInstallDetail.stateSub == 'WAIT_INSTALL'" @click.native="startInstall"
+				:bgColor="orderInstallDetail.install.timePre?'#FE3738':'#D9D9D9'" title="打卡"></RedButton>
+
+			<RedButton v-else @click.native="installSubmit" :bgColor="noEmpty?'#FE3738':'#D9D9D9'" title="提交">
+			</RedButton>
+
+		</view>
 
 		<u-picker v-model="timeSelectShow" mode="time" title="完成时间" confirm-color="#FC615F" cancel-color="#969799"
 			:params="params"></u-picker>
@@ -163,39 +214,46 @@
 <script>
 	import navbar from '../../compoents/navbar/navbar.vue'
 	import RedButton from '../../compoents/red-button.vue'
+
 	export default {
 		components: {
 			navbar,
 			RedButton
 		},
-		watch:{
-			orderInstallDetail:{  //监听订单详情对象的修改，实时判断必填项是否为空
-				handler(newVal){
+		watch: {
+			orderInstallDetail: { //监听订单详情对象的修改，实时判断必填项是否为空
+				handler(newVal) {
+					if (this.orderInstallDetail.stateSub == 'WAIT_INSTALL') {
+						return
+					}
+					if (this.orderInstallDetail.install.installMaterial == '' || this.orderInstallDetail.install
+						.installMaterial == null) {
+						this.noEmpty = false
+						return
+					}
 					let {
 						chargeModelId,
 						serialNo,
 						cableType,
 						cableLength,
 						pipaLength,
-					} =  newVal.install.installMaterial
+					} = newVal.install.installMaterial
 					let newObj = {
 						chargeModelId,
 						serialNo,
 						cableType,
 						cableLength,
 						pipaLength,
-						finishedTime:newVal.install.finishedTime,
-						summary:newVal.install.summary,
-					} 
+						finishedTime: newVal.install.finishedTime,
+						summary: newVal.install.summary,
+					}
 					Object.keys(newObj).filter(item => {
-						if(newObj[item] == '' || item == null){
+						if (newObj[item] == '' || item == null) {
 							this.noEmpty = false
-						}else{
+						} else {
 							this.noEmpty = true
 						}
 					})
-					
-					
 				},
 				deep: true
 			}
@@ -212,23 +270,33 @@
 				}, //时间选择器的配置参数
 				btnTilte: '', // 用于确认底部按钮是打卡还是提交，待安装就是打卡，待安装审核就是提交
 				noEmpty: true,
-				value: {
-
-				},
 				list: [{
-						value: '难',
-						label: '男'
+						value: 0,
+						label: '001'
 					}, {
-						value: '女',
-						label: '女'
+						value: 1,
+						label: '002'
 					},
 					{
-						value: '',
-						label: ''
-					}
-				],
+						value: 2,
+						label: '003'
+					},
+					{
+						value: 3,
+						label: '004'
+					},
+				], //材料选择框，我点击各个材料项，打开材料选择框，把点击的材料名字传进去
 				selectShow: false, //材料选择框显
-				name:'' //这项是表示打开的是哪个属性名的选择框
+				name: '', //这项是表示打开的是哪个属性名的选择框
+				btnShow: false, //待安装审核按钮不显示
+				obj:{
+					chargeModelId:'是',
+					serialNo:'',
+					cableType:'',
+					cableLength:'',
+					pipaLength:'',
+					
+				}
 			}
 		},
 
@@ -241,7 +309,7 @@
 					if (res.data.data.code == 200 || res.data.data.code == 1) {
 						// 请求成功,返回数据
 						this.orderInstallDetail = res.data.data.data
-						console.log(this.orderInstallDetail);
+						this.btnShow = this.orderInstallDetail.stateSub == 'WAIT_INSTALL_AUDIT' ? false : true
 					}
 				})
 			},
@@ -251,7 +319,27 @@
 				this.$lsxmApi.installSubmit(this.orderInstallDetail).then(res => {
 					if (res.data.data.code == 200 || res.data.data.code == 1) {
 						// 请求成功,返回数据
-						console.log(res);
+						uni.showToast({
+							title: '安装提交成功',
+							duration: 2000,
+						});
+						uni.navigateBack()
+					} else {
+						// 弹出错误提示消息
+					}
+				})
+			},
+
+			// 点打卡按钮安装打卡
+			startInstall() {
+				this.$lsxmApi.startInstall(this.orderInstallDetail).then(res => {
+					if (res.data.data.code == 200 || res.data.data.code == 1) {
+						// 请求成功,返回数据
+						uni.showToast({
+							title: '安装打卡成功',
+							duration: 2000,
+						});
+						uni.navigateBack()
 					} else {
 						// 弹出错误提示消息
 					}
@@ -259,15 +347,43 @@
 			},
 
 			// 打开选择材料框，并把点击的那个订单详情对象属性名传进去
-			selectMaterial(name){
+			selectMaterial(name) {
 				this.selectShow = true
-				this.name = name 
+				this.name = name
 			},
-				
+
 			// 确定选择框的内容的回调
 			selectConfirm(e) {
-				this.orderInstallDetail.install.installMaterial[this.name] = e[0].label
+				console.log(this.name);
+				this.obj[this.name] = e[0].label
+				// switch (this.name) {
+				// 	case 'chargeModelId':
+				// 		this.orderInstallDetail.install.installMaterial.chargeModelId = e[0].label
+				// 		break;
+				// 	case 'serialNo':
+				// 		this.orderInstallDetail.install.installMaterial.serialNo = e[0].label
+				// 		break;
+				// 	case 'cableType':
+				// 		this.orderInstallDetail.install.installMaterial.cableType = e[0].label
+				// 		break;
+				// 	case 'cableLength':
+				// 		this.orderInstallDetail.install.installMaterial.cableLength = e[0].label
+				// 		break;
+				// 	case 'pipaLength':
+				// 		this.orderInstallDetail.install.installMaterial.pipaLength = e[0].label
+				// 		break;
+				// 	default:
+				// 		break;
+				// }
+		
+				
+
 			},
+
+
+
+
+
 		},
 
 		onLoad(options) {
@@ -287,7 +403,7 @@
 		width: 100%;
 		left: 0;
 		top: 0;
-		z-index:100;
+		z-index: 100;
 	}
 
 	.bottom {

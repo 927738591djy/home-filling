@@ -54,7 +54,6 @@ export default {
 			return lsxmRequest.post('/order/order/survey_submit', data)
 		},
 
-
 		//待安装订单列表查询
 		getOrderInstallList(data) {
 			return lsxmRequest.get('/order/order/get_install_list',data)
@@ -67,8 +66,15 @@ export default {
 		
 		// 安装提交
 		installSubmit(data) {
-			return lsxmRequest.post('/order/order/install_submit', data)
+			return lsxmRequest.post('/install/install/install_submit', data)
 		},
+		
+		
+		// 安装打卡
+		startInstall(data) {
+			return lsxmRequest.post('/install/install/start_install', data)
+		},
+		
 		
 		// 预约安装
 		preInstall(data) {
