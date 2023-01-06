@@ -1,27 +1,36 @@
 <template>
 	<view class="install-report">
 		<view class="top">
-			<navbar color="#000"  title="安装报告">
+			<navbar color="#000" title="安装报告">
 			</navbar>
 		</view>
 		<view class="bottom">
 			<view class="bottom-box">
 				<view class="box-label">安装确认书(最多上传5张):</view>
-				<view class="survey-textarea survey-upload">
-					<u-upload :action="action" :file-list="fileList" upload-text="上传现场勘测照片" :custom-btn="true">
+
+				<!-- <view class="survey-textarea survey-upload"> -->
+				<view class="out" :class="{'upload-active-out':confirmFileList.length <=0}">
+					<u-upload :action="action" :file-list="confirmFileList" upload-text="上传现场勘测照片" :custom-btn="true"
+						:max-count="5">
 						<view slot="addBtn" class="slot-btn" hover-class="slot-btn__hover" hover-stay-time="150">
-							<image style="width: 72rpx;height: 72rpx" src="../../static/img/order/addbtn.png" mode="">
-							</image>
-							<view style="color:#000;font-size: 24rpx;">确认书</view>
+							<view class="survey-upload" :class="{'active-survey-supload':confirmFileList.length > 0}">
+								<image style="width: 72rpx;height: 72rpx" src="../../static/img/order/addbtn.png"
+									mode="">
+								</image>
+								<view style="color:#000;font-size: 24rpx;">确认书</view>
+							</view>
 						</view>
 					</u-upload>
 				</view>
+				<!-- </view> -->
+
 				<view class="line"></view>
 			</view>
 			<view class="bottom-box">
 				<view class="box-label">增项报价单(最多上传2张):</view>
 				<view class="survey-textarea survey-upload">
-					<u-upload :action="action" :file-list="fileList" upload-text="增项报价单" :custom-btn="true">
+					<u-upload :action="action" :file-list="fileList" upload-text="增项报价单" :custom-btn="true"
+						:max-count="2">
 						<view slot="addBtn" class="slot-btn" hover-class="slot-btn__hover" hover-stay-time="150">
 							<image style="width: 72rpx;height: 72rpx" src="../../static/img/order/addbtn.png" mode="">
 							</image>
@@ -34,7 +43,8 @@
 			<view class="bottom-box">
 				<view class="box-label">电源点(最多上传2张):</view>
 				<view class="survey-textarea survey-upload">
-					<u-upload :action="action" :file-list="fileList" upload-text="电源点" :custom-btn="true">
+					<u-upload :action="action" :file-list="fileList" upload-text="电源点" :custom-btn="true"
+						:max-count="2">
 						<view slot="addBtn" class="slot-btn" hover-class="slot-btn__hover" hover-stay-time="150">
 							<image style="width: 72rpx;height: 72rpx" src="../../static/img/order/addbtn.png" mode="">
 							</image>
@@ -47,7 +57,8 @@
 			<view class="bottom-box">
 				<view class="box-label">控制箱内部接线(最多上传1张):</view>
 				<view class="survey-textarea survey-upload">
-					<u-upload :action="action" :file-list="fileList" upload-text="控制箱内部接线" :custom-btn="true">
+					<u-upload :action="action" :file-list="fileList" upload-text="控制箱内部接线" :custom-btn="true"
+						:max-count="1">
 						<view slot="addBtn" class="slot-btn" hover-class="slot-btn__hover" hover-stay-time="150">
 							<image style="width: 72rpx;height: 72rpx" src="../../static/img/order/addbtn.png" mode="">
 							</image>
@@ -73,13 +84,13 @@
 		},
 		data() {
 			return {
+				confirmFileList: [], //安装确认书上传列表
 			}
 		},
 		methods: {
 
 		},
-		onLoad() {
-		},
+		onLoad() {},
 	}
 </script>
 
@@ -100,7 +111,7 @@
 		background-color: #fff;
 		/* margin-bottom: 32rpx 24rpx 100rpx 24rpx; */
 		border-radius: 20rpx;
-		padding: 40rpx;
+		padding: 20rpx;
 		padding-bottom: 15rpx;
 		margin-top: 13vh;
 	}
@@ -113,12 +124,26 @@
 
 	.survey-upload {
 		text-align: center;
-		padding: 44rpx 0;
-		display: flex;
 		justify-content: center;
 		background-color: #FAFAFA;
+		width: 100%;
+		width: 192rpx;
+		height: 192rpx;
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+		/* 		border: 6rpx dotted #E7E7E7; */
+	}
+
+	/* 当上传图片数小于1张即未上传时,给out添加这个样式 */
+	.active-survey-supload {
+		background-color: #FAFAFA;
 		border: 6rpx dotted #E7E7E7;
-		margin: 28rpx 0 40rpx 0;
+	}
+
+	/* 当上传图片数大于等于1张,给survey-upload添加这个样式 */
+	.upload-active-out {
+		border: 6rpx dotted #E7E7E7;
 	}
 
 	.box-label {
@@ -127,5 +152,11 @@
 
 	.install-report {
 		padding: 0rpx 24rpx 150rpx 24rpx;
+	}
+
+	.out {
+		display: flex;
+		justify-content: center;
+		margin: 28rpx 0 40rpx 0;
 	}
 </style>
