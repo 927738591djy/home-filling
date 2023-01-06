@@ -28,7 +28,7 @@ lsxmRequest.interceptors.response((response) => {
 	if(response.data.data.code !== 1){
 		uni.showToast({
 			title: response.data.data.message,
-			duration: 2000,
+			duration: 3000,
 			icon:'error'
 		});
 	}else{

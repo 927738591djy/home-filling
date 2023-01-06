@@ -43,62 +43,8 @@
 			<view v-if="orderInstallDetail.stateSub !== 'WAIT_INSTALL'">
 				<view class="bottom-box">
 
-					<!-- 假如是安装中状态的那些 -->
-					<view v-if="orderInstallDetail.stateSub == 'INSTALLING'">
-						<view class="report-detail">
-							<view class="box-label">充电桩型号(TPN):</view>
-							<view class="select-right">
-								<input type="text" disabled style="text-align: right;" v-model="obj.chargeModelId"
-									@click="selectMaterial('chargeModelId')" placeholder="请选择">
-								<u-icon v-if="!obj.chargeModelId" style="margin-left: 10rpx;color: #999;" top="2"
-									name="arrow-right"></u-icon>
-							</view>
-						</view>
 
-						<view class="report-detail">
-							<view class="box-label">充电桩编号(TSN):</view>
-							<view class="select-right">
-								<input type="text" disabled style="text-align: right;" v-model="obj.serialNo"
-									@click="selectMaterial('serialNo')" placeholder="请选择">
-								<u-icon v-if="!obj.serialNo" style="margin-left: 10rpx;color: #999;" top="2"
-									name="arrow-right"></u-icon>
-							</view>
-						</view>
-
-						<view class="report-detail">
-							<view class="box-label">电缆规格:</view>
-							<view class="select-right">
-								<input type="text" disabled style="text-align: right;" v-model="obj.cableType"
-									@click="selectMaterial('cableType')" placeholder="请选择">
-								<u-icon v-if="!obj.cableType" style="margin-left: 10rpx;color: #999;" top="2"
-									name="arrow-right"></u-icon>
-							</view>
-						</view>
-
-						<view class="report-detail">
-							<view class="box-label">电缆长度:</view>
-							<view class="select-right">
-								<input type="text" disabled style="text-align: right;" v-model="obj.cableLength"
-									@click="selectMaterial('cableLength')" placeholder="请选择">
-								<u-icon v-if="!obj.cableLength" style="margin-left: 10rpx;color: #999;" top="2"
-									name="arrow-right"></u-icon>
-							</view>
-						</view>
-
-						<view class="report-detail">
-							<view class="box-label">管长</view>
-							<view class="select-right">
-								<input type="text" disabled style="text-align: right;" v-model="obj.pipaLength"
-									@click="selectMaterial('pipaLength')" placeholder="请选择">
-								<u-icon v-if="!obj.pipaLength" style="margin-left: 10rpx;color: #999;" top="2"
-									name="arrow-right"></u-icon>
-							</view>
-						</view>
-
-					</view>
-
-
-					<view v-else>
+					<view>
 						<view class="report-detail">
 							<view class="box-label">充电桩型号(TPN):</view>
 							<view class="select-right">
@@ -221,11 +167,10 @@
 					if (this.orderInstallDetail.stateSub == 'WAIT_INSTALL') {
 						return
 					}
-					if (this.orderInstallDetail.install.installMaterial == '' || this.orderInstallDetail.install
-						.installMaterial == null) {
-						this.noEmpty = false
-						return
-					}
+					// if (this.orderInstallDetail.stateSub == 'INSTALLING') {
+					// 	this.noEmpty = false
+					// 	return
+					// }
 					let {
 						chargeModelId,
 						serialNo,
@@ -243,7 +188,7 @@
 						summary: newVal.install.summary,
 					}
 					Object.keys(newObj).filter(item => {
-						if (newObj[item] == '' || item == null) {
+						if (newObj[item] == '' || newObj[item] == null) {
 							this.noEmpty = false
 						} else {
 							this.noEmpty = true
@@ -263,7 +208,7 @@
 					day: true,
 					hour: true,
 					minute: true,
-					// second: true,
+					second: true,
 				}, //时间选择器的配置参数
 				btnTilte: '', // 用于确认底部按钮是打卡还是提交，待安装就是打卡，待安装审核就是提交
 				noEmpty: true,
@@ -286,14 +231,6 @@
 				selectShow: false, //材料选择框显
 				name: '', //这项是表示打开的是哪个属性名的选择框
 				btnShow: false, //待安装审核按钮不显示
-				obj: {
-					chargeModelId: '是',
-					serialNo: '',
-					cableType: '',
-					cableLength: '',
-					pipaLength: '',
-
-				}
 			}
 		},
 
@@ -319,7 +256,7 @@
 						// 请求成功,返回数据
 						uni.showToast({
 							title: '安装提交成功',
-							duration: 1500,
+							duration: 2000,
 						});
 						setTimeout(() => {
 							uni.navigateBack()
@@ -335,7 +272,7 @@
 						// 请求成功,返回数据
 						uni.showToast({
 							title: '安装打卡成功',
-							duration: 1500,
+							duration: 2000,
 						});
 						setTimeout(() => {
 							uni.navigateBack()
@@ -355,15 +292,14 @@
 
 			// 确定选择框的内容的回调
 			selectConfirm(e) {
-				console.log(this.name);
-				this.obj[this.name] = e[0].label
+				this.orderInstallDetail.install.installMaterial[this.name] = e[0].label
 			},
 
 			//用户确认选择时间
 			timeConfirm(e) {
 				let year = new Date().getFullYear()
 				this.orderInstallDetail.install.finishedTime = year + '-' + e.month + '-' + e.day + ' ' + e.hour + ':' + e
-					.minute
+					.minute + ':' + e.second
 			}
 
 		},
