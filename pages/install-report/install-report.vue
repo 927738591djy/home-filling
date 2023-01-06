@@ -85,11 +85,15 @@
 
 <style>
 	.top {
-		/* background: #fff; */
-		position: relative;
+		background: #fff;
+		position: fixed;
 		overflow: hidden;
 		height: 11vh;
 		color: #000;
+		width: 100%;
+		left: 0;
+		top: 0;
+		z-index: 100;
 	}
 
 	.bottom {
@@ -98,7 +102,7 @@
 		border-radius: 20rpx;
 		padding: 40rpx;
 		padding-bottom: 15rpx;
-		margin-top: 32rpx;
+		margin-top: 13vh;
 	}
 
 	.line {

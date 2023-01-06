@@ -72,19 +72,24 @@
 <style scoped>
 	.top {
 		background: #fff;
-		position: relative;
+		position: fixed;
 		overflow: hidden;
 		height: 11vh;
 		color: #000;
+		width: 100%;
+		left: 0;
+		top: 0;
+		z-index: 100;
 	}
 
 	.bottom {
-		margin-top: 32rpx;
+		/* margin-top: 11vh; */
 		background-color: #fff;
 		padding: 0 20rpx;
 	}
 
 	.search {
+		margin-top: 11vh;
 		background-color: #fff;
 		padding: 16rpx 24rpx;
 	}
