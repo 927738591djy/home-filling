@@ -5,15 +5,16 @@
 			</navbar>
 		</view>
 		<view class="bottom">
-			<view class="bottom-box">
-				<view class="box-label">安装确认书(最多上传5张):</view>
 
-				<!-- <view class="survey-textarea survey-upload"> -->
-				<view class="out" :class="{'upload-active-out':confirmFileList.length <=0}">
-					<u-upload :action="action" :file-list="confirmFileList" upload-text="上传现场勘测照片" :custom-btn="true"
-						:max-count="5">
+			<view class="bottom-box">
+
+				<view class="box-label">安装确认书(最多上传5张):</view>
+				<view style="display: flex;justify-content: center;">
+					<u-upload :action="action" :fileList="confirmFileList" upload-text="上传现场勘测照片" :custom-btn="true"
+						:max-count="5" del-bg-color="#676767" @on-remove="onConFirmRemove"
+						@on-choose-complete="onConFirmChange" :auto-upload="false">
 						<view slot="addBtn" class="slot-btn" hover-class="slot-btn__hover" hover-stay-time="150">
-							<view class="survey-upload" :class="{'active-survey-supload':confirmFileList.length > 0}">
+							<view  class="survey-upload">
 								<image style="width: 72rpx;height: 72rpx" src="../../static/img/order/addbtn.png"
 									mode="">
 								</image>
@@ -22,21 +23,13 @@
 						</view>
 					</u-upload>
 				</view>
-				<!-- </view> -->
 
 				<view class="line"></view>
 			</view>
+
 			<view class="bottom-box">
 				<view class="box-label">增项报价单(最多上传2张):</view>
 				<view class="survey-textarea survey-upload">
-					<u-upload :action="action" :file-list="fileList" upload-text="增项报价单" :custom-btn="true"
-						:max-count="2">
-						<view slot="addBtn" class="slot-btn" hover-class="slot-btn__hover" hover-stay-time="150">
-							<image style="width: 72rpx;height: 72rpx" src="../../static/img/order/addbtn.png" mode="">
-							</image>
-							<view style="color:#000;font-size: 24rpx;">增项报价单</view>
-						</view>
-					</u-upload>
 				</view>
 				<view class="line"></view>
 			</view>
@@ -54,6 +47,8 @@
 				</view>
 				<view class="line"></view>
 			</view>
+
+
 			<view class="bottom-box">
 				<view class="box-label">控制箱内部接线(最多上传1张):</view>
 				<view class="survey-textarea survey-upload">
@@ -67,6 +62,7 @@
 					</u-upload>
 				</view>
 			</view>
+
 		</view>
 
 		<RedButton title="提交审核"></RedButton>
@@ -88,7 +84,14 @@
 			}
 		},
 		methods: {
-
+			onConFirmRemove(index, lists, name) {
+				this.confirmFileList = lists
+				console.log(this.confirmFileList);
+			},
+			onConFirmChange(lists, name) {
+				this.confirmFileList = lists
+				console.log(this.confirmFileList);
+			}
 		},
 		onLoad() {},
 	}
@@ -126,24 +129,14 @@
 		text-align: center;
 		justify-content: center;
 		background-color: #FAFAFA;
-		width: 100%;
-		width: 192rpx;
-		height: 192rpx;
 		display: flex;
 		align-items: center;
 		flex-direction: column;
-		/* 		border: 6rpx dotted #E7E7E7; */
-	}
+		border: 4rpx dotted #E7E7E7;
+		margin: 30rpx auto;
+		height: 192rpx;
+		width: 640rpx;
 
-	/* 当上传图片数小于1张即未上传时,给out添加这个样式 */
-	.active-survey-supload {
-		background-color: #FAFAFA;
-		border: 6rpx dotted #E7E7E7;
-	}
-
-	/* 当上传图片数大于等于1张,给survey-upload添加这个样式 */
-	.upload-active-out {
-		border: 6rpx dotted #E7E7E7;
 	}
 
 	.box-label {

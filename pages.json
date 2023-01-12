@@ -5,6 +5,29 @@
 
 	"pages": [
 		{
+		    "path" : "pages/to-reform/to-reform",
+		    "style": {
+		    	"navigationStyle": "custom",
+		    	"enablePullDownRefresh": false,
+		    	"navigationBarTextStyle": "white",
+		    	"app-plus": {
+		    		"bounce": "none"
+		    	}
+		    }   
+		},
+		{
+			"path": "pages/order-survey/order-survey",
+			"style": {
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false,
+				"navigationBarTextStyle": "white",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		
+		{
 			"path": "pages/index/index",
 			"style": {
 				"navigationStyle": "custom",
@@ -50,17 +73,6 @@
 		    }  
 		},
 		{
-		    "path" : "pages/to-reform/to-reform",
-		    "style": {
-		    	"navigationStyle": "custom",
-		    	"enablePullDownRefresh": false,
-		    	"navigationBarTextStyle": "white",
-		    	"app-plus": {
-		    		"bounce": "none"
-		    	}
-		    }   
-		},
-		{
 			"path": "pages/look-stock/look-stock",
 			"style": {
 				"navigationStyle": "custom",
@@ -95,18 +107,6 @@
 			}
 		},
 		
-	{
-		"path": "pages/order-survey/order-survey",
-		"style": {
-			"navigationStyle": "custom",
-			"enablePullDownRefresh": false,
-			"navigationBarTextStyle": "white",
-			"app-plus": {
-				"bounce": "none"
-			}
-		}
-	
-	},
 	{
 		"path": "pages/survey-report/survey-report",
 		"style": {

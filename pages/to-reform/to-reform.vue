@@ -1,22 +1,26 @@
 <template>
 	<view>
-		<view class="top">
-			<navbar  :title="navBarTitle" :blackArrow="true">
-			</navbar>
-			<view class="light-circle"></view>
-			<view class="light-circle-right"></view>
-		</view>
-		<view class="search">
-			<view class="search-input">
-				<image style="width: 48rpx;height: 48rpx;margin-right: 12rpx;" src="../../static/img/order/search.png">
-				</image>
-				<input type="text" placeholder="搜索预设文案">
+		<view style="position: fixed;top:0;left:0;width: 100%;z-index: 100;">
+			<view class="top">
+				<navbar :title="navBarTitle" :blackArrow="true">
+				</navbar>
+				<view class="light-circle"></view>
+				<view class="light-circle-right"></view>
 			</view>
-		</view>
+			<view class="search">
+				<view class="search-input">
+					<image style="width: 48rpx;height: 48rpx;margin-right: 12rpx;"
+						src="../../static/img/order/search.png">
+					</image>
+					<input type="text" placeholder="搜索预设文案">
+				</view>
+			</view>
 
-		<view style="padding: 0 40rpx 0 0;width: 100%; background-color: #fff;">
-			<u-tabs font-size="27" :list="tabsList" :is-scroll="false" :current="tabsCurrent" @change="tabsChange"
-				active-color="#FC615F"></u-tabs>
+			<view style="padding: 0 40rpx 0 0;width: 100%; background-color: #fff;">
+				<u-tabs font-size="27" :list="tabsList" :is-scroll="false" :current="tabsCurrent" @change="tabsChange"
+					active-color="#FC615F"></u-tabs>
+			</view>
+
 		</view>
 
 		<view class="bottom-boxs">
@@ -52,41 +56,8 @@
 					<u-icon size="50" name="arrow-right"></u-icon>
 				</view>
 			</view>
-			
-			<view class="bottom-box" v-for="item in 1">
-				<view class="box-left">
-					<view class="box-title">
-						<view class="tag">
-							<view class="tag-text">
-								{{item.stateMainText}}
-							</view>
-						</view>
-						<view class="bottom-box-title">{{item.brandInfo.name}}</view>
-					</view>
-					<view class="order-detail">
-						<view class="order-label">下单时间：</view>
-						<view>{{item.createdDate}}</view>
-					</view>
-					<view class="order-detail">
-						<view class="order-label">客户信息：</view>
-						<view>{{item.cust.name + item.cust.mobile}}</view>
-					</view>
-					<view class="order-detail">
-						<view class="order-label">勘测时间：</view>
-						<view>{{item.survey.createdDate}}</view>
-					</view>
-					<view class="order-detail">
-						<view class="order-label">安装地址：</view>
-						<view>{{item.villageAddress}}</view>
-					</view>
-				</view>
-			
-				<view class="box-right" @click="jump(item.id)">
-					<u-icon size="50" name="arrow-right"></u-icon>
-				</view>
-			</view>
-		
-			
+
+
 		</view>
 	</view>
 </template>
@@ -110,8 +81,8 @@
 				tabsCurrent: 0,
 				orderReformList: [], //待勘测订单列表
 				orderStatus: 'ALL', //订单状态:全部，已完成，进行中
-				likeKeyWords:'', //搜索关键词
-				navBarTitle:'' //头部导航栏文字
+				likeKeyWords: '', //搜索关键词
+				navBarTitle: '' //头部导航栏文字
 			}
 		},
 		methods: {
@@ -133,30 +104,30 @@
 				}
 				this.getOrderRemoveList()
 			},
-			jump(orderId){
+			jump(orderId) {
 				let a = 2
-				if(a == 1){
+				if (a == 1) {
 					this.toReformDetail(orderId)
 				}
-				if(a==2){
+				if (a == 2) {
 					this.toOrderDetail(orderId)
 				}
-				
+
 			},
 			// 跳转到整改详情
-			toReformDetail(orderId){
+			toReformDetail(orderId) {
 				uni.navigateTo({
-					url:'../reform-detail/reform-detail?orderId='+ orderId
+					url: '../reform-detail/reform-detail?orderId=' + orderId
 				})
 			},
 			// 跳转到售后详情
-			toOrderDetail(orderId){
+			toOrderDetail(orderId) {
 				uni.navigateTo({
-					url:'../order-detail/order-detail?orderId='+ orderId
+					url: '../order-detail/order-detail?orderId=' + orderId
 				})
 			},
-		
-			
+
+
 			// 待整改订单列表查询
 			getOrderRemoveList() {
 				this.$lsxmApi.getOrderRemoveList(this.orderStatus, this.likeKeyWords).then(res => {
@@ -168,7 +139,7 @@
 					}
 				})
 			},
-			
+
 			//售后订单列表查询
 			getAfterSaleOrderList() {
 				this.$lsxmApi.getAfterSaleOrderList(this.orderStatus, this.likeKeyWords).then(res => {
@@ -182,16 +153,16 @@
 			},
 		},
 		onLoad() {
-			let a = 2
-			if(a == 1){
-				this.getOrderRemoveList() 
+			let a = 1
+			if (a == 1) {
+				this.getOrderRemoveList()
 				this.navBarTitle = '待整改'
 			}
-			if(a==2){
+			if (a == 2) {
 				this.getAfterSaleOrderList()
 				this.navBarTitle = '售后订单'
 			}
-			
+
 		},
 	}
 </script>
@@ -262,6 +233,7 @@
 	}
 
 	.bottom-boxs {
+		margin-top: 22vh;
 		padding: 32rpx 24rpx 0 24rpx;
 	}
 
@@ -286,6 +258,7 @@
 		align-items: center;
 		margin-bottom: 20rpx;
 	}
+
 	.order-detail {
 		display: flex;
 		align-items: center;
@@ -298,6 +271,5 @@
 		color: #999999;
 	}
 
-.box-left{
-}
+	.box-left {}
 </style>
