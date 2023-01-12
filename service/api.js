@@ -95,12 +95,12 @@ export default {
 		
 		// 整改提交
 		ReformSubmit(data) {
-			return lsxmRequest.post('/order/order/rectify_submit', data)
+			return lsxmRequest.get('/order/order/rectify_submit', data)
 		},
 		
 		//售后订单列表查询
 		getAfterSaleOrderList(orderStatus, likeKeyWords) {
-			return lsxmRequest.get('/order/order/get_after_sale_list?orderStatus=' + orderStatus + '&likeKeyWords=' +
+			return lsxmRequest.post('/order/order/get_after_sale_list?orderStatus=' + orderStatus + '&likeKeyWords=' +
 				likeKeyWords)
 		},
 		// 售后订单详情

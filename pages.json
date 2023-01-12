@@ -5,7 +5,7 @@
 
 	"pages": [
 		{
-			"path": "pages/statement/statement",
+			"path": "pages/index/index",
 			"style": {
 				"navigationStyle": "custom",
 				"enablePullDownRefresh": false,
@@ -14,17 +14,6 @@
 					"bounce": "none"
 				}
 			}
-		},
-		{
-		    "path" : "pages/my-order/my-order",
-		    "style": {
-		    	"navigationStyle": "custom",
-		    	"enablePullDownRefresh": false,
-		    	"navigationBarTextStyle": "white",
-		    	"app-plus": {
-		    		"bounce": "none"
-		    	}
-		    }  
 		},
 		{
 		    "path" : "pages/to-reform/to-reform",
@@ -38,6 +27,30 @@
 		    }   
 		},
 		{
+			"path": "pages/statement/statement",
+			"style": {
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false,
+				"navigationBarTextStyle": "white",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		
+		
+		{
+		    "path" : "pages/my-order/my-order",
+		    "style": {
+		    	"navigationStyle": "custom",
+		    	"enablePullDownRefresh": false,
+		    	"navigationBarTextStyle": "white",
+		    	"app-plus": {
+		    		"bounce": "none"
+		    	}
+		    }  
+		},
+		{
 			"path": "pages/order-survey/order-survey",
 			"style": {
 				"navigationStyle": "custom",
@@ -49,17 +62,6 @@
 			}
 		},
 		
-		{
-			"path": "pages/index/index",
-			"style": {
-				"navigationStyle": "custom",
-				"enablePullDownRefresh": false,
-				"navigationBarTextStyle": "white",
-				"app-plus": {
-					"bounce": "none"
-				}
-			}
-		},
 		{
 			"path": "pages/order-allocation/order-allocation",
 			"style": {
