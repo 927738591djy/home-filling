@@ -29,7 +29,7 @@
 					<view class="box-title">
 						<view class="tag">
 							<view class="tag-text">
-								{{item.stateMainText}}
+								{{item.stateSubText}}
 							</view>
 						</view>
 						<view class="bottom-box-title">{{item.brandInfo.name}}</view>
@@ -153,7 +153,7 @@
 			},
 		},
 		onLoad() {
-			let a = 1
+			let a = 2
 			if (a == 1) {
 				this.getOrderRemoveList()
 				this.navBarTitle = '待整改'
