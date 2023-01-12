@@ -1,50 +1,53 @@
 <template>
 	<view>
-		<view class="top">
-			<navbar  title="我的订单" :blackArrow="true">
-			</navbar>
-			<view class="light-circle"></view>
-			<view class="light-circle-right"></view>
-		</view>
-		<view class="search">
-			<view class="search-input">
-				<image style="width: 48rpx;height: 48rpx;margin-right: 12rpx;" src="../../static/img/order/search.png">
-				</image>
-				<input type="text" placeholder="搜索预设文案">
+		<view style="position: fixed;top:0;left:0;width: 100%;z-index: 100;">
+			<view class="top">
+				<navbar title="我的订单" :blackArrow="true">
+				</navbar>
+				<view class="light-circle"></view>
+				<view class="light-circle-right"></view>
+			</view>
+			<view class="search">
+				<view class="search-input">
+					<image style="width: 48rpx;height: 48rpx;margin-right: 12rpx;"
+						src="../../static/img/order/search.png">
+					</image>
+					<input type="text" placeholder="搜索预设文案">
+				</view>
+			</view>
+
+			<view style="padding: 0 40rpx 0 0;width: 100%; background-color: #fff;">
+				<u-tabs font-size="27" :list="tabsList" :is-scroll="false" :current="tabsCurrent" @change="tabsChange"
+					active-color="#FC615F"></u-tabs>
 			</view>
 		</view>
 
-		<view style="padding: 0 40rpx 0 0;width: 100%; background-color: #fff;">
-			<u-tabs font-size="27" :list="tabsList" :is-scroll="false" :current="tabsCurrent" @change="tabsChange"
-				active-color="#FC615F"></u-tabs>
-		</view>
-
-		<view class="bottom-boxs">	
+		<view class="bottom-boxs">
 			<view class="bottom-box" v-for="item in 1">
-					<view class="box-title">
-						<view class="box-tag">
-							<view class="tag"></view>
-							<view>任务编号: 17292038652</view>
-						</view>
-						<view class="tag-text">待确认</view>
+				<view class="box-title">
+					<view class="box-tag">
+						<view class="tag"></view>
+						<view>任务编号: 17292038652</view>
 					</view>
-					<view class="line"></view>
-					<view class="order-detail">
-						<view class="order-label">客户姓名：</view>
-						<view>张三</view>
-					</view>
-					<view class="order-detail">
-						<view class="order-label">安装地址</view>
-						<view>上海市嘉定区众仁路勇立大厦M22 4-6</view>
-					</view>
-					<view class="order-detail">
-						<view class="order-label">上门时间：</view>
-						<view> 2022-11-21 13:30</view>
-					</view>
-					
+					<view class="tag-text">待确认</view>
+				</view>
+				<view class="line"></view>
+				<view class="order-detail">
+					<view class="order-label">客户姓名：</view>
+					<view>张三</view>
+				</view>
+				<view class="order-detail">
+					<view class="order-label">安装地址</view>
+					<view>上海市嘉定区众仁路勇立大厦M22 4-6</view>
+				</view>
+				<view class="order-detail">
+					<view class="order-label">上门时间：</view>
+					<view> 2022-11-21 13:30</view>
+				</view>
+
 			</view>
-		
-			
+
+
 		</view>
 	</view>
 </template>
@@ -68,8 +71,8 @@
 				tabsCurrent: 0,
 				orderReformList: [], //待勘测订单列表
 				orderStatus: 'ALL', //订单状态:全部，已完成，进行中
-				likeKeyWords:'', //搜索关键词
-				navBarTitle:'' //头部导航栏文字
+				likeKeyWords: '', //搜索关键词
+				navBarTitle: '' //头部导航栏文字
 			}
 		},
 		methods: {
@@ -92,18 +95,18 @@
 				this.getOrderRemoveList()
 			},
 			// 跳转到整改详情
-			toReformDetail(orderId){
+			toReformDetail(orderId) {
 				uni.navigateTo({
-					url:'../reform-detail/reform-detail?orderId='+ orderId
+					url: '../reform-detail/reform-detail?orderId=' + orderId
 				})
 			},
 			// 跳转到售后详情
-			toOrderDetail(orderId){
+			toOrderDetail(orderId) {
 				uni.navigateTo({
-					url:'../order-detail/order-detail?orderId='+ orderId
+					url: '../order-detail/order-detail?orderId=' + orderId
 				})
 			},
-		
+
 			//我的订单列表查询
 			getMyOrder() {
 				this.$lsxmApi.getMyOrder(this.orderStatus, this.likeKeyWords).then(res => {
@@ -117,7 +120,7 @@
 			},
 		},
 		onLoad() {
-		this.getMyOrder()
+			this.getMyOrder()
 		},
 	}
 </script>
@@ -170,7 +173,9 @@
 		font-size: 28rpx;
 		color: #999;
 	}
+
 	.bottom-boxs {
+		margin-top: 21vh;
 		padding: 32rpx 24rpx 0 24rpx;
 	}
 
@@ -196,6 +201,7 @@
 		justify-content: space-between;
 		padding-right: 32rpx;
 	}
+
 	.order-detail {
 		display: flex;
 		align-items: center;
@@ -207,24 +213,28 @@
 	.order-label {
 		color: #999999;
 	}
-	.box-tag{
+
+	.box-tag {
 		display: flex;
 	}
-	.tag{
+
+	.tag {
 		background-color: #FC615F;
 		width: 8rpx;
 		height: 40rpx;
 		margin-right: 30rpx;
 	}
-	.tag-text{
+
+	.tag-text {
 		color: #FC615F;
 		border: 2rpx solid #FC615F;
 		border-radius: 30rpx;
-		padding:5rpx 15rpx;
+		padding: 5rpx 15rpx;
 	}
-	.line{
+
+	.line {
 		height: 1rpx;
 		margin: 20rpx 32rpx;
-		background-color:#E1E1E1;
+		background-color: #E1E1E1;
 	}
 </style>

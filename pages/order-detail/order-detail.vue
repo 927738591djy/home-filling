@@ -174,15 +174,19 @@
 <style>
 	.top {
 		background: #fff;
-		position: relative;
+		position: fixed;
 		overflow: hidden;
 		height: 11vh;
 		color: #000;
+		width: 100%;
+		left: 0;
+		top: 0;
+		z-index: 100;
 
 	}
 
 	.bottom {
-		margin-top: 32rpx;
+		margin-top: 12vh;
 		padding: 0 24rpx;
 	}
 

@@ -5,6 +5,28 @@
 
 	"pages": [
 		{
+			"path": "pages/statement/statement",
+			"style": {
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false,
+				"navigationBarTextStyle": "white",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+		    "path" : "pages/my-order/my-order",
+		    "style": {
+		    	"navigationStyle": "custom",
+		    	"enablePullDownRefresh": false,
+		    	"navigationBarTextStyle": "white",
+		    	"app-plus": {
+		    		"bounce": "none"
+		    	}
+		    }  
+		},
+		{
 		    "path" : "pages/to-reform/to-reform",
 		    "style": {
 		    	"navigationStyle": "custom",
@@ -61,17 +83,7 @@
 				}
 			}
 		},
-		{
-		    "path" : "pages/my-order/my-order",
-		    "style": {
-		    	"navigationStyle": "custom",
-		    	"enablePullDownRefresh": false,
-		    	"navigationBarTextStyle": "white",
-		    	"app-plus": {
-		    		"bounce": "none"
-		    	}
-		    }  
-		},
+	
 		{
 			"path": "pages/look-stock/look-stock",
 			"style": {
@@ -84,17 +96,7 @@
 			}
 		
 		},
-		{
-			"path": "pages/statement/statement",
-			"style": {
-				"navigationStyle": "custom",
-				"enablePullDownRefresh": false,
-				"navigationBarTextStyle": "white",
-				"app-plus": {
-					"bounce": "none"
-				}
-			}
-		},
+	
 		{
 			"path": "pages/trip/trip",
 			"style": {
