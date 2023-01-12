@@ -47,12 +47,15 @@
 					<view>
 						<view class="report-detail">
 							<view class="box-label">充电桩型号(TPN):</view>
-							<view class="select-right">
+							<view class="select-right" @click="scanCode">
 								<input type="text" disabled style="text-align: right;"
 									v-model="orderInstallDetail.install.installMaterial.chargeModelId"
-									@click="selectMaterial('chargeModelId')" placeholder="请选择">
+									 placeholder="扫一扫">
 								<u-icon v-if="!orderInstallDetail.install.installMaterial.chargeModelId"
-									style="margin-left: 10rpx;color: #999;" top="2" name="arrow-right"></u-icon>
+									style="margin-left: 10rpx;color: #999;" top="2" name="scan"></u-icon>
+									
+									
+									
 							</view>
 						</view>
 
@@ -81,22 +84,18 @@
 						<view class="report-detail">
 							<view class="box-label">电缆长度:</view>
 							<view class="select-right">
-								<input type="text" disabled style="text-align: right;"
-									v-model="orderInstallDetail.install.installMaterial.cableLength"
-									@click="selectMaterial('cableLength')" placeholder="请选择">
-								<u-icon v-if="!orderInstallDetail.install.installMaterial.cableLength"
-									style="margin-left: 10rpx;color: #999;" top="2" name="arrow-right"></u-icon>
+								<input type="number" style="text-align: right;"
+									v-model="orderInstallDetail.install.installMaterial.cableLength" placeholder="请输入" />
 							</view>
 						</view>
 
 						<view class="report-detail">
 							<view class="box-label">管长</view>
 							<view class="select-right">
-								<input type="text" disabled style="text-align: right;"
+								<input type="number" style="text-align: right;"
 									v-model="orderInstallDetail.install.installMaterial.pipaLength"
-									@click="selectMaterial('pipaLength')" placeholder="请选择">
-								<u-icon v-if="!orderInstallDetail.install.installMaterial.pipaLength"
-									style="margin-left: 10rpx;color: #999;" top="2" name="arrow-right"></u-icon>
+									placeholder="请输入" />
+								
 							</view>
 						</view>
 
@@ -300,8 +299,22 @@
 				let year = new Date().getFullYear()
 				this.orderInstallDetail.install.finishedTime = year + '-' + e.month + '-' + e.day + ' ' + e.hour + ':' + e
 					.minute + ':' + e.second
+			},
+			
+			
+			// 扫码功能扫序列号
+			// 允许从相机和相册扫码
+			scanCode(){
+				console.log(222);
+				uni.scanCode({
+					success: function (res) {
+						console.log('条码类型：' + res.scanType);
+						console.log('条码内容：' + res.result);
+					}
+				});
 			}
-
+			
+			
 		},
 
 		onLoad(options) {

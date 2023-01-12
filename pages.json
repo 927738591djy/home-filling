@@ -5,6 +5,18 @@
 
 	"pages": [
 		{
+			"path": "pages/survey-detail/survey-detail",
+			"style": {
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false,
+				"navigationBarTextStyle": "white",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		
+		},
+		{
 			"path": "pages/index/index",
 			"style": {
 				"navigationStyle": "custom",
@@ -123,18 +135,7 @@
 		}
 	
 	},
-		{
-			"path": "pages/survey-detail/survey-detail",
-			"style": {
-				"navigationStyle": "custom",
-				"enablePullDownRefresh": false,
-				"navigationBarTextStyle": "white",
-				"app-plus": {
-					"bounce": "none"
-				}
-			}
-
-		},
+	
 		{
 			"path": "pages/approval-process/approval-process",
 			"style": {
