@@ -1,5 +1,6 @@
 <template>
 	<view>
+	<view style="position: fixed;top:0;left:0;width: 100%;z-index: 100;">
 		<view class="top">
 			<navbar title="结算单" :blackArrow="true">
 			</navbar>
@@ -17,6 +18,7 @@
 			<u-tabs font-size="27" :list="tabsList" :is-scroll="false" :current="tabsCurrent" @change="tabsChange"
 				active-color="#FC615F"></u-tabs>
 		</view>
+	</view>
 
 		<view class="bottom">
 			<u-cell-group>
@@ -135,5 +137,8 @@
 	.search-input::placeholder {
 		font-size: 28rpx;
 		color: #999;
+	}
+	.botom{
+		margin-top: 22vh;
 	}
 </style>

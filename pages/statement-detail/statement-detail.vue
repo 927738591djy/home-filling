@@ -113,10 +113,15 @@
 
 <style>
 	.top {
-		position: relative;
+		background: #fff;
+		position: fixed;
 		overflow: hidden;
 		height: 11vh;
 		color: #000;
+		width: 100%;
+		left: 0;
+		top: 0;
+		z-index: 100;
 	}
 
 	.bottom {
@@ -124,6 +129,7 @@
 		margin: 32rpx 24rpx;
 		padding: 40rpx 32rpx;
 		border-radius: 20rpx;
+		margin-top: 12vh;
 	}
 
 	.bottom-detail {
