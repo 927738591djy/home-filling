@@ -111,7 +111,7 @@
 				this.getOrderInstallList()
 			},
 
-			// 根据 判断是那种安装状态:待预约安装、待安装、安装中、待安装审核、安装完成
+			// 根据 判断是那种安装状态:待预约安装、待安装、安装中、待安装审核、安装完 
 			toInstallDetail(orderId, stateMain) {
 				if(stateMain == 'SCHEDULED_INSTALL'){
 					uni.navigateTo({
