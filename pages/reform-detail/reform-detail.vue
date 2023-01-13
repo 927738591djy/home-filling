@@ -98,10 +98,13 @@
 				this.$lsxmApi.ReformSubmit(this.orderReformDetail).then(res => {
 					if (res.data.data.code == 200 || res.data.data.code == 1) {
 						// 请求成功,返回数据
-					console.log(res);
-						
-					} else {
-						// 弹出错误提示消息
+						uni.showToast({
+							title: '整改提交成功',
+							duration: 2000,
+						});
+						setTimeout(() => {
+							uni.navigateBack()
+						}, 1500)
 					}
 				})
 			},

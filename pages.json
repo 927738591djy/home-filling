@@ -5,6 +5,17 @@
 
 	"pages": [
 		{
+		    "path" : "pages/to-reform/to-reform",
+		    "style": {
+		    	"navigationStyle": "custom",
+		    	"enablePullDownRefresh": false,
+		    	"navigationBarTextStyle": "white",
+		    	"app-plus": {
+		    		"bounce": "none"
+		    	}
+		    }   
+		},
+		{
 			"path": "pages/survey-detail/survey-detail",
 			"style": {
 				"navigationStyle": "custom",
@@ -27,17 +38,7 @@
 				}
 			}
 		},
-		{
-		    "path" : "pages/to-reform/to-reform",
-		    "style": {
-		    	"navigationStyle": "custom",
-		    	"enablePullDownRefresh": false,
-		    	"navigationBarTextStyle": "white",
-		    	"app-plus": {
-		    		"bounce": "none"
-		    	}
-		    }   
-		},
+		
 		{
 			"path": "pages/statement/statement",
 			"style": {
