@@ -21,8 +21,10 @@
 	</view>
 
 		<view class="bottom">
+			ddd
 			<u-cell-group>
-				<u-cell-item @click="toStateMentDetail(item.id)" v-for="item in orderList" :key="item.id" :title="item.name"></u-cell-item>
+				ddd
+				<u-cell-item @click="toStateMentDetail(item.id)" v-for="item in orderList" :key="item.id" :title="item.name">wwww</u-cell-item>
 			</u-cell-group>
 		</view>
 	</view>
@@ -42,13 +44,22 @@
 					name: '待确认',
 				}],
 				tabsCurrent: 0,
-				orderList:[],
-				likeKeyWords:''
+				orderList:[], //结算订单列表
+				// 查询参数
+				queryParameter: {
+					total: 0, //订单总数
+					current: 1, //当前页
+					size: 10, //每页限制10条
+					likeKeyWords: '' //关键字
+				},
 			}
 		},
 		methods: {
 			tabsChange(index) {
 				this.tabsCurrent = index;
+				this.queryParameter.current = 1
+				this.queryParameter.total = 0
+				this.orderList = []
 				if(this.tabsCurrent == 0){
 					this.getPayedSettleOrderList()
 				}
@@ -63,24 +74,23 @@
 			},
 			// 待确认订单列表查询
 			getToConfirmSettleOrderList() {
-				this.$lsxmApi.getToConfirmSettleOrderList(this.likeKeyWords).then(res => {
+				this.$lsxmApi.getToConfirmSettleOrderList(this.queryParameter).then(res => {
 					if (res.data.data.code == 200 || res.data.data.code == 1) {
 						// 请求成功,返回数据
-						this.orderList = res.data.data.data.records
-					} else {
-						// 弹出错误提示消息
-					}
+						this.orderList = this.orderList.concat(res.data.data.data.records)
+						console.log(this.orderList);
+						this.queryParameter.total = res.data.data.data.total //分页总数
+					} 
 				})
 			},
 			// 已结算订单列表查询
 			getPayedSettleOrderList() {
-				this.$lsxmApi.getPayedSettleOrderList(this.likeKeyWords).then(res => {
+				this.$lsxmApi.getPayedSettleOrderList(this.queryParameter).then(res => {
 					if (res.data.data.code == 200 || res.data.data.code == 1) {
 						// 请求成功,返回数据
-						this.orderList = res.data.data.data.records
-					} else {
-						// 弹出错误提示消息
-					}
+						this.orderList = this.orderList.concat(res.data.data.data.records)
+						this.queryParameter.total = res.data.data.data.total //分页总数
+					} 
 				})
 			},
 		},
@@ -139,6 +149,6 @@
 		color: #999;
 	}
 	.botom{
-		margin-top: 22vh;
+		padding-top: 300rpx;
 	}
 </style>

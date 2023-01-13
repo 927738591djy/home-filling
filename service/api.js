@@ -113,13 +113,13 @@ export default {
 		},
 		
 		// 结算单列表待确认
-		getToConfirmSettleOrderList(likeKeyWords) {
-			return lsxmRequest.get('/settle/settle/get_to_confirm_settle_list?likeKeyWords'+ likeKeyWords)
+		getToConfirmSettleOrderList(data) {
+			return lsxmRequest.get('/settle/settle/get_to_confirm_settle_list',data)
 		},
 		
 		// 结算单列表已结算
-		getPayedSettleOrderList(likeKeyWords) {
-			return lsxmRequest.get('/settle/settle/get_payed_settle_list?likeKeyWords='+ likeKeyWords)
+		getPayedSettleOrderList(data) {
+			return lsxmRequest.get('/settle/settle/get_payed_settle_list',data)
 		},
 		
 		// 结算订单详情

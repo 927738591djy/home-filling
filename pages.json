@@ -5,6 +5,17 @@
 
 	"pages": [
 		{
+			"path": "pages/statement/statement",
+			"style": {
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": false,
+				"navigationBarTextStyle": "white",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
 		    "path" : "pages/to-reform/to-reform",
 		    "style": {
 		    	"navigationStyle": "custom",
@@ -38,19 +49,7 @@
 				}
 			}
 		},
-		
-		{
-			"path": "pages/statement/statement",
-			"style": {
-				"navigationStyle": "custom",
-				"enablePullDownRefresh": false,
-				"navigationBarTextStyle": "white",
-				"app-plus": {
-					"bounce": "none"
-				}
-			}
-		},
-		
+			
 		
 		{
 		    "path" : "pages/my-order/my-order",
