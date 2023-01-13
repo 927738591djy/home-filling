@@ -12,7 +12,8 @@
 					<image style="width: 48rpx;height: 48rpx;margin-right: 12rpx;"
 						src="../../static/img/order/search.png">
 					</image>
-					<input type="text" placeholder="搜索预设文案">
+					<input type="text" placeholder="搜索预设文案" v-model="queryParameter.likeKeyWords"
+						@input="$u.debounce(search, 600)">
 				</view>
 			</view>
 
@@ -80,9 +81,18 @@
 				}, ],
 				tabsCurrent: 0,
 				orderReformList: [], //待勘测订单列表
-				orderStatus: 'ALL', //订单状态:全部，已完成，进行中
-				likeKeyWords: '', //搜索关键词
-				navBarTitle: '' //头部导航栏文字
+
+				// 查询参数
+				queryParameter: {
+					total: 0, //订单总数
+					current: 1, //当前页
+					size: 10, //每页限制10条
+					orderStatus: 'ALL', //订单状态:全部，已完成，进行中
+					likeKeyWords: '' //关键字
+				},
+
+				navBarTitle: '', //头部导航栏文字
+				a: 2 //区分是整改还是售后订单的代码
 			}
 		},
 		methods: {
@@ -91,25 +101,32 @@
 				console.log(index);
 				switch (index) {
 					case 0:
-						this.orderStatus = 'ALL'
+						this.queryParameter.orderStatus = 'ALL'
 						break;
 					case 1:
-						this.orderStatus = 'DOING'
+						this.queryParameter.orderStatus = 'DOING'
 						break;
 					case 2:
-						this.orderStatus = 'FINISHED'
+						this.queryParameter.orderStatus = 'FINISHED'
 						break;
 					default:
 						break;
 				}
-				this.getOrderRemoveList()
+				this.queryParameter.current = 1
+				this.queryParameter.total = 0
+				this.orderReformList = []
+				if (this.a == 1) {
+					this.getOrderRemoveList()
+				} else {
+					this.getAfterSaleOrderList()
+				}
 			},
+
 			jump(orderId) {
-				let a = 1
-				if (a == 1) {
+				if (this.a == 1) {
 					this.toReformDetail(orderId)
 				}
-				if (a == 2) {
+				if (this.a == 2) {
 					this.toOrderDetail(orderId)
 				}
 
@@ -130,35 +147,66 @@
 
 			// 待整改订单列表查询
 			getOrderRemoveList() {
-				this.$lsxmApi.getOrderRemoveList(this.orderStatus, this.likeKeyWords).then(res => {
+				this.$lsxmApi.getOrderRemoveList(this.queryParameter).then(res => {
 					if (res.data.data.code == 200 || res.data.data.code == 1) {
 						// 请求成功,返回数据
-						this.orderReformList = res.data.data.data.records
-					} else {
-						// 弹出错误提示消息
+						this.orderReformList = this.orderReformList.concat(res.data.data.data.records)
+						this.queryParameter.total = res.data.data.data.total //分页总数
 					}
 				})
 			},
 
+
+			//uniapp页面触底事件
+			onReachBottom() {
+				if (this.queryParameter.current * this.queryParameter.size >= this.queryParameter.total) {
+					uni.showToast({
+						title: "已经到底啦",
+						icon: 'none'
+					})
+					return
+				}
+				this.queryParameter.current += 1
+				if (this.a == 1) {
+					this.getOrderRemoveList()
+				}
+				if (this.a == 2) {
+					this.getAfterSaleOrderList()
+				}
+			},
+
+			// 鼠标输入事件
+			search() {
+				this.orderReformList = []
+				if (this.a == 1) {
+					this.getOrderRemoveList()
+				}
+				if (this.a == 2) {
+					this.getAfterSaleOrderList()
+				}
+			},
+
 			//售后订单列表查询
 			getAfterSaleOrderList() {
-				this.$lsxmApi.getAfterSaleOrderList(this.orderStatus, this.likeKeyWords).then(res => {
+				this.$lsxmApi.getAfterSaleOrderList(this.queryParameter).then(res => {
 					if (res.data.data.code == 200 || res.data.data.code == 1) {
 						// 请求成功,返回数据
-						this.orderReformList = res.data.data.data.records
-					} else {
-						// 弹出错误提示消息
+						this.orderReformList = this.orderReformList.concat(res.data.data.data.records)
+						this.queryParameter.total = res.data.data.data.total //分页总数
 					}
 				})
 			},
+
+
+
 		},
+
 		onLoad() {
-			let a = 1
-			if (a == 1) {
+			if (this.a == 1) {
 				this.getOrderRemoveList()
 				this.navBarTitle = '待整改'
 			}
-			if (a == 2) {
+			if (this.a == 2) {
 				this.getAfterSaleOrderList()
 				this.navBarTitle = '售后订单'
 			}
@@ -222,7 +270,7 @@
 		height: 30rpx;
 		font-size: 20rpx;
 		color: #fff;
-		width: 80rpx;
+		padding: 0 10rpx;
 		transform: skewX(-15deg);
 		text-align: center;
 		margin-right: 20rpx;

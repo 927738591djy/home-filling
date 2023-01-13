@@ -1,7 +1,7 @@
 <template>
 	<view class="install-detail">
 		<view class="top">
-			<navbar color="#000" title="整改提交">
+			<navbar color="#000" :title="navTitle">
 			</navbar>
 		</view>
 
@@ -59,7 +59,8 @@
 
 
 
-		<RedButton @click.native="ReformSubmit" title="整改提交" bgColor="#FF3A3B"></RedButton>
+
+		<RedButton v-if="orderReformDetail.stateSub == 'INSTALL_REFUSED'" @click.native="ReformSubmit" title="整改提交" bgColor="#FF3A3B"></RedButton>
 
 	</view>
 </template>
@@ -75,7 +76,8 @@
 		data() {
 			return {
 				orderId: '', //由安装列表哪传过来的订单id
-				orderReformDetail:{} //整改详情对象
+				orderReformDetail:{}, //整改详情对象
+				navTitle:'' //导航栏标题，驳回状态的是整改提交，待整改审核的状态是整改详情
 			}
 		},
 		methods: {
@@ -86,7 +88,7 @@
 						// 请求成功,返回数据
 						this.orderReformDetail = res.data.data.data
 						console.log(this.orderReformDetail);
-
+						this.navTitle = this.orderReformDetail.stateSub == 'INSTALL_REFUSED' ?'整改提交':'整改详情'
 					} else {
 						// 弹出错误提示消息
 					}

@@ -83,9 +83,8 @@ export default {
 		
 		
 		//待整改订单列表查询
-		getOrderRemoveList(orderStatus, likeKeyWords) {
-			return lsxmRequest.get('/order/order/get_rectify_list?orderStatus=' + orderStatus + '&likeKeyWords=' +
-				likeKeyWords)
+		getOrderRemoveList(data) {
+			return lsxmRequest.get('/order/order/get_rectify_list',data)
 		},
 		
 		// 整改订单详情
@@ -99,10 +98,10 @@ export default {
 		},
 		
 		//售后订单列表查询
-		getAfterSaleOrderList(orderStatus, likeKeyWords) {
-			return lsxmRequest.post('/order/order/get_after_sale_list?orderStatus=' + orderStatus + '&likeKeyWords=' +
-				likeKeyWords)
+		getAfterSaleOrderList(data) {
+			return lsxmRequest.get('/order/order/get_after_sale_list',data)
 		},
+		
 		// 售后订单详情
 		getAfterSaleOrderDetail(orderId) {
 			return lsxmRequest.get('/order/order/get_after_sale_detail?orderId=' + orderId)
